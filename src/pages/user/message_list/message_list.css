@@ -1,0 +1,99 @@
+.tis{
+  width: 100%;
+  margin: 0 auto;
+  background:#e64340;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  height: 0px;
+  margin-top: 20rpx;
+}
+
+.message_body{
+  width: 95%;
+  margin: 0 auto;
+  font-size: 13pt;
+  display: block;
+  margin-top: 10rpx;
+}
+.message_type_radio{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  font-size: 10pt;
+}
+.message_type_radio radio{
+  /*float: left;*/
+  
+  width: 57rpx;
+  height: 30rpx;
+}
+.message_title{
+  width: 90%; 
+  margin: 0 auto;
+  margin-top: 30rpx;
+  font-size: 12pt;
+  margin-bottom:30rpx;
+  color: #333333;
+}
+.message_text{
+  /*border:1px solid #b2b2b2;*/
+  background-color: #F2F2F2;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  font-size: 12pt;
+  padding-left: 25rpx;
+  padding-top: 25rpx;
+  color: #6A6A6A;
+}
+.message_submit_botton{
+  margin-top: 60rpx;
+  width: 88%;
+  background: #E4E4E4 !important;
+}
+.message_submit_botton:hover{
+   width: 88%;
+  background-color: #09BB07 !important;
+}
+
+
+.list{
+  font-size: 11pt;
+  border-bottom: 1px solid #b2b2b2;
+  width: 95%;
+  margin: 10px 0 20px 10px;
+}
+.scroll_view{
+  height: 1000rpx;
+}
+.load_footer{
+  text-align: center;
+  font-size: 13pt;
+  background: #dedede;
+  color: #999999;
+  width: 100%;
+  clear: both;
+  display: block;
+  margin-top:30rpx;
+}
+.title{
+  color: #e64340;
+  font-size: 13pt;
+}
+.msg_title{
+  color: #000;
+}
+.time2{
+  display: block;
+  color: #b2b2b2;
+  line-height: 13pt;
+  font-size: 9pt;
+  margin-left: 5rpx;
+}
+.desc{
+  display: block;
+  font-size: 11pt;
+  margin-bottom: 5px;
+}

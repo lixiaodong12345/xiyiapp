@@ -1,0 +1,255 @@
+page{
+  background: #f5f5f5;
+}
+.tis{
+  width: 80%;
+  margin: 0;
+  color: #5B5B5B;
+  text-align: center;
+  line-height: 30px;
+  height: 0px;
+  font-size: 9pt;
+  /*background:#e64340;*/
+}
+.order_static{
+    height: 150px;
+    width: 100%;
+    background: #f65153;
+    text-align: left;
+    line-height: 100rpx;
+    font-size: 11pt;
+    color: #fff;
+  text-align: center;
+}
+.order_static image{
+    width: 20px;vertical-align: middle;
+    margin-right: 20rpx;
+}
+.order_static .status{
+  margin: 10rpx 0 0 0rpx;
+  font-size: 32rpx;
+  line-height: 50rpx;
+  display:inline-block;
+  font-weight: bold;
+}
+.order_static .status_t{
+  float: left;
+  margin: 0rpx 0 0 64rpx;
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+.warn_button{
+    display:block;
+    width:85%;
+    height: 74rpx;
+    font-size:34rpx;
+    font-family:'苹方';
+    line-height: 74rpx;
+    background-color: #e43a3d !important;
+    color: #ffffff;
+    float: left;
+    margin-left:58rpx;
+    margin-top:82%;
+}
+.success{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 70px auto 20px;
+}
+.load_footer{
+  text-align: center;
+  font-size: 11pt;
+  /*font-weight: bold;*/
+  background: #eaeaea;
+  color: #444;
+  width: 100%;
+  clear: both;
+  display: block;
+}
+.success_img .success_icon{
+  display:block;
+  width:130rpx;
+  height:130rpx;
+  margin:0 auto;
+  margin-top:26%;
+}
+.success_img .success_text{
+  display:block;
+  overflow:hidden;
+  margin-top:38rpx;
+  font-family:'苹方';
+  font-size:32rpx;
+}
+.back_index{
+  width:279rpx;
+  height:68rpx;
+  line-height:68rpx;
+  text-align: center;
+  border:1px solid #fd4c4c;
+  color:#fd4c4c;
+  font-size:32rpx;
+  margin:0 auto;
+  border-radius:60rpx;
+  margin-top:120px;
+}
+.success_img .margin_text{
+  margin-top:8rpx;
+}
+
+
+/*  */
+.success_img{
+  background: #ffffff;
+  display:block;
+  overflow:hidden;
+  width:100%;
+  text-align:center;
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
+}
+.success_li{
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  line-height: 45rpx;
+  font-size: 28rpx;
+  text-align: left;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  background: white;
+	-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+  color: #333333;
+  position: relative;
+}
+.success_lilast{
+  margin-bottom: 10rpx;
+}
+.success_lilast::after{
+  position: absolute;
+  bottom: 0;
+  left: 20rpx;
+  right: 20rpx;
+  height: 1px ;
+  content: "";
+  background: #d5d5d5;
+}
+.success_li .momey_num{
+  color: #e43a3d;
+  font-size: 32rpx;
+}
+.success_li .phone{
+  padding-left: 20rpx;
+}
+
+.success_title{
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  color: #333333;
+}
+.success_title .xian{
+  position: absolute;
+  top: 49rpx;
+  left: 50%;
+  margin-left: -200rpx;
+  width: 400rpx;
+  z-index: 99;
+  height: 1px;
+  background: #ffffff;
+}
+.success_title_text{
+  display: inline-block;
+  padding: 0 20rpx;
+  position: relative;
+  z-index: 100;
+  background: #f65153;
+  color: #ffffff;
+}
+.success_title image{
+  width: 32rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.success_coupon_box{
+  width: 100%;
+  height: auto;
+  float: left;
+  padding:0 20rpx;
+	-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+  font-size: 26rpx;
+}
+.success_coupon{
+  width: 100%;
+  position: relative;
+  float: left;
+  height: 100px;
+}
+.success_coupon_left{
+  width: 30%;
+  float: left;
+  background-image: url("https://test.shedongyun.com/addons/ewei_shopv2/static/images/success_couleft.png");
+  background-size: 100% 100%;
+  height: 100px;
+}
+.success_money{
+  color: red;
+  margin-top: 20rpx;
+  margin-left: 20rpx;}
+.success_money .aa{
+  font-size: 40rpx;
+  }
+.success_money .bb{
+  font-size: 60rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+  }
+.success_conditions {
+    margin-top: 20rpx;
+  }
+.success_conditions text{
+    color: #808080;
+    background: #fff8e2;
+    padding: 2px 5px;
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+  }
+.success_coupon_mid{
+  width: 70%;
+  float: left;
+  background-image: url("https://test.shedongyun.com/addons/ewei_shopv2/static/images/success_couright.png");
+  background-size: 100% 100%;
+  height: 100px;
+}
+.success_coupon_mid .title{
+  margin-top: 20px;
+  font-size: 32rpx;
+  color: #1a1a1a;
+  display: block;
+  margin-left: 20rpx;
+} 
+.success_coupon_mid .date{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #999999;
+  display: block;
+  margin-left: 20rpx;
+} 
+.success_coupon_right{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -15px;
+  font-size: 26rpx;
+  color: white;
+  background: red;
+  padding: 5px 10px;
+  border-radius: 30rpx;
+}
+.position_box{
+  position: fixed;
+  width: 100%;
+  top: 50px;
+}

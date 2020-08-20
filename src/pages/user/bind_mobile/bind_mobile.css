@@ -1,0 +1,83 @@
+/* pages/user/bind_mobile/bind_mobile.wxss */
+page{
+  background: #f9f9f9;
+}
+.password_wrap{
+  width:100%;
+  height:100%;
+  margin-top:16rpx;
+  background: #fff;
+}
+.mobile{
+    display: block;
+    width: 90%;
+    margin:0 auto;
+    border-bottom: 1px solid #e6e6e6;
+    padding:28rpx 0rpx;
+    overflow: hidden;
+    position:relative;
+}
+.none_botton{
+  border-bottom: none;
+}
+.mobile_tx1{
+  color:#333333;
+  font-size:32rpx;
+  float:left;
+  height:1.4rem;
+  line-height:1.4rem;
+  display:block;
+  width:32%;
+}
+
+.mobile input{
+  display:block;
+  float:left;
+  height:1.4rem;
+  line-height:1.4rem;
+  color:#c6c6c6;
+  font-size:28rpx;
+}
+.tx1{
+  float: left;
+  display: block;
+  width: 170rpx;
+}
+.mobile button{
+  display: block;
+  width: 160rpx;
+  font-family:'苹方';
+  background-color: #ffffff;
+  color:#fd9a13;
+  font-size:29rpx;
+  text-align: right;
+  border-left:1px solid #e5e5e5;
+  position:absolute;
+  right:0px;
+  height:32rpx;
+  line-height: 32rpx;
+  top:32%;
+  padding:0rpx;
+}
+.mobile button::after{
+  border:none;
+}
+
+.set_finish{
+  width:90%;
+  background: #55bcc5;
+  color:#fff;
+  border-radius:30px;
+  margin-top:168rpx;
+  font-size:30rpx;
+
+}
+.set_finish::after{
+  border:none;
+}
+
+
+
+.mobile .second{display:none;}
+
+

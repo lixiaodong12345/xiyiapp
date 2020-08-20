@@ -1,0 +1,71 @@
+.tis{
+  width: 80%;
+  margin: 0;
+  color: #5B5B5B;
+  text-align: center;
+  line-height: 30px;
+  height: 0px;
+  font-size: 9pt;
+  /*background:#e64340;*/
+}
+.warn_button{
+    display:block;
+    width:35%;
+    height: 80rpx;
+    font-size:34rpx;
+    font-family:'苹方';
+    border-radius: 40rpx;
+    line-height: 80rpx;
+    background-color: #ffffff !important;
+    border: 1px solid #e43a3d !important;
+    color: #e43a3d !important;
+    float: left;
+    margin-left:10%;
+    margin-top:50%;
+    text-align: center;
+  
+}
+.success{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 70px auto 20px;
+}
+.load_footer{
+  text-align: center;
+  font-size: 11pt;
+  /*font-weight: bold;*/
+  background: #eaeaea;
+  color: #444;
+  width: 100%;
+  clear: both;
+  display: block;
+}
+.success_img{
+  display:block;
+  overflow:hidden;
+  width:100%;
+  text-align:center;
+  margin-top:24%;
+}
+.success_img .success_icon{
+  display:block;
+  width:100rpx;
+  height:100rpx;
+  margin:18rpx auto;
+}
+.success_img .success_text{
+  display:block;
+  overflow:hidden;
+  margin-top:38rpx;
+  font-family:'苹方';
+  font-size:36rpx;
+
+}
+
+
+
+
+
+
+

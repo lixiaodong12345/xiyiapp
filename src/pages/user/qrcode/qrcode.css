@@ -1,0 +1,55 @@
+/* pages/user/qrcode/qrcode.wxss */
+.sweep_qrcode{
+    width:100%;
+    height:1363rpx;
+    background: url(" 'http://wximage.shedongyun.com/sdfxmall/1.0.0/icon/sweep_img.jpg");
+    background-size: 100%;
+}
+.wechat_name{
+    float: left;
+    width: 230rpx;
+    height: 350rpx;
+    margin-top: 450rpx;
+    margin-left: 260rpx;
+}
+.wechat_photo{
+    width: 100%;
+    height: 220rpx;
+    background-color: purple;
+    border-radius: 20px;
+}
+.wechat_name text{
+    float: left;
+    font-size: 10pt;
+    color: #FFFFFF;
+    padding-top: 20rpx;
+    padding-left: 7rpx;
+}
+.sweep_code{
+    float: left;
+    width: 410rpx;
+    /*height: 470rpx;*/
+    background-color: pink;
+    margin-top:60rpx;
+    margin-left: 170rpx;
+}
+.verification_code{
+    float: left;
+    width: 100%;
+    height: 410rpx;
+    background-color: lightcyan;
+}
+.sweep_code text{
+    float: left;
+    width: 100%;
+    font-size: 10pt;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 70rpx;
+}
+.sweep_content{
+    width:100%;
+    height:1300rpx;
+    background:url("http://wximage.shedongyun.com/sdfxmall/1.0.0/icon/sweep_content.jpg");
+    background-size: 100%;
+}

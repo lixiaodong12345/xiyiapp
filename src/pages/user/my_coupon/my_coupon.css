@@ -1,0 +1,241 @@
+page{
+  background:#f5f5f5;
+}
+.coupon_tab{
+  width: 100%;
+  height:100rpx;
+  background: #55bcc5;
+}
+.coupon_tab .coupon_tab_li{
+  width: 30%;
+  float: left;
+  height: auto;
+  margin-left: 2.5%;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 100rpx;
+  position: relative;
+  color:#fff;
+}
+.coupon_tab .active{
+  color: #fff;
+}
+.coupon_tab .active .xian{
+  position: absolute; 
+  bottom: 0;
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  left: 50%;
+  margin-left: -14px;
+}
+.coupon_wrap{
+  width:100%;
+}
+.coupon_cont{
+  width:92%;
+  margin:0 auto;
+  margin-top:30rpx;
+  background: #fff;
+}
+.line_con_wrap{
+   width:100%;
+}
+.coupon_line{
+  width:100%;
+  position:relative;
+  background: white;
+  border-radius: 3px;
+  box-shadow:0px 1px 5px rgba(0,0,0,0.2);
+  z-index:100005
+  
+}
+.round_bottom{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #f2f2f2;
+  border-radius: 50%;
+  right: 30%;
+  margin-right:-8px;
+  bottom: -10px;
+  z-index: 100000;
+  /* box-shadow:0px -3px 3px rgba(0,0,0,0.2); */
+}
+.round_top{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #f5f5f5;
+  border-radius: 50%;
+  overflow: hidden; 
+  right: 30%;
+  margin-right:-8px;
+  top: -10px;
+  z-index: 100000;
+  /* box-shadow:0px 3px 3px rgba(0,0,0,0.1); */
+}
+.coupon_line .card_back{
+  width:100%;
+  height:115px;
+} 
+.coupon_line .line_cont{
+   width:92%;
+   position:absolute;
+   top:15px;
+   left:15px;
+   z-index:999;
+}
+.line_cont_left{
+  float:left;
+  width:75%;
+  height: 94px;
+}
+.cont_left_title{
+  width:100%;
+  overflow: hidden;
+}
+.cont_left_title .cont_price{
+  color:#ff4c4c;
+  font-size:35px;
+  width:auto;
+  float:left;
+}
+.cont_left_title .cont_symble{
+  color:#ff4c4c;
+  font-size:41rpx;
+  font-family: '微软雅黑';
+  margin-right:9rpx;
+}
+
+.cont_use{
+  color:#fe5752;
+  font-size:30rpx;
+  float:left;
+  margin-top:14px;
+  background: #f9f6de;
+  padding: 2px 10px;
+  margin-left:14rpx;
+  border-radius:4px;
+}
+.coupon_line_none .cont_left_title .cont_price{
+  color:#bababa;
+  font-size:35px;
+  width:auto;
+  float:left;
+}
+.coupon_line_none .cont_left_title .cont_symble{
+  color:#bababa;
+  font-size:41rpx;
+  font-family: '微软雅黑';
+  margin-right:9rpx;
+}
+.coupon_line_none .cont_use{
+  color:#bababa;
+  font-size:30rpx;
+  float:left;
+  margin-top:14px;
+  background: #f5f5f5;
+  padding: 2px 10px;
+}
+.line_cont_left .cont_bottom{
+  display:block;
+  margin-top:2px;
+  overflow: hidden;
+}
+.line_cont_left .cont_time{
+  display:block;
+  color:#a8a7a3;
+  font-size:13px;
+  float:left;
+  height:16px;
+  line-height: 16px;
+}
+.click_hide{
+  display:block;
+  float:right;
+  margin-right:13%;
+  z-index: 9999;
+  width: 16px;
+  height:16px;
+}
+.line_cont_right{
+  width:30%;
+  float:right;
+  position: absolute;
+  right: 0;
+  top: 0;bottom:0;
+  background: #55bcc5;
+  z-index: 9999;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.coupon_line_none .line_cont_right{
+  background: #dbdbdb;
+  text-align: center;
+}
+.coupon_button{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.coupon_button text{
+  color:#ffffff;
+  font-size:16px;
+  font-family: '苹方';
+  padding: 3px 10px;
+  border-radius: 30rpx;
+  line-height: 115px;
+}
+.line_cont_right image{
+  width: 60px;
+  margin-top: 30px;
+}
+.none_publish{
+  display:block;
+  overflow:hidden;
+  width:100%;
+  text-align:center;
+  margin-top:32%;
+}
+.none_publish image{
+  width:500rpx;
+  height:300rpx;
+  display:block;
+  margin:0 auto;
+}
+.none_publish text{
+  display:block;
+  font-size:28rpx;
+  margin-top:32rpx;
+  color:#666;
+}
+
+
+.hide_info{
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  margin-top:8rpx;
+  z-index:100009;
+  display:none;
+}
+.hide_info text{
+  position: absolute;
+  width: 100%;
+  height: 80rpx;
+  z-index: 99999;
+  background: white;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  padding-left: 15px;
+  -moz-box-sizing: border-box;  /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/ 
+  -webkit-overflow-scrolling:touch;
+  color:#808080;
+}
+.conpon_type{
+  font-size: 14px;
+}

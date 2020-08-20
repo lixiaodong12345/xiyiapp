@@ -1,0 +1,323 @@
+page{
+  background-color: #fff;
+  border-top:1px solid #e8e9eb;
+}
+.tis{
+  width: 100%;
+  color: #000;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  padding-top:102rpx;
+  font-size:28rpx;
+}
+.tis .line{
+  display:inline-block;
+  width:98rpx;
+  height:1rpx;
+  background:#000;
+  vertical-align:middle;
+}
+.tis .font{
+  width:100%;
+  color:#999999;
+  display: block;
+  font-size: 29rpx;
+  margin-bottom:36rpx;
+}
+.tis .text{
+  width:238rpx;
+  height:72rpx;
+  line-height: 72rpx;
+  border:1px solid #55bcc5;
+  color:#55bcc5;
+  display: block;
+  font-size:30rpx;
+  margin:0 auto;
+  border-radius:6rpx;
+}
+.tis image{
+  width: 550rpx;
+  height:380rpx;
+}
+
+.loadimg{
+  width: 100%;
+  background: #1BA1E2;
+  height: 80rpx;
+  color: #fff;
+  font-size: 11pt;
+  position: fixed;
+  bottom: 0px;
+  z-index: 99;
+  display: none;
+}
+.loadimg image{
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  float: left;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+.loadimg text{
+  line-height: 80rpx;
+  display: block;
+  float: left;
+  margin-left: 20rpx;
+}
+
+.scroll_view{
+  height: auto;
+  width: 100%;
+  display:blcok;
+  overflow:hidden;
+}
+.load_footer{
+  text-align: center;
+  font-size: 10pt;
+  color: #999999;
+  width: 100%;
+  clear: both;
+  display: block;
+  margin-top: 350rpx;
+}
+
+.goods_img{
+  height: 370rpx;
+  width: 100%;
+  float: left;
+}
+.goods_name{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display: block;
+  color: #353535;
+  width: 65%;
+  float: left;
+  font-size: 10pt;
+  margin-top: 15rpx;
+}
+.name_number{
+  height: 80rpx;
+  float: left;
+  width:100%;
+  font-size: 10pt;
+}
+.goods_number{
+  color: #b2b2b2;
+  margin-top: 10rpx;
+  display: block;
+}
+.beloved{
+  width: 13%;
+  height:47rpx;
+  float: left;
+  margin-top: 15rpx;
+}
+.beloved image{
+  width: 100%;
+  height: 100%;
+}
+.del_collection{
+  float: right;
+  background: url("http://wxapp.sns318.net/sc_dele.png") no-repeat;
+  background-position:center center;
+  font-size: 11pt;
+  color: #fff;
+  width: 10%;
+  height: 60rpx;
+  padding-top: 15rpx;
+  padding-right: 20rpx;
+  line-height:160rpx;
+  text-align: center;
+  background-size: 45rpx 50rpx;
+}
+.goods_one{
+  float: left;
+  display: block;
+  height: 450rpx;
+  width: 46%;
+  margin: 14rpx;
+  background-color: #ffffff;
+}
+
+.borderh5{
+  display: block;
+  font-size: 11pt;
+  height: 15rpx;
+  width: 100%;
+  background: #f2f2f2;
+  clear: both;
+}
+.Technical_support{
+  position: absolute;
+  bottom: -330rpx;
+  right: 18rpx;
+}
+
+/* 新添加 */
+.back_line{
+  width:100%;
+  height:24rpx;
+  background: #f2f2f2;
+}
+.module_line {
+  overflow: hidden;
+  width: 100%;
+  position:absolute;
+  top:0rpx;
+  left:0rpx;
+  right:0rpx;
+  z-index:999;
+  transition: left 0.3s ease-in-out;
+  background: #fff;
+  height:auto;
+}
+
+.module_width {
+  width: 92%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-bottom:40rpx;
+  padding-top:48rpx;
+}
+
+.prod_image {
+  display: block;
+  width: 210rpx;
+  height: 210rpx;
+  float: left;
+}
+
+.module_main {
+  width: 65%;
+  float: right;
+  height: 210rpx;
+  position: relative;
+}
+
+.shop_title {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 6rpx;
+}
+
+.laundy_cond {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.laundy_cond text {
+  display: inline-block;
+  vertical-align: middle;
+  color: #808080;
+  font-size: 29rpx;
+  margin-right: 16rpx;
+}
+
+.laundy_second {
+  margin-top: 4rpx;
+  margin-bottom:7rpx;
+}
+
+.laundy_second text {
+  padding: 3rpx 14rpx;
+  border-radius: 6rpx;
+  display: inline-block;
+  margin-right: 14rpx;
+}
+
+.laundy_second text.real_name {
+  background: #eefafd;
+  font-size: 29rpx;
+  color: #55bcc5;
+}
+
+.laundy_second text.comp_firm {
+  background: #fdf0f0;
+  font-size: 29rpx;
+  color: #fe4644;
+}
+
+.laundy_second text.price_firm {
+  background: #f7f7f7;
+  font-size: 29rpx;
+  color: #808080;
+}
+
+.module_price {
+  /* position: absolute;
+  bottom: 0rpx;
+  left: 0rpx; */
+  color: #fe4644;
+  font-size: 35rpx;
+  font-weight: bold;
+  font-family: "微软雅黑";
+}
+
+.comp_wrap {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height:50rpx;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+
+.comp_logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 36rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.comp_name {
+  display: inline-block;
+  vertical-align: middle;
+  height: 36rpx;
+  line-height: 36rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+.outside_wrap{
+  width:100%;
+  position:relative;
+  height:300rpx;
+  overflow: hidden;
+  background:#fff;
+}
+.line_del{
+  width:86px;
+  height:296rpx;
+  line-height: 296rpx;
+  text-align: center;
+  background: #fe4644;
+  float:right;
+  right:0rpx;
+  margin-top:0.5rpx;
+}
+.line_del text{
+ color:#fff;
+ font-size:30rpx;
+}
+.laundy_cond text.comp_first{
+  padding-left:0rpx;
+}
+.back_height{
+  width:100%;
+  height:1px;
+  background: #f0f0f0;
+}
+
+

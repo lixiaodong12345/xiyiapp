@@ -1,0 +1,165 @@
+/**index.wxss**/
+.head_top{
+  width: 100%;
+  height: auto;
+  float: left;
+  overflow: hidden;
+}
+
+/*轮播图  */
+.banner {
+  width: 750rpx;
+  height: 350rpx !important;
+  overflow: hidden !important;
+}
+
+.banner image {
+  width: 100%;
+  height: 437rpx;
+}
+.head_top image{
+  width:100%;
+  height: auto;
+  float: left;
+}
+.index_company{
+  width: 100%;
+  height: 180rpx;
+  float: left;
+  border-bottom: 1px dashed #dedede;
+  position: relative;
+}
+.index_company_box{
+  position: absolute;
+  top: -20rpx;
+  width: 96%;
+  height: 180rpx;
+  margin-left: 2%;
+  float: left;
+}
+.index_company_left{
+  width: 28%;
+  height: 100rpx;
+  float: left
+}
+.index_company_logo{
+  width: 75px;
+  height: 75px;margin-left: 13px;
+  margin-top: -5rpx;
+  border-radius: 50%;
+  background: #0074bc;
+}
+.index_company_logo_box{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;float:left;
+
+}
+.index_company_left image{
+  width: 100%;
+}
+.index_company_right{
+  width: 70%;
+  height: 100rpx;
+  margin-top: 15rpx;
+  float: left;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.index_company_title{
+  width: 100%;
+  height: 70rpx;
+  float: left;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+.index_company_title text{
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height:60rpx;
+}
+.index_company_nature{
+  width: 100%;
+  height: 30rpx;
+  float: left;
+}
+.index_company_nature text{
+  font-size: 28rpx;
+  color: #333333;
+  line-height:40rpx;
+  float: left;
+  max-height: 80rpx;
+  overflow: hidden;
+}
+.index_list{
+  width: 100%;
+  height: auto;
+  float: left;
+  margin: 10rpx 0;
+}
+.index_list_li{
+  width: 100%;
+  height: 80rpx;
+  float: left;
+  line-height: 77rpx;
+}
+.index_list_li text{
+  font-size: 30rpx;
+  color: #333333;
+}
+.img_list{
+  width: 96%;
+  height: auto;
+  float: left;
+  padding: 0 10px;
+}
+.img_list_li{
+  width: 33.33%;
+  height: 220rpx;
+  float: left;
+  overflow: hidden;
+}
+.img_list_li image{
+  width: 90%;
+  height: 220rpx;
+  margin: 5px 5%;
+}
+.index_list_li image{
+  background-size:100%;
+}
+.one{
+  width: 34rpx;
+  height: 37rpx;
+  margin-right:15rpx;
+  margin-bottom:-8rpx;
+  margin-left:12px;
+}
+.two{
+  width: 34rpx;
+  height: 37rpx;
+  margin-right:15rpx;
+  margin-bottom:-8rpx;
+  margin-left:12px;
+}
+.three{
+  width: 34rpx;
+  height: 37rpx;
+  margin-right:15rpx;
+  margin-bottom:-8rpx;
+  margin-left:12px;
+}
+.four{
+  width: 34rpx;
+  height: 37rpx;
+  margin-right:15rpx;
+  margin-bottom:-8rpx;
+  margin-left:12px;
+}
+.right{
+  width: 13rpx;
+  height: 24rpx;
+  margin: 30rpx;
+  float: right;
+}

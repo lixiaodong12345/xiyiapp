@@ -1,0 +1,16 @@
+/* pages/scale/number/number.wxss */
+.wrapper{width:100%;overflow:hidden;display:block;}
+.border-height{background:#f4f5f9;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;height:26rpx;}
+.wrapper-main{width:100%; }
+.wrapper-main .cont-main{width:100%;border-bottom:1px solid #e6e6e6;}
+.wrapper-main .cont{width:94%;margin:0 auto;overflow:hidden;padding-top:28rpx;padding-bottom:28rpx;}
+.wrapper-main .cont.cont-padding{padding-bottom:98rpx;}
+.cont .cont-right{display:block;float:left;width:100%;}
+.cont-right .cont-right-font{font-family:"苹方";font-size:28rpx;color:#666666;}
+.cont-right .cont-right-input{font-family:"苹方";font-size:28rpx;color:#666666;}
+.apply-main{background:#f8f8f8;overflow:hidden;}
+.apply-main .apply-font{display:inline-block;padding:14rpx 28rpx;font-family:"苹方";font-size:25rpx;
+ float:right;border:1px solid #323232;color:#323232;border-radius: 10rpx;
+ margin-top:26rpx;margin-bottom:26rpx;margin-right:44rpx;
+}
+.apply-main .apply-font.apply-font-first{color:#fe5455;border-color:#fe5455;}

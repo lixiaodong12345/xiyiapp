@@ -1,0 +1,256 @@
+/*店铺头部搜索*/
+	.hearder_sesarch{
+    width: 100%;
+		background: white;
+    z-index: 100;
+		height: 50px;
+		position: fixed;
+		top: 0;
+		padding:0 100rpx 0 20rpx;
+    -moz-box-sizing: border-box;  
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box; 
+    -ms-box-sizing: border-box; 
+    -webkit-overflow-scrolling:touch;
+    float: left;
+    border-bottom: 1rpx solid #dedede;
+	}
+	.hearder_sesarch .fa-search{
+	width:32rpx;
+position:absolute;
+left:38rpx;
+top:19px;
+	}
+	.hearder_sesarch .fl{
+	font-size:28rpx;
+color:#333333;
+position:absolute;
+right:20rpx;
+text-align:center;
+line-height:50px;
+
+	}
+	.hearder_search_input{
+		width: 100%;
+		background: white;
+		height: 30px;
+		border-bottom-left-radius: 15px;
+		border-top-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+		border-top-right-radius: 15px;
+		margin-top: 10px;
+		overflow: hidden;
+    border: 1px solid #dedede;
+    float:left;	
+    -moz-box-sizing: border-box;  
+    -webkit-box-sizing: border-box; 
+    -o-box-sizing: border-box; 
+    -ms-box-sizing: border-box;
+    -webkit-overflow-scrolling:touch;
+	}
+	.hearder_search_input input{
+		width: 82%;
+    height: 30px;
+		border: 0px;
+		outline: none;
+    font-size: 28rpx;
+    float:left;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:4px;
+	}
+/*店铺头部搜索-end*/
+
+.swiper_box{
+  width: 100%;
+  height: 380rpx;
+  float: left;
+  padding-top: 50px;
+}
+
+/*分类  */
+.menu_box{
+  width: 100%;
+  height: 100rpx;
+  float: left;	-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+  border-bottom: 1rpx solid #dedede;
+  background: white;
+}
+.scroll-header{
+  display: flex;
+  white-space: nowrap; 
+}
+.scroll-header view{
+  height:100rpx;
+  width:130rpx;
+  display: inline-block; 
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.scroll-header .active text{
+  display: block;
+  height: 96rpx;
+  line-height: 100rpx;
+  position: relative;
+}
+ .scroll-header .active text::after{
+  height: 6rpx;
+  position: absolute;
+  content: "";
+  background: red;
+  left: 40rpx;
+  right: 40rpx;
+  bottom: 0;
+} 
+
+/*店铺搜索*/
+.storelist{
+	height: auto;
+	padding: 0 20rpx;
+	background: white;
+  width: 100%;
+  float: left;-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+/**/
+.storelist_top{
+  width: 100%;
+  float: left;
+	position: relative;
+	padding-top: 30rpx;
+}
+.storelist_top .headimg{
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	overflow: hidden;
+}
+.storelist_top .headimg image{
+	width: 45px;
+	height: 45px;
+
+}
+.storelist_top .go{
+	position: absolute;
+	font-size: 28rpx;
+	right: 10px;
+	border: 0px;
+  background: #fdb303;
+	color: #ffffff;
+	padding:10rpx 35rpx;
+	border-radius: 30rpx;
+	top: 20px;
+}
+/**/
+.storelist_top_content{
+	padding: 0 0 0 55px;
+}
+.storelist_top_content .name{
+	display: block;
+	font-weight: bold;
+  font-size: 30rpx;
+}
+.storelist_top_content .text{
+	display: inline-block;
+	margin-right: 15px;
+	font-size: 13px;
+	color: #999999;
+	line-height: 35px;
+}
+/**/
+.row{
+	width: 100%;
+  float: left;
+	height: auto;-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+.row .demo-gallery {
+  width: 102%;
+  float: left;
+	-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;padding-bottom:20rpx;
+  margin-left: -5px;
+
+}
+.row .demo-gallery .a{
+	display: block;
+	width: 33.33%;
+	float: left;
+	padding: 5px 0px 5px 5px;
+  border-radius: 30rpx;
+  overflow: hidden;
+	position: relative;-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+.row .demo-gallery .a .price{
+position:absolute;
+bottom:10px;
+right:0px;
+background:rgba(0,0,0,0.5);
+padding:5px;
+font-size:13px;
+left:5px;
+text-align:center;
+color:white;
+border-bottom-left-radius:8rpx;
+border-bottom-right-radius:8rpx;
+
+}
+.row .demo-gallery .a image{
+	width: 100%;
+	height: 30.33vw;
+		border-top-left-radius: 8rpx;
+		border-top-right-radius: 8rpx;
+border-bottom-left-radius:8rpx;
+border-bottom-right-radius:8rpx;
+}
+.divider {
+    height: 20rpx;
+    clear: both;
+    width: 100%;
+    float: left;
+    background: #f5f5f5;
+}
+.adv_image_box{
+  width: 100%;
+  height: 200rpx;
+  overflow: hidden;
+  float: left;
+}
+.adv_image_box image{
+  width: 100%;
+  height: 200rpx;
+  float: left;
+}
+/*店铺搜索-end*/
+.shop_none{
+	height: auto;
+	padding: 50px 20rpx 0px 20rpx;
+	background: white;
+  width: 100%;
+  line-height: 100rpx;
+  margin-top: 50px;
+  text-align: center;
+  color: #333333;
+  font-size: 30rpx;
+  float: left;-moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+
+.nomore{
+  width:100%;
+  text-align:center;
+  font-size:26rpx;
+  display:block;
+  float:left;
+  line-height:45px;
+  background:white;
+}
+.searchicon{
+  float:left;
+  line-height: 36px;
+  margin-top:10rpx;
+  margin-left:24rpx;
+
+}
+
+
+
+

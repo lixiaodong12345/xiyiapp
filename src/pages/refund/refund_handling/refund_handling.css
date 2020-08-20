@@ -1,0 +1,30 @@
+/* pages/refund/refund_handling/refund_handling.wxss */
+.wrapper{width:100%;overflow:hidden;display:block;}
+.border-height{background:#f4f5f9;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;height:26rpx;}
+.wrapper-main{width:100%; }
+.wrapper-main .cont-main{width:100%;border-bottom:1px solid #e6e6e6;}
+.wrapper-main .cont{width:94%;margin:0 auto;overflow:hidden;padding-top:28rpx;padding-bottom:28rpx;}
+.wrapper-main .cont.cont-padding{padding-bottom:98rpx;}
+.cont .cont-left{display:block;float:left;font-family:"苹方";font-size:28rpx;}
+.cont .cont-right{display:block;float:right;width:73%;}
+.cont-right .cont-right-font{font-family:"苹方";font-size:28rpx;color:#666666;}
+.cont-right .cont-right-input{font-family:"苹方";font-size:28rpx;color:#666666;}
+.apply-main{background:#f8f8f8;overflow:hidden;}
+.apply-main .apply-font{display:inline-block;padding:14rpx 28rpx;font-family:"苹方";font-size:28rpx;
+ float:right;border:1px solid #323232;color:#323232;border-radius: 10rpx;
+ margin-top:26rpx;margin-bottom:26rpx;margin-right:44rpx;
+}
+.cont .cont-img{width:44rpx;height:44rpx;vertical-align: middle;}
+.cont .cont-text{font-family:"苹方";font-size:28rpx;color:#000;margin-left:18rpx;vertical-align: middle;}
+.cont .cont-view{display:inline-block;float:right;width:30%;margin-top:6rpx;}
+.cont-view .cont-view-img{width:22rpx;height:39rpx;float:right;}
+/*隐藏部分  */
+.cont-hidden{display:block;overflow:hidden;width:100%;}
+.cont-hidden .hidden{width:100%;margin-top:24rpx;margin-bottom:8rpx;}
+.cont-hidden .hidden .hidden-font{display:block;font-family:"苹方";font-size:26rpx;color:#666666;
+line-height:52rpx;}
+.onchangeshow{display:block;}
+.onchangehide{display:none;}
+.rotateRight{
+  transform: rotate(180deg);
+}

@@ -1,0 +1,139 @@
+/* pages/user/Logistics/Logistics.wxss */
+.wrapper{width:100%;overflow:hidden;display:block;}
+.border-height{background:#f4f5f9;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;height:20rpx;}
+.wrapper-main{width:100%; }
+.wrapper-main .cont-main{width:100%;}
+.wrapper-main .cont{width:95%;margin:0 auto;overflow:hidden;padding-top:28rpx;padding-bottom:28rpx;}
+.cont .cont-left{display:inline-block;width:auto;float:left;}
+.cont .cont-left image{width:200rpx;height:200rpx;}
+.cont .cont-right{display:inline-block;float:left;
+padding-left:22rpx;}
+.cont-right .cont-right-title{font-family:"苹方";font-size:30rpx;color:#000;}
+.cont-right .cont-right-title .cont-right-title-color{color:#25ae5f;margin-left:12rpx;}
+.cont-right .cont-right-cont{display:block;font-family:"苹方";font-size:30rpx;color:#666666;margin-bottom:8rpx;line-height: 45rpx}
+
+.wrapper-matter{width:100%;overflow:hidden;}
+.wrapper-matter .matter-left{
+  display:blcok;
+  width:20%;
+  float:left;
+position:relative;
+}
+.wrapper-matter .matter-left .matter-left-line{display:block;width:4rpx;height:200rpx;background:#d4d4d4;
+margin-left:50%;}
+.wrapper-matter .matter-left .matter-left-circle{display:block;width:20rpx;height:20rpx;
+border-radius:10rpx;z-index:999;background:#d4d4d4;
+margin-left:45%;position:absolute;top:42rpx;}
+.wrapper-matter .matter-left .matter-left-circle-finish{
+display:block;width:30rpx;height:30rpx;
+border-radius:15rpx;z-index:999;background:#25ae5f;
+margin-left:40%;position:absolute;top:-2rpx;
+box-shadow: 0 0 10rpx #25ae5f; border:1px solid #25ae5f;
+}
+.wrapper-matter .baoguo{
+  width:100%;
+  height:auto;
+  float:left;
+  position: relative;
+}
+.wrapper-matter .baoguo .lotis_type{
+  width:50rpx;
+  position: absolute;
+  left: 125rpx;
+  z-index: 999;
+  top: 20rpx;
+}
+.lotis_type_bj{
+  width:50rpx;
+  height: 25rpx;
+  position: absolute;
+  background: white;
+  left: 125rpx;
+  z-index: 998;
+  top: 0rpx;
+}
+.lotis_type_bjs{
+  width:50rpx;
+  position: absolute;
+  background: white;
+  left: 125rpx;
+  z-index: 998;
+  top: 25rpx;
+  bottom: 0;
+}
+.wrapper-matter .active{
+  color: #333333 !important;
+}
+.wrapper-matter .matter-left{
+  position: absolute;
+  display:block;
+  width:150rpx;
+  height: 100%;
+  float:left;
+  padding-top:22rpx;
+  padding-bottom:22rpx;
+  border-right: 1px solid #dedede;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+.wrapper-matter .matter-left text{
+  display:block;
+  width:180rpx;
+  float:left;
+  text-indent:20rpx;
+  text-align: right;
+  padding-right: 70rpx; 
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+.wrapper-matter .matter-left .date_0{
+  font-size: 32rpx;
+  color: #828282;
+}
+.wrapper-matter .matter-left .date_1{
+  font-size: 26rpx;
+  color: #828282;
+}
+.wrapper-matter .matter-right
+{
+  display:block;
+  background-repeat: no-repeat;
+  background-size:114rpx 240rpx; 
+  width:100%;
+  min-height: 100rpx;
+  float:right;
+  padding-top:22rpx;
+  padding-bottom:22rpx;
+  padding-left:210rpx;
+  padding-right:10px;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/-webkit-box-sizing: border-box; /*Safari3.2+*/-o-box-sizing: border-box; /*Opera9.6*/-ms-box-sizing: border-box; /*IE8*/ -webkit-overflow-scrolling:touch;
+}
+.wrapper-matter .matter-right .matter-right-title{display:block;font-family:"苹方";font-size:32rpx;color:#858585;
+line-height:44rpx;}
+.wrapper-matter .matter-right .matter-right-text{display:block;font-family:"苹方";font-size:24rpx;color:#858585;
+line-height:44rpx;}
+
+.wrapper-matter .active .matter-right .matter-right-title{color:#333333 !important;}
+.wrapper-matter .active .matter-right .matter-right-text{color:#333333 !important;}
+.adress_title{
+  width: 100%;
+  height: auto;
+  line-height: 90rpx;
+  border-bottom: 1px solid #dedede;
+  padding-left: 10px;
+  font-size: 30rpx;
+  color: #333333;
+}
+.adress_left0{
+  background-image:url("../../../static/system/adress1.png") !important; 
+}
+.adress_left0 .matter-right-font-finish,.adress_left0 .matter-right-time-finish,.adress_left1 .matter-right-font-finish,.adress_left1 .matter-right-time-finish{
+  color: #333333 !important;
+}
+.adress_left1{
+  background-image:url("../../../static/system/adress4.png") !important; 
+}
+.adress_left2{
+  background-image:url("../../../static/system/adress2.png"); 
+}
+.adress_left3{
+  background-image:url("../../../static/system/adress3.png") !important; 
+}

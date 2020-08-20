@@ -1,0 +1,102 @@
+/* pages/user/personal_data/personal_data.wxss */
+.mobile{
+    float: left;
+    display: block;
+    width: 95%;
+    height: 90rpx;
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+    border-bottom: 1px solid #E5E5E5;
+}
+.mobile_tx1{
+    float: left;
+    width: 20%;
+    height: auto;
+    margin-left: 30rpx;
+    margin-top:25rpx;
+    font-size: 10pt;
+    }
+.mobile_tx2{
+    float: left;
+    display: block;
+    width:5%;
+    height: auto;
+    color: red;
+    margin-top: 25rpx;
+    margin-left: 30rpx;
+}
+.mobile input{
+    float: left;
+    display: block;
+    margin-top: 20rpx;
+    /*margin-left: 50rpx;*/
+    font-size: 10pt;
+}
+ .mobile picker{
+    float: left;
+    display: block;
+    margin-top: 20rpx;
+    font-size: 10pt;
+} 
+.tx1{
+    float: left;
+    display: block;
+    margin-top: 25rpx;
+    /*margin-left: 50rpx;*/
+    font-size: 10pt;
+    width: 250rpx;
+}
+.mobile button{
+    display: block;
+    width: 220rpx;
+    height: 75rpx;
+    font-size: 9pt;
+    background-color: #ffffff;
+    border: #454545 1px solid;
+}
+.btn1{
+    display: block;
+    float: left;
+    width: 95%;
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+    background-color: #09BB07;
+    color: #ffffff;
+    font-size: 10pt;
+}
+.border6{
+    float: left;
+    display:block;
+    width: 100%;
+    height: 25rpx;
+    background-color: #F3F5F9;
+    border-bottom: solid 1px #E6E6E6;
+}
+.mobile_tx3{
+    display: block;
+    float: left;
+    width: 170rpx;
+    height: 60rpx;
+    font-size: 10pt;
+    padding-top: 25rpx;
+    background: url("http://wximage.shedongyun.com/sdfxmall/1.0.0/icon/next_step.png")no-repeat center right;
+    background-size: 10px;
+    color: #808080;
+}
+.cont{
+  display: block;
+  width: 98%;
+  text-align: left;
+}
+.continput2{
+  display: block;
+  float: left;
+  width: 20%;
+  background: #fff;
+  font-size: 14px;
+  flex: 1;
+  color: #b2b2b2;
+  text-align: center;
+  margin-bottom: 10rpx;
+  margin-top: 35rpx;
+}

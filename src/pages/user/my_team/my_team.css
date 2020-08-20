@@ -1,0 +1,182 @@
+/* pages/user/my_team/my_team.wxss */
+page {
+background:#f5f5f5 !important;
+
+}
+
+.team_tab{
+    width: 100%;
+    height: 110rpx;
+    border-bottom: solid #E3E3E3 1px;
+    background: white;
+}
+.team_tab_child{
+    float: left;
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+.team_tab_child text{
+   float:left;
+width:100%;
+height:50rpx;
+text-align:center;
+line-height:50rpx;
+font-size:10pt;
+color:#000000;
+margin-top:30rpx;
+border-right:1px solid #f1f1f1;
+
+}
+.active ::before{
+    width: 30px;
+    height: 2px;
+    background: #FE5455;
+    content: "";
+    position: absolute;
+    bottom: 0px;
+}
+.border001{
+    width: 100%;
+    height: 15rpx;
+    background-color: #F3F5F9;
+    border-bottom: solid 1px #E3E3E3;
+}
+.massage{
+    width: 100%;
+    height: 110rpx;
+    float:left;
+}
+.massage text{
+    line-height: 110rpx;
+    float: left;
+    font-size: 10pt;
+    color: #8C8C8C;
+}
+.massage image{
+    float: left;
+    width: 35rpx;
+    height: 35rpx;
+    padding-top: 35rpx;
+}
+/*没有团队时页面*/
+.team_none{
+    width: 100%;
+    height: 110rpx;
+}
+.team_none image{
+    width: 100rpx;
+    height: 3rpx;
+    float: left;
+    padding-top: 50rpx;
+   }
+.team_none text{
+    float: left;
+    font-size: 10pt;
+    color: #8C8C8C;
+    padding-top: 35rpx;
+}
+/*有团队时页面*/
+.wechat_team{
+    float: left;
+    display: bloack;
+    width: 100%;
+    height:200rpx;
+    position: relative;
+    background: white;
+    margin-top: 10px;
+}
+.member_avatar{
+    float: left;
+    width: 150rpx;
+    height: 150rpx;
+    margin-top: 23rpx;
+    margin-left: 35rpx;
+    border-radius: 50%;
+    position: absolute;
+}
+.wechat_tx1{
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding-left: 180rpx;
+    }
+.wechat_tx1 image{
+    float: left;
+    width: 35rpx;
+    height: 35rpx;
+    padding-top: 30rpx;
+}
+.avatar_number{
+    float: left;
+    width:169rpx;
+    height: 120rpx;
+    margin-top: 35rpx;
+    border-left: dashed 1rpx #E2E2E2;
+}
+.avatar_number_tx1{
+    float: right;
+    font-size: 10pt;
+    color: #8C8C8C;
+    padding-top: 10rpx;
+    padding-left: 70rpx;
+    padding-right:30rpx;
+}
+.avatar_number_tx2{
+    float: left;
+    margin-left: 35rpx;
+    margin-top: 20rpx;
+    font-size: 12px;
+    color: #8C8C8C;
+    background: #f1f1f1;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+.avatar_number_tx1_01{
+    float: left;
+    font-size: 10pt;
+    color: #323232;
+    padding-top: 30rpx;
+    padding-right:30rpx;
+    padding-left:35rpx;
+    font-weight: bold;
+}
+.avatar_number_tx2_02{
+    float: left;
+    font-size: 9pt;
+    color: #8C8C8C;
+    padding-top: 20rpx;
+    width: 100%;
+    height: 35rpx;
+    /*padding-right: 70rpx;*/
+    padding-left:30rpx;
+}
+.wechat_team_01{
+    float: left;
+    display: block;
+    width: 100%;
+    height:200rpx;
+    background:white;
+    margin-top: 10px;
+}
+.wechat_tx1_01{
+    float: left;
+    width: 370rpx;
+    height: 100%;
+    padding-left: 180rpx;
+}
+.avatar_number_01{
+    float: left;
+    width:189rpx;
+    height: 120rpx;
+    margin-top: 35rpx;
+    border-left: dashed 1rpx #E2E2E2;
+}
+.avatar_number_tx1_001{
+    float: right;
+    font-size: 10pt;
+    color: #8C8C8C;
+    padding-top: 10rpx;
+    padding-left: 15rpx;
+    /*padding-right:30rpx;*/
+}

@@ -1,0 +1,105 @@
+.addressmone{
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  padding-bottom: 10px;
+  margin-top: 10rpx;
+}
+.ul{
+  width: 95%;
+  height: 110rpx;
+  overflow: hidden;
+  margin: auto;
+  border-bottom:solid #f1f1f1 1px;
+}
+.title{
+  display: block;
+  float: left;
+  width: 22%;
+  font-size: 16px;
+  line-height: 110rpx;
+  color: #333333;
+}
+.borderh4{
+  height: 20rpx;
+  background: #f2f2f2;
+  clear: both;
+}
+.cont{
+  display: block;
+  float: right;
+  width: 75%;
+  text-align: left;
+  line-height:110rpx;
+}
+.continput{
+  display: block;
+  float: left;
+  width: 98%;
+  background: #fff;
+  font-size: 16px;
+  color: #333;
+  text-indent: 0px;
+  flex: 1;
+  border-radius: 0;
+  border: none;
+  min-height:110rpx;
+  line-height:110rpx;
+}
+.continput2{
+  display: block;
+  float: left;
+  width: 25%;
+  background: #fff;
+  font-size: 16px;
+  flex: 1;
+  color: #333;
+  text-align: center;
+  border-radius: 0;
+  margin-right: 10rpx;
+  border:none;
+  
+}
+.continput2 .select_color{
+  color:#808080;
+}
+.red{
+  color: red;
+}
+.save_button{
+  width: 100%;
+  font-size: 33rpx;
+  background: #55bcc5 !important;
+  position: fixed;
+  bottom: 0px;
+  border-radius: 0px;
+  height:100rpx;
+  line-height: 100rpx;
+}
+.err_tis{
+  font-size: 11pt;
+  text-align: center;
+  line-height: 100rpx;
+  height: 100rpx;
+  background: #dedede;
+  color: #999999;
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+  display: none;
+}
+.selector_text{
+  display: block;
+  height:110rpx;
+  line-height:110rpx;
+}
+.swith_right{
+  float: right;
+}
+.swith_right switch{
+  vertical-align: middle;
+  line-height: 105rpx;
+}
+.footer2 {
+  z-index:99999;
+}

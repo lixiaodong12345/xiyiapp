@@ -1,0 +1,287 @@
+.container{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+/*轮播图  */
+.banner {
+  width: 100%;
+  height: 370rpx;
+}
+.banner image {
+  display:block;
+  width: 100%;
+  height: 370rpx;
+}
+/*公告模块  */
+.notice_wrap{
+  width:100%;
+  background: #fff;
+  border-bottom:1px solid #f0f0f0;
+}
+.notice_cont{
+  width:92%;
+  margin:0 auto;
+  overflow:hidden;
+  height:96rpx;
+  }
+.notice_title{
+  display:inline-block;
+  width:40rpx;
+  height:36rpx;
+  margin-top:30rpx;
+}
+.notice_horn{
+  float:left;
+  display:block;
+  height:96rpx;
+
+}
+.notice_bar{
+  display:inline-block;
+  height:32rpx;
+  border-right:2px solid #dbdbdb;
+  margin-left:16rpx;
+  vertical-align: middle;
+  margin-top:-2rpx;
+}
+.notice_swiper{
+  height:96rpx;
+  width:68%;
+  float:left;
+  margin-left:2.8%;
+}
+.notice_font{
+  display:block;
+  width:100%;
+  font-size:30rpx;
+  color:#333333;
+  height:96rpx;
+  line-height:96rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*快捷菜单栏显示模块  */
+.menu_wrap{
+  width:100%;
+  background: #fff;
+  padding-top:48rpx;
+}
+.menu_cont{
+  overflow: hidden;
+  width:96%;
+  margin:0 auto;
+}
+.first_memu{
+  overflow: hidden;
+}
+.menu_main{
+  width:20%;
+  float:left;
+  margin-bottom:48rpx;
+}
+.menu_img{
+  display:block;
+  width:72rpx;
+  height:72rpx;
+  margin:0 auto;
+}
+.menu_title{
+  display:block;
+  font-size:28rpx;
+  color:#333333;
+  width:90%;
+  margin:0 auto;
+  text-align: center;
+  margin-top:18rpx; 
+  height:32rpx;
+  line-height:32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.back_height{
+  height:14rpx;
+  line-height:14rpx;
+  background: #f5f5f5;
+}
+.large_module{
+  width:100%;
+  overflow: hidden;
+  position:relative;
+}
+.module_title{
+  width:100%;
+  overflow: hidden;
+}
+.one_module{
+  width:33.3%;
+  float:left;
+  text-align: center;
+  height:86rpx;
+  line-height: 86rpx;
+  font-size:31rpx;
+  color:#999999;
+}
+.current_title{
+  color:#55bcc5;
+}
+.module_line{
+  width:100%;
+  background: #fff;
+  border-bottom:1px solid #f0f0f0;
+  padding:24rpx 0rpx;
+  overflow: hidden;
+}
+.prod_logo{
+  width:178rpx;
+  height:178rpx;
+  float:left;
+  margin-left:4%;
+  border:1px solid #e6e6e6;
+}
+.module_main{
+  width:64%;
+  float:right;
+  margin-right:4%;
+  position:relative;
+  overflow: hidden;
+  height:178rpx;
+}
+.shop_title{
+  width:90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size:32rpx;
+  color:#333333;
+  padding-bottom:40rpx;
+  margin-top:6rpx;
+}
+.module_clock{
+  width:80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display:block;
+}
+.clock_logo{
+  width:33rpx;
+  height:33rpx;
+  display:block;
+  margin-right:8rpx;
+  float:left;
+}
+.clock_name{
+  width:80%;
+  display:block;
+  float:left;
+  color:#999999;
+  font-size:30rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height:33rpx;
+  line-height:33rpx;
+}
+.module_posit{
+  position:absolute;
+  bottom:2rpx;
+  left:0rpx;
+  width:100%;
+}
+.clock_addre{
+  width:55%;
+  display:block;
+  float:left;
+  color:#999999;
+  font-size:30rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height:35rpx;
+  line-height:35rpx;
+
+}
+.dist_addre{
+  width:25%;
+  display:block;
+  float:left;
+  color:#999999;
+  font-size:30rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height:35rpx;
+  line-height:35rpx;
+  border-left:1px solid #d9d9d9;
+  text-align: center;
+
+}
+.right_logo{
+  display:block;
+  float:right;
+  width:22rpx;
+  height:32rpx;
+}
+.phone_logo{
+  width:70rpx;
+  height:70rpx;
+  display:block;
+  position:absolute;
+  top:30rpx;
+  right:0rpx;
+  z-index: 999999
+}
+.merchant_in{
+  position:fixed;
+  display:block;
+  width:35px;
+  height:100px;
+  top:35%;
+  right:0rpx;
+  z-index:999;
+}
+.none_empty{
+  width:100%;
+  padding-top:21%;
+  padding-bottom:12%;
+}
+.none_logo{
+  display:block;
+  margin:0 auto;
+  width:400rpx;
+  height:240rpx;
+}
+.none_name{
+  width:100%;
+  height:68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  color:#999999;
+  font-size:31rpx;
+  margin-top:18rpx;
+}
+.load_more{
+  background: #fff;
+  text-align: center;
+  margin-top:24rpx;
+  padding-bottom:32rpx;
+}
+.load_logo{
+  display:inline-block;
+  vertical-align: middle;
+  width:50rpx;
+  height:50rpx;
+}
+.load_name{
+  display:inline-block;
+  vertical-align: middle;
+  font-size:30rpx;
+  color:#999999;
+  margin-left:10rpx;
+
+}
+
+

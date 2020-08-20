@@ -1,0 +1,62 @@
+page{
+  background: #f2f2f2;
+}
+.success_wrap{
+  padding-top:32%;
+}
+.depost_success{
+  display:block;
+  width:120rpx;
+  margin:0 auto;
+}
+.success_name{
+  text-align: center;
+  font-size:40rpx;
+  margin-top:22rpx;
+  color:#000000;
+}
+.success_money{
+  text-align: center;
+  font-size:32rpx;
+  margin-top:22rpx;
+  color:#666666;
+}
+.success_send{
+  text-align: center;
+  font-size:32rpx;
+  margin-top:6rpx;
+  color:#666666;
+}
+.success_send text{
+  color:#ff8f0c;
+  margin-left:6rpx;
+  margin-right:6rpx;
+  font-size:34rpx;
+}
+.look_depost{
+  width:47%;
+  text-align: center;
+  height:68rpx;
+  line-height: 68rpx;
+  border:1px solid #55bcc5;
+  background: #55bcc5;
+  color:#fff;
+  margin:0 auto;
+  margin-top:15%;
+  font-size:31rpx;
+  border-radius: 30px;
+
+}
+.look_index{
+  width:47%;
+  text-align: center;
+  height:68rpx;
+  line-height: 68rpx;
+  border:1px solid #55bcc5;
+  background: #f2f2f2;
+  color:#55bcc5;
+  margin:0 auto;
+  margin-top:4%;
+  font-size:31rpx;
+  border-radius: 30px;
+}

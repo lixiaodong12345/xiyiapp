@@ -1,0 +1,297 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  width:100%;
+  border-top:1px solid #dcdcdc;
+}
+.amount_cont{
+  width:100%;
+  background: #fff;
+  margin-top:24rpx;
+  margin-bottom:24rpx;
+}
+.amount_number{
+  width:90%;
+  margin:0 auto;
+  overflow: hidden;
+}
+.number_cont{
+  width:100%;
+  display:block;
+  border-bottom:1px solid #e6e6e6;
+  font-size:30rpx;
+  color:#333333;
+  padding-top:24rpx;
+  padding-bottom:24rpx;
+}
+.number_symble{
+  display:inline-block;
+  vertical-align: middle;
+  color:#333333;
+  font-size:34rpx;
+  padding-top:24rpx;
+  padding-bottom:24rpx;
+}
+.number_num{
+  display:inline-block;
+  vertical-align: middle;
+  color:#fe5752;
+  font-size:34rpx;
+  margin-left:6rpx;
+  padding-top:24rpx;
+  padding-bottom:24rpx;
+}
+.amount_style{
+  background: #fff;
+}
+.style_title{
+  display:inline-block;
+  vertical-align: middle;
+}
+.amount_title{
+  width:100%;
+  padding-top:24rpx;
+  padding-bottom:24rpx;
+  overflow: hidden;
+  border-bottom:1px solid #e6e6e6;
+}
+.style_title{
+  float:left;
+  color:#333;
+  font-size:30rpx;
+}
+.style_select{
+  width:70%;
+  float:right;
+}
+.select_title{
+  float:left;
+  color:#333;
+  font-size:30rpx;
+}
+.select_image{
+  display:block;
+  float:right;
+  width:22rpx;
+  height:34rpx;
+  margin-top:4rpx;
+}
+.alipay_wrap{
+  width:100%;
+}
+.common_line{
+  width:90%;
+  margin:0 auto;
+  overflow: hidden;
+  padding-top:24rpx;
+  padding-bottom:24rpx;
+  border-bottom:1px solid #e6e6e6;
+
+}
+.common_input{
+  font-size:28rpx;
+  color:#333333;
+  display:block;
+}
+.common_title{
+  float:left;
+  color:#333;
+  font-size:30rpx;
+  height:1.4rem;
+  line-height: 1.4rem;
+  display:block;
+}
+.common_pad{
+  padding-top:28rpx;
+  padding-bottom:28rpx;
+}
+.deposit_mask{
+  width:100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.6);
+  position:fixed;
+  top:0px;
+  left:0px;
+  z-index:9999;
+}
+.deposit_cont{
+  width:70%;
+  background: #fff;
+  border-radius: 10rpx;
+  margin:0 auto;
+  margin-top:28%;
+  padding-bottom:22rpx;
+}
+.deposit_title{
+  width:100%;
+  position:relative;
+  padding-top:54rpx;
+  padding-bottom:22rpx;
+  border-bottom:1px solid #e6e6e6;
+}
+.deposit_name{
+  display: block;
+  text-align: center;
+  font-size:30rpx;
+}
+.deposit_shut{
+  display:block;
+  width:28rpx;
+  height:28rpx;
+  position:absolute;
+  top:14rpx;
+  right:22rpx;
+}
+.deposit_main{
+  width:100%;
+}
+.deposit_line{
+  width:90%;
+  margin:0 auto;
+  overflow: hidden;
+  padding-top:20rpx;
+  padding-bottom:24rpx;
+  border-bottom:1px solid #e6e6e6;
+}
+.line-left{
+  width:80%;
+  float:left;
+}
+.balance_logo{
+  width:40rpx;
+  height:46rpx;
+  display:inline-block;
+  vertical-align:middle;
+}
+.balance_font{
+  font-size:30rpx;
+  color:#333;
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:22rpx;
+}
+.line-right{
+  float:right;
+  width:38rpx;
+  height:38rpx;
+  margin-top:6rpx;
+  position: relative;
+}
+.select_logo{
+  display:block;
+  width:38rpx;
+  height:38rpx;
+}
+.posit_logo{
+  display:none;
+  width:38rpx;
+  height:38rpx;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+.posit_show{
+  display:block;
+}
+.wechat_logo{
+  width:40rpx;
+  height:40rpx;
+  display:inline-block;
+  vertical-align:middle;
+}
+.treasure_logo{
+  width:40rpx;
+  height:40rpx;
+  display:inline-block;
+  vertical-align:middle;
+}
+.bank_logo{
+  width:40rpx;
+  height:36rpx;
+  display:inline-block;
+  vertical-align:middle;
+}
+.none_deposit{
+  border-bottom:none;
+}
+.upload_button{
+  width:90%;
+  margin:0 auto;
+  color:#fff;
+  margin-top:38rpx;
+  font-size:34rpx;
+}
+.instruct_inform{
+  width:90%;
+  margin:0 auto;
+  margin-top:22rpx;
+}
+.instruct_title{
+  color:#fe5752;
+  font-size:30rpx;
+  display:block;
+  width:100%;
+  margin-bottom:12rpx;
+}
+.instruct_cont{
+  display:block;
+  width:100%;
+  color:#b3b3b3;
+  font-size:28rpx;
+  margin-top:6rpx;
+}
+.prompt_title{
+  display:block;
+  width:90%;
+  margin:0 auto;
+  font-size:30rpx;
+  color:#333;
+  margin-top:32rpx;
+  margin-bottom:22rpx;
+}
+.prompt_line{
+  display:block;
+  width:90%;
+  margin:0 auto;
+  overflow: hidden;
+  padding-bottom:20rpx;
+}
+.prompt_name{
+  width:100%;
+  font-size:30rpx;
+  color:#666666;
+}
+.refer_wrap{
+  display:block;
+  width:90%;
+  margin:0 auto;
+  margin-top:22rpx;
+  margin-bottom:22rpx;
+  overflow: hidden;
+}
+.refer_submit{
+  border:1px solid #cccccc;
+  width:198rpx;
+  height:68rpx;
+  line-height:68rpx;
+  color:#333333;
+  font-size:30rpx;
+  text-align: center;
+  display:block;
+  border-radius:6rpx;
+  float:left;
+}
+.refer_button{
+  border:1px solid #fe5752;
+  width:198rpx;
+  height:68rpx;
+  line-height:68rpx;
+  font-size:30rpx;
+  text-align: center;
+  display:block;
+  border-radius:6rpx;
+  background: #fe5752;
+  color:#fff;
+  float:right;
+}

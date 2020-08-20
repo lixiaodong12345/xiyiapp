@@ -1,0 +1,234 @@
+/* pages/user/distribution_order/distribution_order.wxss */
+.accumulated{
+    width: 100%;
+    height: 110rpx;
+    background: #FE5455;
+    border-bottom: solid #f1f1f1 1rpx;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:999;
+}
+.accumulated_tx01{
+    float: left;
+    font-size:10pt;
+    padding-top: 38rpx;
+    padding-left: 35rpx;
+    color: #ffffff;
+}
+.accumulated_tx02{
+    float: right;
+    color: #ffffff;
+    font-size:10pt;
+    font-weight: bold;
+    padding-top: 38rpx;
+    padding-right: 35rpx;
+}
+.border_006{
+    width: 100%;
+    height: 15rpx;
+    background-color: #F3F5F9;
+    border-bottom: solid #f1f1f1 1rpx;
+}
+.oder_tab{
+    width: 100%;
+    height: 100rpx;
+    border-bottom: solid #f1f1f1 1rpx;
+    position: fixed;
+    top: 110rpx;
+    left: 0;
+    background: white;
+    z-index:999;
+}
+.listbox{
+  position: fixed;
+  top: 210rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.oder_tab_child{
+    float: left;
+    height: 98%;
+    width: 23%;
+    color:#333333;
+    text-align: center;
+    line-height: 100rpx;
+    font-size:10pt;
+    margin-left: 15rpx;
+    position: relative;
+}
+.oder_tab_child.active ::before{
+    width: 30px;
+    height: 2px;
+    background: #FE5455;
+    content: "";
+    position: absolute;
+    bottom: 0px;
+}
+/*无数据时的页面*/
+.team_none{
+    width: 100%;
+    height: 110rpx;
+    margin-top: 50rpx;
+}
+.team_none image{
+    width: 100rpx;
+    height: 3rpx;
+    float: left;
+    padding-top: 50rpx;
+   }
+.team_none text{
+    float: left;
+    font-size: 10pt;
+    color: #8C8C8C;
+    padding-top: 35rpx;
+}
+/*有数据时的页面*/
+.team_child{
+    width: 100%;
+    height: 90rpx;
+    border-bottom: 2rpx solid #f1f1f1;
+}
+.team_child_left{
+    height: 100%;
+    float: left;
+}
+.team_child_left_001{
+    float: left;
+    display: block;
+    padding-left: 38rpx;
+    line-height: 90rpx;
+    font-size: 10pt;
+    color: #333333;
+}
+.team_child_left_002{
+    float: left;
+    display: block;
+    padding-left: 38rpx;
+    line-height: 90rpx;
+    font-size: 10pt;
+    color: #828282;
+}
+.team_child_right{
+    height: 100%;
+    float: right;
+    line-height:90rpx;
+    padding-right:38rpx;
+    text-align: right;
+}
+.team_child_right_002{
+    font-size: 10pt;
+    color: #828282;
+}
+.team_child_right_001{
+    font-size: 10pt;
+    color: #ffffff;
+    padding: 3px 10px;
+    background:red;
+    border-radius: 4px;
+}
+.team_child_image{
+    float: left;
+    display: block;
+    width: 8%;
+    height: 100%;
+}
+.team_child_image image{
+    float: left;
+    width: 25rpx;
+    height: 37rpx;
+    padding-top: 85rpx;
+}
+.wechat_name{
+    width: 100%;
+    height: 210rpx;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  float: left;
+  margin-top: 45rpx;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  float: left;
+  display: block;
+  width:370rpx;
+  color: #666666;
+  line-height: 50rpx;
+  font-size: 10pt;
+}
+.userinfo-nickname_01{
+  margin-top: 55rpx;
+  color: #333333;
+}
+.user_name_all{
+  width: 100%;
+  height: 210rpx;
+  float: left;
+}
+.wechat_name_right{
+    width: 195rpx;
+    height:100%;
+    float:right;
+   
+}
+.wechat_name_tx01{
+    display: block;
+    font-size: 10pt;
+    color: #343434;
+    padding-left:20rpx;
+    line-height:42rpx;
+}
+.userinfo-avatar_001{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  float: left;
+  margin-top: 45rpx;
+  margin-left: 30rpx;
+  background-color: lightcyan;
+}
+.money{
+  color: red;
+  margin-left: 10px;
+}
+/*优化  */
+.goods_info{
+  overflow:hidden;
+  float: left;
+  width: 72%;
+}
+.good_name_number{
+  width: 100%;
+  display:blcok;
+  overflow:hidden;
+}
+.goods_img{
+  height: 190rpx;
+  width: 190rpx;
+  float: left;
+  margin-left: 20rpx;
+ 
+}
+
+.goods_name{
+  float: left;
+  font-size: 28rpx;
+  overflow:hidden;
+  display: block;
+  margin-top: 45rpx;
+  margin-left:20rpx;
+  line-height: 40rpx;
+  width: 94%;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2; 
+  margin-bottom:4rpx;
+  font-family:'苹方';
+}

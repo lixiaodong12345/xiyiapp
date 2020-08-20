@@ -1,0 +1,126 @@
+page{
+  border-top:1px solid #dcdcdc;
+  background: #f5f5f5;
+}
+.body{
+  width:100%;
+  height:100%;
+}
+.line-back{
+  width:100%;
+  background: #f5f5f5;
+  height:24rpx;
+}
+.remain_balance{
+  width:100%;
+  background: #fff;
+  overflow: hidden;
+  padding:30rpx 0rpx;
+  border-bottom:1px solid #e6e6e6;
+}
+.balance_name{
+  display:block;
+  float:left;
+  margin-left:4%;
+  color:#333333;
+  font-size:31rpx;
+  min-height:1.4rem;
+  line-height: 1.4rem;
+}
+.balance_money{
+  display:block;
+  float:right;
+  margin-right:4%;
+  color:#333333;
+  font-size:31rpx;
+  min-height:1.4rem;
+  line-height: 1.4rem;
+}
+.balance_input{
+  display:block;
+  float:right;
+  margin-right:4%;
+  color:#333333;
+  font-size:31rpx;
+  text-align: right;
+}
+.balance_width{
+  width:92%;
+  margin:0 auto;
+  overflow: hidden;
+  padding:30rpx 0rpx;
+  border-bottom:1px solid #e6e6e6;
+
+}
+.margin_left{
+  margin-left:0rpx;
+}
+.margin_right{
+  margin-right:0rpx;
+}
+.remain_border{
+  border-bottom:none;
+  padding:0rpx;
+}
+.balance_select{
+  width:92%;
+  margin:0 auto;
+  overflow: hidden;
+  padding:48rpx 0rpx 20rpx 0rpx;
+}
+.balance_one{
+  width:29%;
+  padding:24rpx 0rpx;
+  background: #fff;
+  border:1.2px solid #55bcc5;
+  border-radius:6rpx;
+  position:relative;
+  float:left;
+  margin-right:5%;
+  margin-bottom:28rpx;
+}
+.balance_select view.balance_one:nth-child(3n){
+  margin-right:0rpx;
+}
+.recharge{
+  display:block;
+  width:100%;
+  text-align: center;
+  font-size:30rpx;
+  color:#333333;
+}
+.send_money{
+  display:block;
+  width:100%;
+  text-align: center;
+  font-size:30rpx;
+  color:#ff2929;
+}
+.checkbox_one{
+  width:100%;
+  height:100%;
+  display:block;
+  position:absolute;
+  top:0rpx;
+  left:0rpx;
+  z-index:999;
+  opacity: 0;
+}
+.login_button{
+  width:92%;
+  margin:0 auto;
+  background: #55bcc5 !important;
+  color:#fff;
+  font-size:34rpx;
+  margin-top:80rpx;
+  line-height:90rpx;
+}
+.login_button::after{
+  border:none;
+}
+.balance_select .select_balance{
+  background: #55bcc5;
+}
+.select_balance .recharge,.select_balance .send_money{
+  color:#fff;
+}

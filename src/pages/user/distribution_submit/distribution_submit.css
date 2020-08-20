@@ -1,0 +1,56 @@
+/* pages/user/distribution_submit/distribution_submit.wxss */
+.wrapper{
+  overflow:hidden;
+  width:100%;
+
+}
+.wrapper_submit{
+   overflow:hidden;
+   width:100%;
+   text-align:center;
+   margin-top:102rpx;
+}
+.wrapper_submit image{
+  display:block;
+  width:82rpx;
+  height:82rpx;
+  margin:0 auto;
+}
+.wrapper_submit text{
+  display:block;
+  color:#09ba07;
+  font-family:'苹方';
+  font-size:30rpx;
+  line-height:62rpx;
+  margin-top:26rpx;
+}
+.wrapper_text{
+  margin-top:26rpx;
+  margin-bottom:26rpx;
+  width:100%;
+  text-align:center;
+}
+.wrapper_text text{
+  font-family:'苹方';
+  font-size:30rpx;
+  color:#7b7b7b;
+}
+.wrapper_wait{
+  width:100%;
+  overflow:hidden;
+}
+.wrapper_wait .wait_cont{
+  width:67%;
+  height:68rpx;
+  line-height:68rpx;
+  text-align:center;
+  background:#09ba07;
+  border-radius:12rpx;
+  margin:52rpx auto;
+}
+.wrapper_wait .wait_cont text{
+  font-family:'苹方';
+  font-size:30rpx;
+  color:#fff;
+}
+

@@ -1,0 +1,689 @@
+page{
+  border-top:1px solid #e6e6e6;
+}
+.cart_wrap{
+  width:100%;
+  overflow: hidden;
+}
+.line_one{
+  width:100%;
+  overflow: hidden;
+}
+text {
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  -webkit-overflow-scrolling: touch;
+}
+
+.flow_box {
+  width: 100%;
+  height: auto;
+  float: left;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+
+.flow_box .list_box {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  height:auto;
+  border-bottom:1px solid #f2f2f2; 
+  z-index:99999;
+}
+.cart_heard {
+  border-bottom: solid 1px #e5e5e5;
+}
+
+.cart_hard_tb {
+  float: left;
+  color: #fff;
+  font-size: 15pt;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border: solid #e64340 2px;
+  background: #e64340;
+  border-radius: 50%;
+  margin-top: 7rpx;
+  margin-left: 15rpx;
+  font-weight: bold;
+}
+
+.cart_hard_text {
+  color: #fff;
+  line-height: 80rpx;
+  padding-left: 240rpx;
+  font-size: 13pt;
+}
+
+.cart_hard_jt {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20pt;
+  line-height: 80rpx;
+  margin-left: 290rpx;
+}
+.supplier_image {
+  height: 64rpx;
+  width: 64rpx;
+  float: left;
+}
+
+.supplier_text {
+  font-size: 11pt;
+  float: left;
+  line-height: 80rpx;
+  color: #000;
+  font-weight: bold;
+}
+.cart_null{
+  padding-top:32%;
+}
+.cart_null image {
+  width: 520rpx;
+  display: block;
+  margin:0 auto;
+  margin-bottom:24rpx;
+}
+
+.cart_null text {
+  display: block;
+  color: #999999;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.cart_null button.skip_index{
+  display: block;
+  width: 35%;
+  height: 82rpx;
+  line-height: 82rpx;
+  color: #55bcc5;
+  font-size: 30rpx;
+  margin: 80rpx auto;
+  border: 1px solid #55bcc5;
+  border-radius: 45rpx;
+  background: #fff;
+}
+.cart_null button.login_skip{
+  display: block;
+  width: 35%;
+  height: 82rpx;
+  line-height: 82rpx;
+  color: #55bcc5;
+  font-size: 30rpx;
+  margin: 80rpx auto;
+  border: 1px solid #55bcc5;
+  border-radius: 45rpx;
+  background: #fff;
+}
+
+.supplier {
+  margin-left: 20rpx;
+  height: 80rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.cart_checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 9;
+  display: block;
+  margin-right: 16rpx;
+  float: left;
+  border-radius: 20px;
+  background-size: 60px 120px;
+  margin-top: 10%;
+  position: relative;
+}
+
+.cart_checkbox image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.checked {
+  background-position: -29px 0;
+  border-radius: 20px;
+}
+
+.cart_list_image {
+  width: 200rpx;
+  height: 200rpx;
+  display: inline-block;
+  float: left;
+}
+
+.goods_list {
+  overflow: hidden;
+  width: 100%;
+  padding-top: 38rpx;
+  padding-bottom: 38rpx;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  -webkit-overflow-scrolling: touch;
+  padding-left: 20rpx;
+  position: relative;
+  z-index: 100;
+  background: white;
+}
+
+.goods_list::before {
+  bottom: 0px;
+  left: 290rpx;
+  position: absolute;
+  content: "";
+  right: 0;
+  height: 1px;
+  background: #f5f5f5;
+}
+
+.goods_one {
+  float: left;
+  overflow: hidden;
+  width: 61%;
+  height:200rpx;
+  position:relative;
+}
+
+.checks {
+  float: left;
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  border: solid 1px #cdcdcd;
+  border-radius: 50px;
+}
+
+.goods_title_price {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.goods_title {
+  display: block;
+  font-size: 31rpx;
+  text-overflow: ellipsis;
+  line-height: 38rpx;
+  width: 100%;
+  overflow: hidden;
+  float: left;
+  color: #333;
+  display: -webkit-box;
+  padding-left: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.take_style{
+  height:50rpx;
+  line-height: 50rpx;
+  color:#999999;
+  font-size:28rpx;
+  padding-left:16rpx;
+  margin-top:16rpx;
+}
+
+.shop_price {
+  font-size: 10pt;
+  float: right;
+  width: 28%;
+  line-height: 38rpx;
+  height: 38rpx;
+  text-align: right;
+}
+
+.goods_attr {
+  font-size: 26rpx;
+  margin-left: 10rpx;
+  color: #6f6f6f;
+  overflow: hidden;
+  font-weight: normal;
+  line-height: 50rpx;
+  display: block;
+  float: left;
+}
+
+.num {
+  display: block;
+  overflow: hidden;
+  position:absolute;
+  bottom:0rpx;
+  left:0rpx;
+  height:58rpx;
+  width:100%;
+}
+
+.attrWrap {
+  display: block;
+  overflow: hidden;
+  padding-left: 6rpx;
+}
+
+.xm-input-number {
+  display: block;
+  overflow: hidden;
+  float: left;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0;
+}
+
+.num_button {
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 20pt;
+  width: 56rpx;
+  background: url("http://wximage.shedongyun.com/sdo2o/jian.png") no-repeat center center;
+  background-size: 32rpx;
+  border-radius: 2rpx 0 0 2rpx;
+  text-align: center;
+  float: left;
+  border: 1px solid #cccccc;
+}
+
+.num_input {
+  float: left;
+  width: 70rpx;
+  height: 48rpx;
+  margin: 0 0 0 0;
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+  border-top: 1px solid #cccccc;
+}
+.num_input input{
+  min-height: 48rpx;
+  line-height: 48rpx;
+  font-size: 31rpx;
+}
+
+.num_button2 {
+  height: 48rpx;
+  font-size: 20pt;
+  width: 56rpx;
+  background: url("http://wximage.shedongyun.com/sdo2o/jia.png") no-repeat center center;
+  background-size: 32rpx;
+  border-radius: 0 2rpx 2rpx 0;
+  text-align: center;
+  line-height: 48rpx;
+  margin: 0 0 0 0;
+  float: left;
+  border: 1px solid #cccccc;
+}
+
+.price {
+  height: 46rpx;
+  line-height: 46rpx;
+  width: auto;
+  float: left;
+  display: block;
+  left: 10rpx;
+  color: #fe4644;
+  font-size:36rpx;
+  margin-top:10rpx;
+  margin-left:16rpx;
+}
+.price .symble_type{
+  font-size:26rpx;
+}
+.price_delect{
+  font-size: 24rpx;
+  text-decoration: line-through;
+  color: #cccccc;
+  display: block;
+  float:left;
+  bottom:0rpx;
+  height:46;
+  line-height: 46rpx;
+  margin-left:8rpx;
+  margin-top:13rpx;
+}
+
+
+.del {
+  color: #999;
+  display: block;
+  background: url("http://wximage.shedongyun.com/sdfxmall/1.0.0/user/delet_ch.png") no-repeat;
+  width: 40rpx;
+  height: 52rpx;
+  background-size: 30rpx;
+  margin-left: 32rpx;
+  margin-top: 12rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.borderh4 {
+  float: left;
+  clear: both;
+  height: 24rpx;
+  width: 100%;
+  background: #f2f2f2;
+}
+
+.cart_footer {
+  border-top: 1px solid #b2b2b2;
+  border-bottom: 1px solid #b2b2b2;
+  position: fixed;
+  bottom: 0px;
+  height: 100rpx;
+  width: 100%;
+  z-index: 999;
+  background: #fff;
+}
+
+.cart_footer image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 30rpx 20rpx 25rpx 20rpx;
+  float: left;
+}
+
+.cart_footer wx-checkbox {
+  opacity: 0;
+  position: absolute;
+  left: 20rpx;
+  top: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 10;
+}
+
+.qx {
+  float: left;
+  width: 140rpx;
+  height: 100%;
+  font-size: 12pt;
+  padding-top: 10px;
+  padding-left: 15px;
+  color: #acacac;
+}
+
+.qx text {
+  padding-left: 0rpx;
+  margin-top: 20px;
+  font-size: 11pt;
+}
+
+.cart_footer_texta {
+  display: block;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  float: left;
+  margin-left: 0rpx;
+  font-family: '苹方';
+}
+
+.cart_footer_prie {
+  display: block;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  float: left;
+  color: #e4393c;
+  font-family: '微软雅黑';
+}
+
+.cart_footer_textb {
+  font-size: 24rpx;
+  line-height: 100rpx;
+  float: left;
+  margin-left: 10rpx;
+  font-family: '苹方';
+}
+
+.all_price {
+  float: right;
+  padding-right: 200rpx;
+}
+
+.cart_footer_button {
+  float: right;
+  height: 100rpx;
+  width: 180rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  border-radius: 0;
+  background: #e64340;
+  font-weight: bold;
+  font-family: '苹方';
+  position: absolute;
+  right: 0px;
+}
+
+.borderh1 {
+  height: 100rpx;
+  width: 100%;
+}
+
+/*店铺名称  */
+
+.list_top {
+  width: 100%;
+  height: auto;
+  float: left;
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  position: relative;
+  color: #333;
+  background: #fff;
+}
+
+.list_top::before {
+  bottom: 0px;
+  left: 25rpx;
+  position: absolute;
+  content: "";
+  right: 0;
+  height: 1px;
+  background: #f5f5f5;
+}
+
+.list_top .logo {
+  width: 18px;
+  height:20px;
+  margin: 30rpx 14rpx 25rpx 0;
+  float: left;
+}
+.shop_name{
+  float:left;
+  display:block;  
+  height:40rpx;
+  line-height: 40rpx;
+  margin-top:30rpx;
+  font-size:33rpx;
+  font-weight: 500;
+}
+.skip_right{
+  display:block;
+  float:left;
+  width:18rpx;
+  height:30rpx;
+  margin-left:38rpx;
+  margin-top:33rpx;
+}
+.list_top .select {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 30rpx 20rpx 25rpx 0;
+  float: left;
+}
+
+.list_top checkbox {
+  opacity: 0;
+  position: absolute;
+  left: 20rpx;
+  top: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 10;
+}
+
+.cart_checkbox checkbox {
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+}
+
+.auth_mask {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+}
+
+.accredit {
+  width: 72%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 32%;
+  border-radius: 10rpx;
+  background: #fff;
+  overflow: hidden;
+  border-bottom-right-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+
+.prompt_title {
+  width: 92%;
+  margin: 0 auto;
+  text-align: center;
+  height: 98rpx;
+  line-height: 98rpx;
+  color: #333;
+  font-size: 34rpx;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.prompt_main {
+  width: 92%;
+  margin: 0 auto;
+  margin-top: 32rpx;
+}
+
+.she_logo {
+  width: 112rpx;
+  height: 112rpx;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 22rpx;
+  border-radius: 50%;
+}
+
+.prompt_cont {
+  display: block;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.prompt_button {
+  margin-top: 42rpx;
+  width: 100%;
+  text-align: center;
+  background: #f5f5f5;
+  color: #ef3735;
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size: 32rpx;
+}
+
+.prompt_wrap {
+  width: 100%;
+  position: relative;
+  height: 76rpx;
+  margin-top: 42rpx;
+}
+
+.user_info {
+  width: 100%;
+  height: 76rpx;
+  line-height: 76rpx;
+  background: #f5f5f5;
+  color: #ef3735;
+  font-size: 32rpx;
+}
+
+.prompt_wrap button::after {
+  border: none;
+  border-radius: none;
+}
+
+/*优化 树王y */
+
+.remove {
+  width: 60px;
+  height: 100%;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  font-size: 14px;
+  color: #fff;
+}
+.shop_settle{
+  width:100%;
+  background: #fff;
+  overflow: hidden;
+  height:102rpx;
+}
+.reduce_money{
+  float:left;
+  margin-left:4%;
+  height:102rpx;
+  line-height: 102rpx;
+  color:#333333;
+  font-size:30rpx;
+}
+.shop_combine{
+  float:right;
+  height:102rpx;
+  line-height: 102rpx;
+  color:#333333;
+  font-size:30rpx;
+}
+.shop_combine .combine_color{
+  color:#fe4644;
+  font-size:36rpx;
+}
+.shop_combine .combine_size{
+  font-size:26rpx;
+}
+.settle_skip{
+ width:139rpx;
+ color:#fff;
+ float:right;
+ font-size:30rpx;
+ text-align: center;
+ height:62rpx;
+ line-height: 62rpx;
+ margin-top:20rpx;
+ margin-right:4%;
+ background: #55bcc5;
+ margin-left:24rpx;
+}
+.back_height{
+  width:100%;
+  background: #f2f2f2;
+  height:24rpx;
+}
+
+
