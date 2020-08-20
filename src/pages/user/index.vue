@@ -105,7 +105,12 @@
           <!-- <block v-if="open_level != 0"> -->
           <block>
             <view class="border_001"></view>
-            <button data-name="clecment" formType="submit" class="btn ">
+            <button
+              data-name="clecment"
+              formType="submit"
+              class="btn "
+              @tap="formSubmit"
+            >
               <view class="menu_2">
                 <view class="FrameK xian">
                   <view class="user_list_one">
@@ -114,7 +119,12 @@
                 </view>
               </view>
             </button>
-            <button data-name="focus" formType="submit" class="btn ">
+            <button
+              data-name="focus"
+              formType="submit"
+              class="btn "
+              @tap="formSubmit"
+            >
               <view class="menu_2">
                 <view class="FrameK xian">
                   <view class="user_list_one">
@@ -123,7 +133,12 @@
                 </view>
               </view>
             </button>
-            <button data-name="addree" formType="submit" class="btn ">
+            <button
+              data-name="addree"
+              formType="submit"
+              class="btn "
+              @tap="formSubmit"
+            >
               <view class="menu_2">
                 <view class="FrameK xian">
                   <view class="user_list_one">
@@ -132,18 +147,28 @@
                 </view>
               </view>
             </button>
-            <button data-name="security" formType="submit" class="btn ">
+            <button
+              data-name="security"
+              formType="submit"
+              class="btn "
+              @tap="formSubmit"
+            >
               <view class="menu_2 menu_bottom">
-                <view class="FrameK">
+                <view class="FrameK xian">
                   <view class="user_list_one">
                     <text class="mBiaoTi">安全中心</text>
                   </view>
                 </view>
               </view>
             </button>
-            <view class="border_001"></view>
+            <!-- <view class="border_001"></view> -->
           </block>
-          <button data-name="get_coupon" formType="submit" class="btn ">
+          <button
+            data-name="get_coupon"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
               <view class="FrameK xian">
                 <view class="user_list_one">
@@ -152,17 +177,27 @@
               </view>
             </view>
           </button>
-          <button data-name="coupon_list" formType="submit" class="btn ">
+          <button
+            data-name="coupon_list"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
-              <view class="FrameK">
+              <view class="FrameK xian">
                 <view class="user_list_one">
                   <text class="mBiaoTi">我的优惠券</text>
                 </view>
               </view>
             </view>
           </button>
-          <view class="border_001"></view>
-          <button data-name="expense_detail" formType="submit" class="btn ">
+          <!-- <view class="border_001"></view> -->
+          <button
+            data-name="expense_detail"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
               <view class="FrameK xian">
                 <view class="user_list_one">
@@ -172,7 +207,12 @@
               </view>
             </view>
           </button>
-          <button data-name="shop_add" formType="submit" class="btn ">
+          <button
+            data-name="shop_add"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
               <view class="FrameK xian">
                 <view class="user_list_one">
@@ -181,7 +221,12 @@
               </view>
             </view>
           </button>
-          <button data-name="about_us" formType="submit" class="btn ">
+          <button
+            data-name="about_us"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
               <view class="FrameK xian">
                 <view class="user_list_one">
@@ -191,7 +236,12 @@
               </view>
             </view>
           </button>
-          <button data-name="contact_us" formType="submit" class="btn ">
+          <button
+            data-name="contact_us"
+            formType="submit"
+            class="btn "
+            @tap="formSubmit"
+          >
             <view class="menu_2 menu_bottom">
               <view class="FrameK">
                 <view class="user_list_one">
@@ -397,31 +447,31 @@ export default {
         success: function(res) {},
       });
 
-      if (e.detail.target.dataset.name == "store_center") {
+      if (e.currentTarget.dataset.name == "store_center") {
         wx.navigateTo({
           url: "../user/distribution_center/distribution_center",
         });
-      } else if (e.detail.target.dataset.name == "store_iss") {
+      } else if (e.currentTarget.dataset.name == "store_iss") {
         wx.navigateTo({
           url: "../user/distribution_login/distribution_login",
         });
-      } else if (e.detail.target.dataset.name == "store_is") {
+      } else if (e.currentTarget.dataset.name == "store_is") {
         wx.navigateTo({
           url: "../user/distribution_submit/distribution_submit",
         });
-      } else if (e.detail.target.dataset.name == "clecment") {
+      } else if (e.currentTarget.dataset.name == "clecment") {
         wx.navigateTo({
           url: "/pages/user/collection_list/collection_list",
         });
-      } else if (e.detail.target.dataset.name == "addree") {
+      } else if (e.currentTarget.dataset.name == "addree") {
         wx.navigateTo({
           url: "../user/address/address",
         });
-      } else if (e.detail.target.dataset.name == "security") {
+      } else if (e.currentTarget.dataset.name == "security") {
         wx.navigateTo({
           url: "/pages/user/password_index/password_index",
         });
-      } else if (e.detail.target.dataset.name == "shop_add") {
+      } else if (e.currentTarget.dataset.name == "shop_add") {
         //商户入驻 申请状态
         if (status_type == 0) {
           //商户入驻审核中
@@ -453,27 +503,27 @@ export default {
             url: "../user/store_mall/store_mall",
           });
         }
-      } else if (e.detail.target.dataset.name == "coupon_list") {
+      } else if (e.currentTarget.dataset.name == "coupon_list") {
         wx.navigateTo({
           url: "../user/my_coupon/my_coupon",
         });
-      } else if (e.detail.target.dataset.name == "get_coupon") {
+      } else if (e.currentTarget.dataset.name == "get_coupon") {
         wx.navigateTo({
           url: "../user/get_coupon/get_coupon",
         });
-      } else if (e.detail.target.dataset.name == "about_us") {
+      } else if (e.currentTarget.dataset.name == "about_us") {
         wx.navigateTo({
           url: "../about_us/about_us",
         });
-      } else if (e.detail.target.dataset.name == "contact_us") {
+      } else if (e.currentTarget.dataset.name == "contact_us") {
         wx.navigateTo({
           url: "../contact_us/contact_us",
         });
-      } else if (e.detail.target.dataset.name == "focus") {
+      } else if (e.currentTarget.dataset.name == "focus") {
         wx.navigateTo({
           url: "../user/focus_list/focus_list",
         });
-      } else if (e.detail.target.dataset.name == "expense_detail") {
+      } else if (e.currentTarget.dataset.name == "expense_detail") {
         //消费明细
         wx.navigateTo({
           url: "../user/expense_detail/expense_detail",

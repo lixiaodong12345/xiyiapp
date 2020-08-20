@@ -28,9 +28,7 @@
 <script>
 var app = getApp();
 function countdown(that) {
-  var second = that.data.second;
-  console.log('second', second);
-
+  var second = that.second;
   if (second == 0) {
     that.setData({
       none_style: 'display:block;',
@@ -154,6 +152,7 @@ export default {
     },
     //设置请求按钮
     install_finish: function (e) {
+      console.log('要提交了',e)
       var that = this;
       var codeValue = e.detail.value.code_value;
       var passdValue = e.detail.value.passd_value;

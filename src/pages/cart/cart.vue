@@ -111,7 +111,8 @@
   <view class="cart_null">
     <image mode="widthFix" src="http://wximage.shedongyun.com/sdo2o/car_none.png"></image>
     <text>您还没有登录，请登录后查看</text>
-    <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" class="login_skip">去登录</button>
+    <!-- <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" class="login_skip">去登录</button> -->
+    <button @tap="userLogin" class="login_skip">去登录</button>
   </view>
 </view>
 
@@ -211,6 +212,13 @@ export default {
     return app.globalData.goShareApp('/pages/index');
   },
   methods: {
+    //点击去登录跳转页面
+    userLogin:function(){
+      var that = this
+      uni.navigateTo({
+        url:'/pages/user/userLogin/userLogin'
+      })
+    },
     //数据列表请求
     shopCart_list: function () {
       var that = this;
