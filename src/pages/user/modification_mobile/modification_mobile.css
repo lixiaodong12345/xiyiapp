@@ -1,3 +1,4 @@
+/* pages/user/bind_mobile/bind_mobile.wxss */
 page {
   background: #f9f9f9;
 }
@@ -7,7 +8,8 @@ page {
   margin-top: 16rpx;
   background: #fff;
 }
-.password_line {
+.mobile {
+  display: block;
   width: 90%;
   margin: 0 auto;
   border-bottom: 1px solid #e6e6e6;
@@ -15,7 +17,10 @@ page {
   overflow: hidden;
   position: relative;
 }
-.passd_title {
+.none_botton {
+  border-bottom: none;
+}
+.mobile_tx1 {
   color: #333333;
   font-size: 32rpx;
   float: left;
@@ -24,7 +29,8 @@ page {
   display: block;
   width: 32%;
 }
-.passd_input {
+
+.mobile input {
   display: block;
   float: left;
   height: 1.4rem;
@@ -32,7 +38,12 @@ page {
   color: #c6c6c6;
   font-size: 28rpx;
 }
-.password_line button {
+.tx1 {
+  float: left;
+  display: block;
+  width: 170rpx;
+}
+.mobile button {
   display: block;
   width: 160rpx;
   font-family: "苹方";
@@ -48,15 +59,10 @@ page {
   top: 32%;
   padding: 0rpx;
 }
-.password_line button::after {
+.mobile button::after {
   border: none;
 }
-.tips_name {
-  color: #9f9f9f;
-  font-size: 26rpx;
-  margin-top: 12rpx;
-  margin-left: 5%;
-}
+
 .set_finish {
   width: 90%;
   background: #55bcc5;
@@ -68,6 +74,7 @@ page {
 .set_finish::after {
   border: none;
 }
-.password_line .second {
+
+.mobile .second {
   display: none;
 }

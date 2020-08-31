@@ -2,15 +2,13 @@
 <view>
 <view class="flow_box" :style="cart_have">
   <!--数据为空-->
-  <!-- <view class="cart_null" v-if="cart_list == ''"> -->
-  <view class="cart_null">
+  <view class="cart_null" v-if="cart_list == ''">
     <image mode="widthFix" src="http://wximage.shedongyun.com/sdo2o/car_none.png"></image>
     <text>{{tis}}</text>
     <button type="warn" @tap="goShopping" class="skip_index">{{tis2}}</button>
   </view>
   <!--数据不为空-->
-  <!-- <view class="cart_wrap" v-if="cart_list.length"> -->
-  <view class="cart_wrap">
+  <view class="cart_wrap" v-if="cart_list.length">
     <view class="borderh4"></view>
     <block v-for="(item, index) in cart_list" :key="index">
       <view class="line_one">
@@ -112,7 +110,7 @@
     <image mode="widthFix" src="http://wximage.shedongyun.com/sdo2o/car_none.png"></image>
     <text>您还没有登录，请登录后查看</text>
     <!-- <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" class="login_skip">去登录</button> -->
-    <button @tap="userLogin" class="login_skip">去登录</button>
+    <button @tap="user_login" class="login_skip">去登录</button>
   </view>
 </view>
 
@@ -183,21 +181,19 @@ export default {
     var that = this;
     var is_fast = query.is_fast ? query.is_fast : 0;
     that.is_fast = is_fast;
-    var openid = wx.getStorageSync('userInfo').openid;
+    var uid = app.globalData.uid;
   },
   onShow: function () {
     // 读取购物
     var that = this;
-    var user_info = wx.getStorageSync('userInfo');
+    var user_info = app.globalData.userInfo;
 
     if (user_info == '') {
-      // console.log('error++++++++');
       that.setData({
         cart_have: 'display:none',
         cart_none: 'display:block'
       });
     } else {
-      // console.log('yes++++++++');
       that.setData({
         cart_have: 'display:block',
         cart_none: 'display:none'
@@ -212,9 +208,8 @@ export default {
     return app.globalData.goShareApp('/pages/index');
   },
   methods: {
-    //点击去登录跳转页面
-    userLogin:function(){
-      var that = this
+    // 未登录状态下 去登录
+    user_login:function(e){
       uni.navigateTo({
         url:'/pages/user/userLogin/userLogin'
       })
@@ -222,14 +217,14 @@ export default {
     //数据列表请求
     shopCart_list: function () {
       var that = this;
-      var openid = wx.getStorageSync('userInfo').openid;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'list',
-          openid: openid,
+          openid: uid,
           is_fast: that.is_fast,
           key: app.globalData.key
         },
@@ -237,9 +232,8 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('类表',res)
           if (res.data.code == 1) {
-            // // console.log("changdu", res.data.data.cart_list.length);
-
             for (var i = 0; i < res.data.data.cart_list.length; i++) {
               if (res.data.data.cart_list[i].selected_merch == 1) {
                 res.data.data.cart_list[i]["src"] = "http://wximage.shedongyun.com/sdo2o/true.png";
@@ -266,47 +260,34 @@ export default {
               sum_goods_price: res.data.data.goods_price
             });
           }
-
-          // console.log('数据显示', res.data.data.cart_list);
         }
       });
     },
     //选中商品事件
     changebox: function (e) {
       var that = this;
-      var openid = wx.getStorageSync('userInfo').openid;
+      var uid = app.globalData.uid;
       var carlsit = that.cart_list;
-      // console.log('选中+++', e);
       var cat_id = "";
       var sid_id = "";
       var value = '';
 
       if (e.target.dataset.name == "store") {
-        // console.log('店铺+++');
         sid_id = e.target.dataset.carts_id;
-        // console.log('sid_id+++', sid_id);
       } else if (e.target.dataset.name == "good") {
-        // console.log('产品+++');
         cat_id = e.target.dataset.carts_id;
-        // console.log('cat_id+++', cat_id);
       }
 
       for (var i = 0; i < e.detail.value.length; i++) {
         value = value + e.detail.value[i] + "|";
       }
-
-      // console.log('value的值++', value);
-
       if (value == '') {
-        // console.log('value值为空++++++');
         value = 0;
       } else {
-        // console.log('value值不为空++++++');
         value = 1;
       }
 
       check_list = value;
-      // console.log('被选择check_list+++' + check_list);
       that.setData({
         check_list: check_list
       });
@@ -316,7 +297,7 @@ export default {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'check',
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
           cid: cat_id,
           sid: sid_id,
@@ -365,9 +346,7 @@ export default {
     //全选商品事件
     all_select: function (e) {
       var that = this;
-      var openid = wx.getStorageSync('userInfo').openid;
-      // console.log('全选事件', e);
-
+      var uid = app.globalData.uid;
       if (e.currentTarget.dataset.type == 1) {
         that.setData({
           all_type: 0
@@ -384,7 +363,7 @@ export default {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'checkall',
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
           sid: "",
           selected: e.currentTarget.dataset.type
@@ -428,7 +407,6 @@ export default {
     },
     //数量加减部分开始*************************
     num_change: function (e) {
-      // console.log(e.target.dataset.cart_id + '数量改为' + e.detail.value);
       this.send_change_list(check_list, e.target.dataset.cart_id, 0, 0, e.detail.value, 0);
     },
     num_jian: function (e) {
@@ -444,19 +422,18 @@ export default {
       this.send_change_list(check_list, e.target.dataset.cart_id, 1, 0, 0, 0);
     },
     num_jia: function (e) {
-      // console.log(e.target.dataset.cart_id + '数量+' + 1);
       this.send_change_list(check_list, e.target.dataset.cart_id, 0, 1, 0, 0);
     },
     send_change_list: function (check_list, id, number_jia, number_jian, number_change) {
       var that = this;
-      var openid = wx.getStorageSync('userInfo').openid;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'change',
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
           number_jia: number_jia,
           number_jian: number_jian,
@@ -502,8 +479,6 @@ export default {
         title: '提示',
         content: '您确定要移除这个商品吗？',
         success: function (res) {
-          // console.log('返回的数据', res);
-
           if (res.confirm) {
             that.delect_goods(e);
           }
@@ -512,11 +487,10 @@ export default {
     },
     //删除事件请求接口
     delect_goods: function (e) {
-      // console.log("删除", e);
       var that = this;
       var but_id = e.currentTarget.dataset.but_id;
-      var userInfo = wx.getStorageSync('userInfo');
-      var openid = userInfo.openid;
+      var userInfo = app.globalData.userInfo;
+      var uid = userInfo.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -525,7 +499,7 @@ export default {
           do: 'del',
           key: app.globalData.key,
           cid: but_id,
-          openid: openid
+          uid: uid
         },
         header: {
           'Content-Type': 'application/json'
@@ -569,8 +543,6 @@ export default {
     close_search: function () {
       var that = this;
       var check_list = that.check_list;
-      // console.log("cart_list_data");
-      // console.log(that.cart_list);
       var gourl = false;
 
       if (check_list == '') {
@@ -580,7 +552,7 @@ export default {
           if (cart_list_data[i]['checked'] == 'checked') {
             gourl = true;
             break;
-          } //  console.log("is_checked"+cart_list_data[i]['checked']);
+          }
 
         }
       } else if (check_list != 'no') {
@@ -604,7 +576,7 @@ export default {
       var that = this;
 
       try {
-        var userInfo = wx.getStorageSync('userInfo');
+        var userInfo = app.globalData.userInfo;
       } catch (e) {
         var userInfo = false;
       }
@@ -612,13 +584,9 @@ export default {
       if (!userInfo || from_share_uid) {
         wx.login({
           success: function (res) {
-            // console.log('login+++++', res);
-
             if (res.code) {
-              // console.log('9999999+++++');
               wx.getUserInfo({
                 success: function (res2) {
-                  // console.log('res2信息++', res2);
                   var userInfo = res2.userInfo;
                   var nickName = userInfo.nickName;
                   var avatarUrl = userInfo.avatarUrl;
@@ -639,14 +607,10 @@ export default {
                       key: app.globalData.key
                     },
                     success: function (res) {
-                      // console.log('用户信息', res);
-
                       if (res.data.code == 1) {
-                        app.globalData.openid = res.data.data.openid;
+                        app.globalData.uid = res.data.data.uid;
                         app.globalData.userInfo = res.data.data;
-                        that.openid = res.data.data.openid;
-                        // console.log('第一次授权openid', app.globalData.openid);
-                        // console.log('第一次授权userInfo', app.globalData.userInfo);
+                        that.uid = res.data.data.uid;
                         that.setData({
                           cart_have: 'display:block',
                           cart_none: 'display:none'
@@ -656,7 +620,6 @@ export default {
                         try {
                           wx.setStorageSync('userInfo', res.data.data);
                         } catch (e) {
-                          // console.log('保存用户信息到缓存出错！');
                         }
                       }
                     }
@@ -745,10 +708,8 @@ export default {
         var data = cardTeams[i];
 
         if (data.right <= 100 / 2) {
-          console.log('111');
           data.right = 0;
         } else {
-          console.log('222');
           data.right = maxRight;
         }
       }

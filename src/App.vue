@@ -25,6 +25,7 @@ export default {
     post_img_list: [],
     menucid: "",
     openid: "",
+    uid: "",
     textare_value: "",
     title_value: "",
     bar_title: "",

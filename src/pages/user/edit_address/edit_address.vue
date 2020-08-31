@@ -122,7 +122,7 @@ export default {
     // 请求记录
     var that = this;
     that.provicelist();
-    var user_info = wx.getStorageSync('userInfo');
+    var user_info = app.globalData.userInfo;
     to_commod = query.commod_id;
 
     if (query.commod_id) {
@@ -365,7 +365,7 @@ export default {
     // 发送请求保存收货地址
     save_address: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
+      var user_info = app.globalData.userInfo;
       that.setData({
         disabled: true,
         loading: true
@@ -382,7 +382,7 @@ export default {
     // 收货地址编辑
     edit_address: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo'); //手机号正则表达式
+      var user_info = app.globalData.userInfo; //手机号正则表达式
 
       var phone_reg = /^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/;
       var phone_pred = e.detail.value.mobile;
@@ -416,7 +416,7 @@ export default {
           a: 'delivery',
           do: 'change',
           key: app.globalData.key,
-          openid: user_info.openid,
+          uid: user_info.uid,
           realname: e.detail.value.consignee,
           mobile: e.detail.value.mobile,
           aid: to_commod,
@@ -460,7 +460,7 @@ export default {
     //收货地址添加
     add_address: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo'); //手机号正则表达式
+      var user_info = app.globalData.userInfo; //手机号正则表达式
 
       var phone_reg = /^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/;
       var phone_pred = e.detail.value.mobile;
@@ -494,7 +494,7 @@ export default {
           a: 'delivery',
           do: 'add',
           key: app.globalData.key,
-          openid: user_info.openid,
+          uid: user_info.uid,
           realname: e.detail.value.consignee,
           mobile: e.detail.value.mobile,
           address: e.detail.value.address,

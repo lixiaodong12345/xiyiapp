@@ -292,7 +292,7 @@ export default {
       //输入的密码
       payFocus: true //文本框焦点
       ,
-      openid: "",
+      uid: "",
       sum_goods_price: "",
       userCouponViewList: "",
       userCouponLength: "",
@@ -323,13 +323,13 @@ export default {
   props: {},
   onLoad: function (query) {
     var that = this;
-    var openid = wx.getStorageSync('userInfo').openid;
+    var uid = app.globalData.uid;
     var is_fast = query.is_fast ? query.is_fast : 0;
     that.is_fast = is_fast;
     merchid = query.merchid;
     console.log('merchid++++', merchid);
     that.setData({
-      openid: openid,
+      uid: uid,
       is_fast: is_fast
     });
     that.get_amount_sum();
@@ -353,7 +353,7 @@ export default {
     // 不知名请求
     flow_show: function () {
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       var is_fast = that.is_fast;
       wx.request({
         url: app.globalData.domain,
@@ -361,7 +361,7 @@ export default {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'list',
-          openid: openid,
+          uid: uid,
           is_fast: is_fast,
           key: app.globalData.key,
           merchid: merchid
@@ -398,14 +398,14 @@ export default {
     // 获取默认收货地址
     address_shohuo: function () {
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'delivery',
           do: 'default',
-          openid: openid,
+          uid: uid,
           key: app.globalData.key
         },
         header: {
@@ -473,14 +473,14 @@ export default {
     //获取总额数
     get_amount_sum: function () {
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'cart',
           do: 'list',
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
           is_fast: that.is_fast,
           address_id: address_id,
@@ -538,7 +538,7 @@ export default {
     //判断是否设置密码
     judge_passd: function () {
       var that = this;
-      var uid = wx.getStorageSync('userInfo').id;
+      var uid = app.globalData.userInfo.id;
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -663,7 +663,7 @@ export default {
     //触发微信支付
     send_order: function (e) {
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -671,7 +671,7 @@ export default {
           a: 'order',
           do: 'add',
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
           invoice_title: that.invoice_title,
           invoiceinfo: that.invoiceinfo,
           invoice: that.invoice_title,
@@ -714,7 +714,7 @@ export default {
                     a: 'order',
                     do: 'order_pay',
                     key: app.globalData.key,
-                    openid: openid,
+                    uid: uid,
                     orderid: success_res.data.data.order_id,
                     type: 0,
                     form_id: form_id
@@ -831,7 +831,7 @@ export default {
     match_password: function () {
       var that = this;
       var pwdVal = that.pwdVal;
-      var uid = wx.getStorageSync('userInfo').id;
+      var uid = app.globalData.userInfo.id;
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -859,7 +859,7 @@ export default {
     //密码成功后回调的函数
     callback_passd: function () {
       var that = this;
-      var openid = that.openid; //添加订单
+      var uid = that.uid; //添加订单
 
       wx.request({
         url: app.globalData.domain,
@@ -868,7 +868,7 @@ export default {
           a: 'order',
           do: 'add',
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
           invoice_title: that.invoice_title,
           invoiceinfo: that.invoiceinfo,
           invoice: that.invoice_title,
@@ -893,7 +893,7 @@ export default {
                 a: 'order',
                 do: 'orderPayBalance',
                 orderid: success_res.data.data.order_id,
-                openid: openid,
+                uid: uid,
                 key: app.globalData.key
               },
               header: {
@@ -909,7 +909,7 @@ export default {
                       a: 'order',
                       do: 'order_pay',
                       key: app.globalData.key,
-                      openid: openid,
+                      uid: uid,
                       orderid: success_res.data.data.order_id,
                       type: 0,
                       form_id: form_id
@@ -1129,7 +1129,7 @@ export default {
     //选中优惠券后请求的接口
     coupon_request: function () {
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       var is_fast = that.is_fast;
       wx.request({
         url: app.globalData.domain,
@@ -1137,7 +1137,7 @@ export default {
           a: 'cart',
           do: 'select_coupon',
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
           couponid: couponId,
           is_fast: is_fast
         },

@@ -13,7 +13,7 @@
     <button @tap="countdown" class="second" :style="have_style">{{second}}s倒计时</button> 
   </view>
   </view>
-  <button form-type="submit" class="set_finish">立即绑定</button>
+  <button form-type="submit" class="set_finish">立即修改</button>
 </form>
 </template>
 
@@ -200,5 +200,5 @@ export default {
 };
 </script>
 <style>
-@import "./bind_mobile.css";
+@import "./modification_mobile.css";
 </style>

@@ -685,87 +685,8 @@ export default {
     }); //拖拽
 
     that.drag_drop(); //登录字段获取
-    // that.field_obtain();
-    //查看是否授权
-    // if (wx.getStorageSync('userInfo')) {
-    //   app.openid = wx.getStorageSync('userInfo').openid;
-    //   app.userInfo = wx.getStorageSync('userInfo');
-    //   that.setData({
-    //     login_state: 'display:none'
-    //   })
-    // } else {
-    //   that.setData({
-    //     login_state: 'display:block'
-    //   })
-    // }
+
   },
-  // 获取当前登录微信用户信息
-  // bindGetUserInfo: function (from_share_uid = 0) {
-  //   var that = this;
-  //   try {
-  //     var userInfo = wx.getStorageSync('userInfo');
-  //   } catch (e) {
-  //     var userInfo = false;
-  //   }
-  //   if (!userInfo || from_share_uid) {
-  //     wx.login({
-  //       success: function (res) {
-  //         console.log('login+++++',res);
-  //         if (res.code) {
-  //           console.log('9999999+++++');
-  //           wx.getUserInfo({
-  //             success: function (res2) {
-  //               console.log('res2信息++',res2);
-  //               console.log('app.from_share_uid', app.from_share_uid);
-  //               var userInfo = res2.userInfo
-  //               var nickName = userInfo.nickName
-  //               var avatarUrl = userInfo.avatarUrl
-  //               var gender = userInfo.gender
-  //               wx.request({
-  //                 url: app.domain,
-  //                 header: {
-  //                   'Content-Type': 'application/json'
-  //                 },
-  //                 data: {
-  //                   a: 'login',
-  //                   do: 'Wx_login',
-  //                   js_code: res.code,
-  //                   nickName: nickName,
-  //                   avatarUrl: avatarUrl,
-  //                   gender: gender,
-  //                   from_share_uid: app.from_share_uid,
-  //                   key: app.key
-  //                 },
-  //                 success: function (res) {
-  //                   console.log('用户信息',res)
-  //                   if (res.data.code == 1) {
-  //                     app.openid = res.data.data.openid;
-  //                     app.userInfo = res.data.data;
-  //                     console.log('第一次授权openid', app.openid);
-  //                     console.log('第一次授权userInfo', app.userInfo);
-  //                     try {
-  //                       wx.setStorageSync('userInfo', res.data.data);
-  //                     } catch (e) {
-  //                       console.log('保存用户信息到缓存出错！');
-  //                     }
-  //                   }
-  //                 }
-  //               })
-  //             }
-  //           })
-  //         }
-  //       }
-  //     });
-  //   }else{
-  //     return userInfo; 
-  //   }
-  // },
-  // close_skip:function(){
-  //   var that=this;
-  //   that.setData({
-  //    login_state: 'display:none'
-  //   })
-  // },
   onShow: function () {
     var that = this;
     var judge_city = app.globalData.switch_type;

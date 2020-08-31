@@ -57,15 +57,15 @@ export default {
     //获取余额和充值数据
     dataInform: function () {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
-      var openid = user_info.openid;
+      var user_info = app.globalData.userInfo;
+      var uid = user_info.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           a: 'recharge',
           do: 'display',
           key: app.globalData.key,
-          openid: openid
+          uid: uid
         },
         header: {
           'Content-Type': 'application/json'
@@ -118,8 +118,8 @@ export default {
     //发起充值form请求
     bind_submit: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
-      var openid = user_info.openid;
+      var user_info = app.globalData.userInfo;
+      var uid = user_info.uid;
 
       if (recharge_money == '') {
         wx.showToast({
@@ -143,7 +143,7 @@ export default {
           a: 'recharge',
           do: 'recharge',
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
           recharge_money: recharge_money
         },
         header: {

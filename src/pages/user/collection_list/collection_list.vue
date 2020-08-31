@@ -1,51 +1,74 @@
 <template>
-<view class="body">
-<view class="back_line"></view>
-<!-- <view style="{{load_style}}" class="loadimg">
+  <view class="body">
+    <view class="back_line"></view>
+    <!-- <view style="{{load_style}}" class="loadimg">
   <image src="http://wxapp.sns318.net/loader.gif"></image>
   <text>正在处理您的请求...</text>
 </view> -->
-<view id="tis" class="tis" v-if="collect_goods == 'null'||collect_goods == ''">
-  <image src="http://wximage.shedongyun.com/sdo2o/collect_none.png"></image>
-  <text class="font">暂无收藏</text>
-</view>
-<view class="scroll_view" @scrolltolower="load_list">
-  <block v-for="(item, index) in collect_goods" :key="index" v-if="collect_goods != 'null' || collect_goods != ''">
-    <!--一条-->
-    <view class="outside_wrap">
-      <!--内容区-->
-      <view class="module_line" :style="item.txtStyle" @touchstart="touchS" @touchmove="touchM" @touchend="touchE" :data-index="index">
-        <view class="module_width">
-          <image :src="item.thumb" class="prod_image"></image>
-          <view class="module_main">
-            <view class="shop_title">{{item.title}}</view>
-            <view class="laundy_cond laundy_second">
-              <text class="comp_first">已售{{item.sale_num}}</text>
-              <text class="comp_firm">{{item.merchgroupname}}</text>
-              <!-- <text>接单率100%</text> -->
-            </view>
-            <!-- <view class="laundy_cond laundy_second">
+    <view
+      id="tis"
+      class="tis"
+      v-if="collect_goods == 'null' || collect_goods == ''"
+    >
+      <image src="http://wximage.shedongyun.com/sdo2o/collect_none.png"></image>
+      <text class="font">暂无收藏</text>
+    </view>
+    <view class="scroll_view" @scrolltolower="load_list">
+      <block
+        v-for="(item, index) in collect_goods"
+        :key="index"
+        v-if="collect_goods != 'null' || collect_goods != ''"
+      >
+        <!--一条-->
+        <view class="outside_wrap">
+          <!--内容区-->
+          <view
+            class="module_line"
+            :style="item.txtStyle"
+            @touchstart="touchS"
+            @touchmove="touchM"
+            @touchend="touchE"
+            :data-index="index"
+          >
+            <view class="module_width" @tap="goodsDetail">
+              <image :src="item.thumb" class="prod_image"></image>
+              <view class="module_main">
+                <view class="shop_title">{{ item.title }}</view>
+                <view class="laundy_cond laundy_second">
+                  <text class="comp_first">已售{{ item.sale_num }}</text>
+                  <text class="comp_firm">{{ item.merchgroupname }}</text>
+                  <!-- <text>接单率100%</text> -->
+                </view>
+                <!-- <view class="laundy_cond laundy_second">
               <text class="real_name">已实名</text>
               <text class="comp_firm">企业</text>
               <text class="price_firm">价格公道</text>
             </view> -->
-            <view class="module_price">￥{{item.productprice}}</view>
-            <view class="comp_wrap" :data-id="item.merchid">
-              <image src="http://wximage.shedongyun.com/sdo2o/merchant_logo.png" class="comp_logo"></image>
-              <text class="comp_name">{{item.merchname}}</text>
+                <view class="module_price">￥{{ item.productprice }}</view>
+                <view class="comp_wrap" :data-id="item.merchid">
+                  <image
+                    src="http://wximage.shedongyun.com/sdo2o/merchant_logo.png"
+                    class="comp_logo"
+                  ></image>
+                  <text class="comp_name">{{ item.merchname }}</text>
+                </view>
+              </view>
             </view>
+            <view class="back_height"></view> </view
+          ><!--module_line-->
+          <!--删除区-->
+          <view
+            class="line_del"
+            :data-coll_id="item.id"
+            :data-goods_id="item.goodsid"
+            @tap="del_collection"
+          >
+            <text>删除</text>
           </view>
         </view>
-        <view class="back_height"></view>
-      </view><!--module_line-->
-      <!--删除区-->
-      <view class="line_del" :data-coll_id="item.id" :data-goods_id="item.goodsid" @tap="del_collection">
-        <text>删除</text>
-      </view>
+      </block>
     </view>
-  </block>
-</view>
-</view>
+  </view>
 </template>
 
 <script>
@@ -56,21 +79,21 @@ var load_more = 0;
 export default {
   data() {
     return {
-      tis: '',
-      tisshow: '',
+      tis: "",
+      tisshow: "",
       collect_goods: [],
-      load_footer: '正在加载更多...',
-      load_style: '',
+      load_footer: "正在加载更多...",
+      load_style: "",
       copyright: app.globalData.copyright,
       editIndex: 0,
       delBtnWidth: 86,
-      startX: ""
+      startX: "",
     };
   },
 
   components: {},
   props: {},
-  onLoad: function (query) {
+  onLoad: function(query) {
     // 发送请求获取初始收藏列表
     if (query.pages) {
       pages = query.pages;
@@ -80,15 +103,24 @@ export default {
 
     this.load_list();
   },
-  onUnload: function () {
+  onUnload: function() {
     load_more = 0;
     pages = 0;
   },
   methods: {
-    load_list: function () {
+    //点击跳转详情
+    goodsDetail: function(e) {
+      // console.log("e", e);
+      // var that = this;
+      // var good_id = e.currentTarget.dataset.id;
+      // uni.navigateTo({
+      //   url: "/pages/goods/goods?goods_id=" + good_id,
+      // });
+    },
+    load_list: function() {
       pages++;
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
+      var user_info = app.globalData;
 
       if (load_more != 0) {
         return 0;
@@ -97,104 +129,104 @@ export default {
       wx.request({
         url: app.globalData.domain,
         data: {
-          a: 'goods',
-          do: 'collectlist',
+          a: "goods",
+          do: "collectlist",
           page: pages,
-          uid: user_info.id,
-          key: app.globalData.key
+          uid: user_info.uid,
+          key: app.globalData.key,
         },
         header: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        success: function (res) {
-          console.log(res.data);
+        success: function(res) {
+          console.log("res.data", res.data);
 
           if (res.data.code == 1) {
-            if (res.data.data != 'null') {
+            if (res.data.data != "null") {
               that.setData({
-                collect_goods: res.data.data
+                collect_goods: res.data.data,
               });
             } else {
               that.setData({
-                tis: '您暂时还没有收藏商品...',
-                tisshow: 'height: 30px'
+                tis: "您暂时还没有收藏商品...",
+                tisshow: "height: 30px",
               });
             }
           } else {
             that.setData({
-              tis: '您暂时还没有收藏商品...',
-              tisshow: 'height: 30px',
-              collect_goods: []
+              tis: "您暂时还没有收藏商品...",
+              tisshow: "height: 30px",
+              collect_goods: [],
             });
           }
-        }
+        },
       });
     },
-    del_collection: function (e) {
+    del_collection: function(e) {
       var that = this;
-      console.log('删除++++');
-      var user_info = wx.getStorageSync('userInfo');
+      console.log("删除++++");
+      var user_info = app.globalData;
 
       if (e.currentTarget.dataset.coll_id) {
-        console.log('1111111'); // 发送请求删除该收藏
+        console.log("1111111"); // 发送请求删除该收藏
 
         wx.request({
           url: app.globalData.domain,
           data: {
-            a: 'goods',
-            do: 'delcollect',
-            uid: user_info.id,
+            a: "goods",
+            do: "delcollect",
+            uid: user_info.uid,
             gid: e.currentTarget.dataset.goods_id,
-            key: app.globalData.key
+            key: app.globalData.key,
           },
           header: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
           },
-          success: function (res) {
-            console.log('删除返回数据', res);
+          success: function(res) {
+            console.log("删除返回数据", res);
 
             if (res.data.code == 1) {
               wx.showToast({
                 title: res.data.msg,
-                icon: 'success',
+                icon: "success",
                 duration: 1500,
-                success: function () {
-                  setTimeout(function () {
+                success: function() {
+                  setTimeout(function() {
                     pages = 0;
                     that.load_list();
                   }, 1000);
-                }
+                },
               });
             } else {
               wx.showToast({
                 title: res.data.msg,
-                icon: 'success',
-                duration: 1500
+                icon: "success",
+                duration: 1500,
               });
             }
-          }
+          },
         });
       }
     },
-    cate_skip: function () {
-      setTimeout(function () {
+    cate_skip: function() {
+      setTimeout(function() {
         wx.navigateTo({
-          url: '/pages/gcates/gcates'
+          url: "/pages/gcates/gcates",
         });
       }, 1000);
     },
     // 左滑动事件
-    touchS: function (e) {
+    touchS: function(e) {
       console.log("touchS" + e); //判断是否只有一个触摸点
 
       if (e.touches.length == 1) {
         this.setData({
           //记录触摸起始位置的X坐标
-          startX: e.touches[0].clientX
+          startX: e.touches[0].clientX,
         });
       }
     },
-    touchM: function (e) {
+    touchM: function(e) {
       console.log("touchM:" + e);
       var that = this;
 
@@ -220,18 +252,17 @@ export default {
           }
         } //获取手指触摸的是哪一个item
 
-
         var index = e.currentTarget.dataset.index;
         var list = that.collect_goods; //将拼接好的样式设置到当前item中
 
         list[index].txtStyle = txtStyle; //更新列表的状态
 
         this.setData({
-          collect_goods: list
+          collect_goods: list,
         });
       }
     },
-    touchE: function (e) {
+    touchE: function(e) {
       console.log("touchE" + e);
       var that = this;
 
@@ -242,18 +273,19 @@ export default {
         var disX = that.startX - endX;
         var delBtnWidth = that.delBtnWidth; //如果距离小于删除按钮的1/2，不显示删除按钮
 
-        var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px"; //获取手指触摸的是哪一项
+        var txtStyle =
+          disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px"; //获取手指触摸的是哪一项
 
         var index = e.currentTarget.dataset.index;
         var list = that.collect_goods;
         list[index].txtStyle = txtStyle; //更新列表的状态
 
         that.setData({
-          collect_goods: list
+          collect_goods: list,
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

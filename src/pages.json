@@ -211,9 +211,21 @@
       }
     },
     {
+      "path": "pages/user/forget_password/forget_password",
+      "style": {
+        "navigationBarTitleText": "修改密码"
+      }
+    },
+    {
       "path": "pages/user/bind_mobile/bind_mobile",
       "style": {
         "navigationBarTitleText": "绑定手机号"
+      }
+    },
+    {
+      "path": "pages/user/modification_mobile/modification_mobile",
+      "style": {
+        "navigationBarTitleText": "修改手机号"
       }
     },
     {

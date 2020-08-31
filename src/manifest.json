@@ -94,6 +94,11 @@
                     }
                 },
                 "ad" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : ""
+                }
             }
         },
         "uniStatistics" : {

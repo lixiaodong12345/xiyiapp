@@ -9,9 +9,12 @@
           ></image>
           <view class="user_name_list">
             <view class="user_name_all" :style="user_have">
-              <image class="userinfo-avatar" :src="userInfo.avatar"></image>
+              <image
+                class="userinfo-avatar"
+                src="http://wximage.shedongyun.com/sdo2o/head_empty.png"
+              ></image>
               <text class="userinfo-nickname userinfo-nickname_01">{{
-                userInfo.nickname
+                userInfo.accname
               }}</text>
               <!-- <view class="userinfo-member" v-if="userInfo.nickname!=undefind"> -->
               <view class="userinfo-member">
@@ -24,9 +27,14 @@
                 src="http://wximage.shedongyun.com/sdo2o/head_empty.png"
               ></image>
               <view class="user_monick">授权登录</view>
-              <button
+              <!-- <button
                 open-type="getUserInfo"
                 @getuserinfo="bindGetUserInfo"
+                class="user_login"
+              ></button> -->
+              <button
+                open-type="getUserInfo"
+                @tap="userLogin"
                 class="user_login"
               ></button>
             </view>
@@ -296,7 +304,7 @@ export default {
       bindmobile: "绑定手机",
       page_data: "user",
       copyright: app.globalData.copyright,
-      openid: "",
+      uid: "",
       user_have: "",
       user_none: "",
       status: 0,
@@ -332,12 +340,12 @@ export default {
     that.merchant_open(); //多商户申请开不开
     // that.onShowFun();
     //判断用户是否登录
-
-    var user_info = wx.getStorageSync("userInfo");
-    var openid = user_info.openid;
+    var user_info = app.globalData.userInfo;
+    console.log("user_info", user_info);
+    var uid = user_info.uid;
     // console.log("用户user_info", user_info);
     that.setData({
-      openid: openid,
+      uid: uid,
     });
 
     if (user_info != "") {
@@ -358,13 +366,19 @@ export default {
     }
   },
   onHide: function() {
-    var user_info = wx.getStorageSync("userInfo");
+    var user_info = app.globalData.userInfo;
   },
   //转发分享按钮
   onShareAppMessage: function() {
     return app.globalData.goShareApp("/pages/index");
   },
   methods: {
+    // 用户点击授权跳转
+    userLogin: function() {
+      wx.navigateTo({
+        url: "/pages/user/userLogin/userLogin",
+      });
+    },
     //事件处理函数
     bindViewTap: function() {
       wx.navigateTo({
@@ -374,14 +388,14 @@ export default {
     //商户入驻返回状态
     merch_states: function() {
       var that = this;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
       wx.request({
         method: "get",
         url: app.globalData.domain,
         data: {
           a: "merch",
           do: "status",
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
         },
         header: {
@@ -420,10 +434,10 @@ export default {
     },
     formSubmit: function(e) {
       var that = this;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
       var form_id = e.detail.formId;
       console.log("点击了", e);
-      // if (openid == undefined) {
+      // if (uid == undefined) {
       //   wx.showToast({
       //     title: '请先登录',
       //     icon: 'success',
@@ -438,7 +452,7 @@ export default {
           a: "user",
           do: "update_user",
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
           formid: form_id,
         },
         header: {
@@ -560,81 +574,81 @@ export default {
     //   })
     // },
     // 获取当前登录微信用户信息
-    bindGetUserInfo: function(from_share_uid = 0) {
-      var that = this;
+    // bindGetUserInfo: function(from_share_uid = 0) {
+    //   var that = this;
 
-      try {
-        var userInfo = wx.getStorageSync("userInfo");
-      } catch (e) {
-        var userInfo = false;
-      }
+    //   try {
+    //     var userInfo = wx.getStorageSync("userInfo");
+    //   } catch (e) {
+    //     var userInfo = false;
+    //   }
 
-      if (!userInfo || from_share_uid) {
-        wx.login({
-          success: function(res) {
-            // console.log("login+++++", res);
+    //   if (!userInfo || from_share_uid) {
+    //     wx.login({
+    //       success: function(res) {
+    //         // console.log("login+++++", res);
 
-            if (res.code) {
-              // console.log("9999999+++++");
-              wx.getUserInfo({
-                success: function(res2) {
-                  // console.log("res2信息++", res2);
-                  var userInfo = res2.userInfo;
-                  var nickName = userInfo.nickName;
-                  var avatarUrl = userInfo.avatarUrl;
-                  var gender = userInfo.gender;
-                  wx.request({
-                    url: app.globalData.domain,
-                    header: {
-                      "Content-Type": "application/json",
-                    },
-                    data: {
-                      a: "login",
-                      do: "Wx_login",
-                      js_code: res.code,
-                      nickName: nickName,
-                      avatarUrl: avatarUrl,
-                      gender: gender,
-                      from_share_uid: from_share_uid,
-                      key: app.globalData.key,
-                    },
-                    success: function(res) {
-                      // console.log("用户信息", res);
+    //         if (res.code) {
+    //           // console.log("9999999+++++");
+    //           wx.getUserInfo({
+    //             success: function(res2) {
+    //               // console.log("res2信息++", res2);
+    //               var userInfo = res2.userInfo;
+    //               var nickName = userInfo.nickName;
+    //               var avatarUrl = userInfo.avatarUrl;
+    //               var gender = userInfo.gender;
+    //               wx.request({
+    //                 url: app.globalData.domain,
+    //                 header: {
+    //                   "Content-Type": "application/json",
+    //                 },
+    //                 data: {
+    //                   a: "login",
+    //                   do: "Wx_login",
+    //                   js_code: res.code,
+    //                   nickName: nickName,
+    //                   avatarUrl: avatarUrl,
+    //                   gender: gender,
+    //                   from_share_uid: from_share_uid,
+    //                   key: app.globalData.key,
+    //                 },
+    //                 success: function(res) {
+    //                   // console.log("用户信息", res);
 
-                      if (res.data.code == 1) {
-                        app.globalData.openid = res.data.data.openid;
-                        app.globalData.userInfo = res.data.data;
-                        // console.log("第一次授权openid", app.globalData.openid);
-                        // console.log(
-                        // "第一次授权userInfo",
-                        // app.globalData.userInfo
-                        // );
-                        that.setData({
-                          userInfo: res.data.data,
-                          user_have: "display:block",
-                          user_none: "display:none",
-                        });
+    //                   if (res.data.code == 1) {
+    //                     app.globalData.uid = res.data.data.uid;
+    //                     app.globalData.userInfo = res.data.data;
+    //                     // console.log("第一次授权uid", app.globalData.uid);
+    //                     // console.log(
+    //                     // "第一次授权userInfo",
+    //                     // app.globalData.userInfo
+    //                     // );
+    //                     that.setData({
+    //                       userInfo: res.data.data,
+    //                       user_have: "display:block",
+    //                       user_none: "display:none",
+    //                     });
 
-                        try {
-                          wx.setStorageSync("userInfo", res.data.data);
-                        } catch (e) {
-                          // console.log("保存用户信息到缓存出错！");
-                        }
+    //                     try {
+    //                       wx.setStorageSync("userInfo", res.data.data);
+    //                     } catch (e) {
+    //                       // console.log("保存用户信息到缓存出错！");
+    //                     }
 
-                        that.merch_states();
-                        that.dataInform();
-                      }
-                    },
-                  });
-                },
-              });
-            }
-          },
-        });
-      } else {
-        return userInfo;
-      }
-    },
+    //                     that.merch_states();
+    //                     that.dataInform();
+    //                   }
+    //                 },
+    //               });
+    //             },
+    //           });
+    //         }
+    //       },
+    //     });
+    //   } else {
+    //     return userInfo;
+    //   }
+    // },
     // 分销中心开不开
     distribut_open: function() {
       var that = this;
@@ -683,7 +697,7 @@ export default {
     // 会员注销
     user_exit: function() {
       var that = this;
-      var user_info = wx.getStorageSync("userInfo");
+      var user_info = app.globalData.userInfo;
       wx.showModal({
         title: "注销吗？",
         content: "注销后您需要重新登录才能体验完整功能",
@@ -725,20 +739,21 @@ export default {
     //获取用户的积分 余额  和优惠券
     dataInform: function() {
       var that = this;
-      var user_info = wx.getStorageSync("userInfo");
-      var openid = user_info.openid;
+      var user_info = app.globalData.userInfo;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
           a: "user",
           do: "get_user_information",
           key: app.globalData.key,
-          openid: openid,
+          uid: uid,
         },
         header: {
           "Content-Type": "application/json",
         },
         success: function(res) {
+          console.log("积分", res);
           if (res.data.code == 1) {
             // console.log("积分+++", res);
             that.setData({
@@ -755,25 +770,28 @@ export default {
     order_skip: function(e) {
       var that = this;
       var order_status = e.currentTarget.dataset.statu;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
 
-      if (openid == undefined) {
-        wx.showToast({
-          title: "请先登录",
-          icon: "success",
-          duration: 1500,
-        });
-      } else {
-        wx.navigateTo({
-          url: "/pages/user/order_list/order_list?order_status=" + order_status,
-        });
-      }
+      // if (uid == undefined) {
+      //   wx.showToast({
+      //     title: "请先登录",
+      //     icon: "success",
+      //     duration: 1500,
+      //   });
+      // } else {
+      //   wx.navigateTo({
+      //     url: "/pages/user/order_list/order_list?order_status=" + order_status,
+      //   });
+      // }
+      wx.navigateTo({
+        url: "/pages/user/order_list/order_list?order_status=" + order_status,
+      });
     },
     //未知函数
     onShowFun: function() {
       var that = this;
       wx.setStorageSync("userInfo", "");
-      var user_info = wx.getStorageSync("userInfo");
+      var user_info = app.globalData.userInfo;
 
       if (user_info != false) {
         wx.setStorageSync("userInfo", user_info);

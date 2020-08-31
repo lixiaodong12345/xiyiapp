@@ -332,8 +332,9 @@ export default {
       check_value: '',
       cate_type: 0,
       state_show: 'display:none',
-      openid: "",
+      uid: "",
       provinces: "",
+      value:'',
       citys: "",
       areas: "",
       types: "",
@@ -347,10 +348,10 @@ export default {
   props: {},
   onLoad: function (options) {
     var that = this;
-    var openid = wx.getStorageSync('userInfo').openid;
-    console.log('商户入驻openid', openid);
+    var uid = app.globalData.uid;
+    console.log('商户入驻uid', uid);
     that.setData({
-      openid: openid
+      uid: uid
     });
     that.province_list();
     that.city_list();
@@ -475,6 +476,7 @@ export default {
         sourceType: ['album', 'camera'],
         // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
+          console.log('调用摄像摇',res)
           var tempFilePaths = res.tempFilePaths;
           wx.uploadFile({
             url: app.globalData.domain + '&a=file&do=uploadImage&key=' + app.globalData.key,
@@ -521,8 +523,9 @@ export default {
       });
     },
     send_info: function (e) {
+      console.log('用户',e)
       var that = this;
-      var openid = that.openid;
+      var uid = that.uid;
       ShopName = e.detail.value.ShopName;
       ShopType = e.detail.value.ShopType;
       ShopBorn = e.detail.value.ShopBorn;
@@ -620,7 +623,7 @@ export default {
         data: {
           a: "merch",
           do: "reg",
-          openid: openid,
+          uid: uid,
           key: app.globalData.key,
           ShopName: ShopName,
           //店铺名称
@@ -839,14 +842,14 @@ export default {
     //待审核中状态下 显示信息
     merch_states: function () {
       var that = this;
-      var openid = wx.getStorageSync('userInfo').openid;
+      var uid = app.globalData.uid;
       wx.request({
         method: 'get',
         url: app.globalData.domain,
         data: {
           a: "merch",
           do: "status",
-          openid: openid,
+          uid: uid,
           key: app.globalData.key
         },
         header: {

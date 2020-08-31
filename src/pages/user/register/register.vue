@@ -4,8 +4,10 @@
       <view class="password_line">
         <text class="passd_title">输入用户名</text>
         <input
-          name="passd_value"
+          name="username"
           type="text"
+          @blur="loseBlur"
+          :value="username"
           class="passd_input"
           placeholder="请输入用户名"
         />
@@ -14,6 +16,8 @@
         <text class="passd_title">输入手机号</text>
         <input
           type="number"
+          :value="mobile"
+          name="mobile"
           @input="synchr_phone"
           class="passd_input"
           placeholder="请输入手机号"
@@ -22,8 +26,9 @@
       <view class="password_line">
         <text class="passd_title">输入验证码</text>
         <input
-          name="code_value"
+          name="code"
           type="number"
+          :value="code"
           class="passd_input"
           placeholder="请输入手机验证码"
         />
@@ -35,15 +40,22 @@
       <view class="password_line">
         <text class="passd_title">输入密码</text>
         <input
-          name="passd_value"
-          type="text"
+          name="password"
+          type="password"
+          :value="password"
           class="passd_input"
           placeholder="请输入密码"
         />
       </view>
       <view class="password_line">
         <text class="passd_title">确认密码</text>
-        <input type="text" class="passd_input" placeholder="请确认密码" />
+        <input
+          name="confirm_password"
+          type="password"
+          :value="confirm_password"
+          class="passd_input"
+          placeholder="请确认密码"
+        />
       </view>
     </view>
     <button form-type="submit" class="set_finish">提交注册</button>
@@ -51,7 +63,13 @@
 </template>
 
 <script>
+import md5 from "../../../static/js/md5";
 var app = getApp();
+var username = "";
+var code = "";
+var mobile = "";
+var password = "";
+var confirm_password = "";
 function countdown(that) {
   var second = that.second;
   if (second == 0) {
@@ -79,6 +97,11 @@ export default {
       loading: false,
       none_style: "",
       have_style: "",
+      username: "",
+      code: "",
+      mobile: "",
+      password: "",
+      confirm_password: "",
     };
   },
 
@@ -95,6 +118,27 @@ export default {
   onReachBottom: function() {},
   onShareAppMessage: function() {},
   methods: {
+    //用户名输入框失去焦点时判断
+    /**
+     * @params loseBlur 用户名是否被注册
+     */
+    loseBlur: function(e) {
+      wx.request({
+        url: "http://wsxy.sns318.net/merchant/index.php?c=ewei_o2o",
+        data: {
+          a: "auth",
+          do: "chenk_name",
+          key: app.globalData.key,
+          username: e.detail.value,
+        },
+        header: {
+          "Content-Type": "application/json",
+        },
+        success: function(res) {
+          console.log("结果", res);
+        },
+      });
+    },
     //手机号同步
     synchr_phone: function(e) {
       var that = this;
@@ -106,9 +150,9 @@ export default {
     //获取验证码
     get_sms_code: function(e) {
       var that = this;
-      var mobile = that.phone_numb;
-      console.log("mobile", mobile);
-      var user_info = wx.getStorageSync("userInfo");
+      mobile = that.phone_numb;
+      console.log("that.phone_numb", that.phone_numb);
+      // var user_info = app.globalData.userInfo;
       //   var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
       var myreg = /^1(3|4|5|6|7|8|9)\d{9}$/;
       if (!mobile) {
@@ -133,14 +177,12 @@ export default {
         });
         return false;
       }
-
       countdown(this);
       wx.request({
         url: app.globalData.domain,
         data: {
           a: "sms",
-          do: "send",
-          uid: 2189,
+          do: "send_code",
           mobile: mobile,
           key: app.globalData.key,
         },
@@ -155,7 +197,6 @@ export default {
           });
 
           if (res.data.code == 1) {
-            // console.log("3333333333333333333333");
             setTimeout(function() {
               wx.showToast({
                 title: res.data.msg,
@@ -164,7 +205,6 @@ export default {
               });
             }, 5000);
           } else {
-            // console.log("4444444444444444444444444444");
             wx.showToast({
               title: res.data.msg,
               icon: "success",
@@ -174,33 +214,134 @@ export default {
         },
       });
     },
-    //设置注册按钮
+    //提交注册按钮
     install_finish: function(e) {
-      console.log("要提交", e);
       var that = this;
-      var codeValue = e.detail.value.code_value;
-      var passdValue = e.detail.value.passd_value;
-      var uid = 2189;
+      wx.navigateTo({
+        url: "/pages/user/userLogin/userLogin",
+      });
+      var user_code = /^(?!\d+$)(?![a-z]+$)[a-z0-9]{6,18}$/;
+      // var codeValue = e.detail.value.code_value;
+      // var passdValue = e.detail.value.passd_value;
+      username = e.detail.value.username;
+      password = e.detail.value.password;
+      code = e.detail.value.code;
+      mobile = e.detail.value.mobile;
+      confirm_password = e.detail.value.confirm_password;
+      if (username == "") {
+        uni.showToast({
+          title: "用户名不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      } else if (!user_code.test(username)) {
+        uni.showToast({
+          title: "账号为小写字母加数字6-18",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      } else if (password == "") {
+        uni.showToast({
+          title: "密码不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      } else if (mobile == "") {
+        uni.showToast({
+          title: "手机不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      } else if (code == "") {
+        uni.showToast({
+          title: "验证码不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      } else if (confirm_password != password) {
+        uni.showToast({
+          title: "两次密码不同",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      }
       wx.request({
+        // method: "POST",
+        // url: app.globalData.domain,
+        // url: "http://wsxy.sns318.net/merchant/index.php",
         url: app.globalData.domain,
         data: {
-          a: "user",
-          do: "updatepaypasswd",
-          uid: 2189,
-          //   passwd: passdValue,
-          //   captcha: codeValue,
-          //   username:
-          //   mobile:
-          //   code:
-          //   password:
-          //   confirm_password:
+          a: "auth",
+          do: "register",
           key: app.globalData.key,
+          password: password,
+          code: code,
+          mobile: mobile,
+          confirm_password: confirm_password,
+          username: username,
         },
         header: {
           "Content-Type": "application/json",
         },
         success: function(res) {
-          console.log("注册", res);
+          // console.log("注册", res);
+          if (res.data.code === 0) {
+            wx.showToast({
+              icon: "none",
+              title: "注册成功,请去登录",
+            });
+            setTimeout(function() {
+              uni.navigateTo({
+                url: "/pages/user/userLogin/userLogin",
+              });
+            }, 500);
+          } else if (res.data.code === 1) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2001) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2002) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2003) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2004) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2005) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2006) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2007) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2010) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          } else if (res.data.code === 2011) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+          }
         },
       });
     },

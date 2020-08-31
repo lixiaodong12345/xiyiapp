@@ -260,7 +260,8 @@
           >
             <!--项目介绍-->
             <view class="project_inform">
-              <jyf-parser :html="html" />
+              <jyf-parser :html="htmlFn(html)"></jyf-parser>
+              <!-- <view v-html="html"></view> -->
             </view> </view
           ><!--服务介绍service_introd结束-->
 
@@ -271,7 +272,7 @@
             <view class="store_head">商家介绍</view>
             <!--文字介绍-->
             <view class="introd_inform">
-              <jyf-parser :html="article_productContent"></jyf-parser>
+              <jyf-parser :html="htmlFn(article_productContent)"></jyf-parser>
             </view>
             <!--项目介绍-->
             <view class="back_line"></view>
@@ -314,7 +315,7 @@
 
 <script>
 var app = getApp();
-var openid = app.globalData.openid;
+var uid = app.globalData.uid;
 var page = 0;
 var endtime = Date.parse(new Date()) / 1000;
 var cat_id = 0;
@@ -363,7 +364,6 @@ export default {
   },
   props: {},
   onLoad: function(options) {
-    // console.log("来哦额");
     shopid = options.id;
     wx.setNavigationBarTitle({
       title: app.globalData.bar_title,
@@ -391,11 +391,24 @@ export default {
   /*用户点击右上角分享*/
   onShareAppMessage: function() {},
   methods: {
+    // 富文本解析
+    htmlFn(html) {
+      let temp = "";
+      if (html.length == 0) return "";
+      temp = html.replace(/&amp;/g, "&");
+      temp = temp.replace(/&lt;/g, "<");
+      temp = temp.replace(/&gt;/g, ">");
+      temp = temp.replace(/&nbsp;/g, " ");
+      temp = temp.replace(/&#39;/g, "'");
+      temp = temp.replace(/&quot;/g, '"');
+      return temp;
+    },
     lokelocation: function() {
       var that = this;
       var latitude = parseFloat(that.shop_info.lat);
       var longitude = parseFloat(that.shop_info.lng);
-      wx.openLocation({
+      console.log("地理位置", latitude, longitude);
+      uni.openLocation({
         latitude: latitude,
         longitude: longitude,
         scale: 28,
@@ -406,9 +419,9 @@ export default {
     //添加关注+取消关注
     attention: function(e) {
       var that = this;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
 
-      if (openid == null) {
+      if (uid == null) {
         wx.showToast({
           title: "请授权后关注",
           icon: "success",
@@ -425,7 +438,7 @@ export default {
           data: {
             a: "follow",
             do: "add",
-            openid: openid,
+            uid: uid,
             merchid: merchid,
             key: app.globalData.key,
           },
@@ -462,7 +475,7 @@ export default {
           data: {
             a: "follow",
             do: "cancel",
-            openid: openid,
+            uid: uid,
             merchid: merchid,
             key: app.globalData.key,
           },
@@ -499,7 +512,7 @@ export default {
     /*整个店铺信息*/
     getSHopinfo: function(e) {
       var that = this;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
       wx.request({
         method: "GET",
         url: app.globalData.domain,
@@ -508,18 +521,17 @@ export default {
           do: "shop_info",
           key: app.globalData.key,
           shopid: shopid,
-          // openid: openid,
+          // uid: uid,
           /**
            * @params uid 用户注册后
            */
-          uid: 2189,
+          uid: app.globalData.uid,
         },
         header: {
           "Content-Type": "application/json",
         },
         success: function(res) {
-          // console.log("广告+++", res.data.data.adv);
-          // console.log("广告", res);
+          console.log("店铺信息", res);
           if (res.data.code == 1) {
             that.setData({
               categood_list: res.data.data.goods_list,
@@ -531,9 +543,6 @@ export default {
               goods_state: "display:block",
               cates_state: "display:block",
             });
-            // console.log(that.endtime);
-            // console.log(that.isendtime);
-
             if (res.data.data.follow == 1) {
               that.setData({
                 add: "display:none",
@@ -545,23 +554,20 @@ export default {
                 cancel: "display:none",
               });
             }
-
             //WxParse.wxParse('productContent', 'html', res.data.data.shop_info.desc, that, 5)
             that.article_productContent = res.data.data.shop_info.desc;
             //WxParse.wxParse('productContents', 'html', res.data.data.shop_info.serve_desc, that, 5)
             that.html = res.data.data.shop_info.serve_desc;
-            // console.log("that.html", that.html);
+            // that.$refs.article.setContent(res.data.data.shop_info.serve_desc);
           }
         },
       });
     },
-
     /*全部服务模块点击分类请求的商品列表信息*/
     getCatelist: function(e) {
       var that = this;
-      var openid = wx.getStorageSync("userInfo").openid;
+      var uid = app.globalData.uid;
       var cateid = e.currentTarget.dataset.cateid;
-      // console.log("cateid", cateid);
       wx.request({
         method: "GET",
         url: app.globalData.domain,
@@ -570,7 +576,7 @@ export default {
           do: "shop_info",
           key: app.globalData.key,
           shopid: shopid,
-          openid: openid,
+          uid: uid,
           cid: cateid,
         },
         header: {
@@ -603,7 +609,6 @@ export default {
     catePorpup: function(e) {
       var that = this;
       var fig_value = e.currentTarget.dataset.figure;
-      // console.log("fig_value", fig_value);
       that.setData({
         fig_value: fig_value,
         oriangl_style: "display:inline-block",
@@ -643,7 +648,6 @@ export default {
       });
     },
     collphone: function(e) {
-      // console.log(e);
       wx.makePhoneCall({
         phoneNumber: e.currentTarget.dataset.tel,
       });
@@ -699,8 +703,6 @@ export default {
         sign = "l_price";
         prices = 0;
       }
-
-      // console.log(e);
       var that = this;
       wx.request({
         method: "GET",

@@ -146,7 +146,7 @@ export default {
     //发布商品评价
     evaluat_publish: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
+      var user_info = app.globalData.userInfo;
       var starIndex = e.detail.value.starNumb;
       var content = e.detail.value.content;
       var arrImg = that.uploadImg;
@@ -178,7 +178,7 @@ export default {
           a: 'comment',
           do: 'send',
           key: app.globalData.key,
-          openid: user_info.openid,
+          uid: user_info.uid,
           orderid: order_id,
           //订单id
           level: starIndex,

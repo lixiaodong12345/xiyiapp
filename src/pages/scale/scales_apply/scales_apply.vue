@@ -161,7 +161,7 @@ export default {
           a: 'refund',
           do: 'refund',
           key: app.globalData.key,
-          openid: user_info.openid,
+          uid: user_info.uid,
           orderid: order_id,
           //订单id
           rtype: 1,
@@ -219,7 +219,7 @@ export default {
           do: 'info',
           key: app.globalData.key,
           orderid: order_id,
-          openid: user_info.openid
+          uid: user_info.uid
         },
         header: {
           'content-type': 'application/json'

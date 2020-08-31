@@ -116,7 +116,7 @@ export default {
     // 退款退货申请接口
     search_scale: function (e) {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
+      var user_info = app.globalData.userInfo;
       var refund_content = e.detail.value.refund_content;
       var refund_reason = e.detail.value.firstPerson;
       var refund_images = e.detail.value.source;
@@ -127,7 +127,7 @@ export default {
           a: 'refund',
           do: 'refund',
           key: app.globalData.key,
-          openid: user_info.openid,
+          uid: user_info.uid,
           orderid: order_id,
           //订单id
           rtype: 0,
@@ -170,7 +170,7 @@ export default {
     // 加载获取订单编号和退款金额
     return_money: function () {
       var that = this;
-      var user_info = wx.getStorageSync('userInfo');
+      var user_info = app.globalData.userInfo;
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -179,7 +179,7 @@ export default {
           do: 'info',
           key: app.globalData.key,
           orderid: order_id,
-          openid: user_info.openid
+          uid: user_info.uid
         },
         header: {
           'content-type': 'application/json'
