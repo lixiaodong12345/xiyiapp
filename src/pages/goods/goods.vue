@@ -81,14 +81,14 @@
               class="play_title_initial"
               >￥{{ goods_productprice }}</text
             >
-            <text
+            <!-- <text
               v-if="
                 goods_infosss.price_section.min_product_price != null ||
                   goods_infosss.price_section.max_product_price != null
               "
               class="play_title_initial"
               >-</text
-            >
+            > -->
             <text
               v-if="goods_infosss.is_section != '0'"
               class="play_title_initial"

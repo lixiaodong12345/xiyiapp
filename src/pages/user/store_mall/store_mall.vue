@@ -331,7 +331,7 @@ export default {
       check_value: '',
       cate_type: 0,
       state_show: 'display:none',
-      uid: "",
+      uid: app.globalData.uid,
       provinces: "",
       value:'',
       citys: "",
@@ -350,7 +350,6 @@ export default {
   onLoad: function (options) {
     var that = this;
     var uid = app.globalData.uid;
-    console.log('商户入驻uid', uid);
     that.setData({
       uid: uid
     });
@@ -410,7 +409,6 @@ export default {
 
       if (cate_type == 0) {
         var typeList = that.types;
-        console.log('typeList', typeList);
         that.setData({
           ShopType: typeList[0].catename
         });
@@ -431,7 +429,6 @@ export default {
       });
     },
     startChange: function (e) {
-      console.log(e);
       const val = e.detail.value;
       this.setData({
         starthour: this.hours[val[0]],
@@ -439,7 +436,6 @@ export default {
       });
     },
     endChange: function (e) {
-      console.log(e);
       const val = e.detail.value;
       this.setData({
         endhour: this.hours[val[0]],
@@ -447,7 +443,6 @@ export default {
       });
     },
     typeChange: function (e) {
-      console.log('类型选择e', e);
       const val = e.detail.value;
       this.setData({
         ShopType: this.types[val[0]].catename,
@@ -456,12 +451,9 @@ export default {
     },
     areaChange: function (e) {
       var that = this;
-      console.log(e);
       const val = e.detail.value;
       prov_id = val[0];
       city_id = val[1];
-      console.log('prov_id', prov_id);
-      console.log('city_id', city_id);
       that.city_list();
       that.area_list();
       this.setData({
@@ -471,9 +463,7 @@ export default {
       });
     },
     upImage: function (e) {
-      console.log("rsa", e);
       var name = e.target.id;
-      console.log(name);
       var that = this;
       uni.chooseImage({
         count: 1,
@@ -483,7 +473,6 @@ export default {
         sourceType: ['album', 'camera'],
         // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
-          console.log('调用摄像摇',res)
           var tempFilePaths = res.tempFilePaths;
           uni.uploadFile({
             // method:'POST',
@@ -495,8 +484,6 @@ export default {
             },
             success: function (res) {
               var data = JSON.parse(res.data);
-              console.log('服务器返回数据+++', data);
-
               if (name == "ShopPtOne") {
                 card_behind = data.data;
                 that.setData({
@@ -524,14 +511,12 @@ export default {
               }
             },
             fail: function (res) {
-              console.log('+++++');
             }
           });
         }
       });
     },
     send_info: function (e) {
-      console.log('用户',e)
       var that = this;
       var uid = that.uid;
       ShopName = e.detail.value.ShopName;
@@ -685,7 +670,6 @@ export default {
     },
     // 协议选择
     selectChange: function (e) {
-      console.log('协议选择',e)
       var that = this;
       var check_value = e.detail.value;
 
@@ -730,8 +714,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('省名称', res);
-
           if (res.data.code == 1) {
             that.setData({
               provinces: res.data.data
@@ -756,8 +738,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('市名称', res);
-
           if (res.data.code == 1) {
             that.setData({
               citys: res.data.data
@@ -783,8 +763,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('市名称', res);
-
           if (res.data.code == 1) {
             that.setData({
               areas: res.data.data
@@ -808,8 +786,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('分类', res);
-
           if (res.data.code == 1) {
             that.setData({
               types: res.data.data
@@ -833,7 +809,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('协议', res);
           if (res.data.code == 1) {
             //WxParse.wxParse('agreeContent', 'html', res.data.data.applycontent, that, 5)
             setTimeout(() => {

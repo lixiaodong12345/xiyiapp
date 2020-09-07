@@ -58,8 +58,8 @@ export default {
     dataInform: function () {
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = user_info.uid;
-      wx.request({
+      var uid = app.globalData.uid;
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'recharge',
@@ -67,10 +67,12 @@ export default {
           key: app.globalData.key,
           uid: uid
         },
+        dataType:'json',
         header: {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('选中样式',res)
           if (res.data.code == 1) {
             that.setData({
               balanValue: res.data.data.credit2,
@@ -117,9 +119,10 @@ export default {
     },
     //发起充值form请求
     bind_submit: function (e) {
+      console.log('e',e)
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = user_info.uid;
+      var uid =app.globalData.uid;
 
       if (recharge_money == '') {
         wx.showToast({
@@ -137,7 +140,7 @@ export default {
         return;
       }
 
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'recharge',
@@ -150,21 +153,29 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('充值',res)
           if (res.data.code == 1) {
             var lognoid = res.data.data.logno;
-            wx.requestPayment({
+            uni.requestPayment({
               'timeStamp': res.data.data.pay.timeStamp.toString(),
               'nonceStr': res.data.data.pay.nonceStr,
               'package': res.data.data.pay.package,
               'signType': res.data.data.pay.signType,
               'paySign': res.data.data.pay.paySign,
               success: function (res) {
+                console.log('res')
                 // 微信支付成功回调
-                wx.redirectTo({
+                uni.redirectTo({
                   url: '/pages/user/account_success/account_success?lognoid=' + lognoid
                 });
               },
-              fail: function (res) {}
+              fail: function (res) {
+                wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 1500
+        });
+              }
             });
           } else {}
         }

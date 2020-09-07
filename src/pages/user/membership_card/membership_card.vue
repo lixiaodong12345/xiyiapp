@@ -278,7 +278,7 @@ export default {
     dataInform: function() {
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = user_info.uid;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {

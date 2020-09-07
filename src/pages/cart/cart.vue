@@ -240,7 +240,7 @@ export default {
             for (var i = 0; i < res.data.data.cart_list.length; i++) {
               if (res.data.data.cart_list[i].selected_merch == 1) {
                 res.data.data.cart_list[i]["src"] = "http://wximage.shedongyun.com/sdo2o/true.png";
-                res.data.data.cart_list[i].type = true;
+                res.data.data.cart_list[i].type = 'true';
               } else {
                 res.data.data.cart_list[i]["src"] = "http://wximage.shedongyun.com/sdo2o/false.png";
               }
@@ -248,7 +248,7 @@ export default {
               for (var m = 0; m < res.data.data.cart_list[i].goods_list.length; m++) {
                 if (res.data.data.cart_list[i].goods_list[m].selected == 1) {
                   res.data.data.cart_list[i].goods_list[m]["src"] = "http://wximage.shedongyun.com/sdo2o/true.png";
-                  res.data.data.cart_list[i].type = true;
+                  res.data.data.cart_list[i].type = 'true';
                 } else {
                   res.data.data.cart_list[i].goods_list[m]["src"] = "http://wximage.shedongyun.com/sdo2o/false.png";
                 }
@@ -268,6 +268,7 @@ export default {
     },
     //选中商品事件
     changebox: function (e) {
+      console.log('发生改变',e)
       var that = this;
       var uid = app.globalData.uid;
       var carlsit = that.cart_list;
@@ -294,7 +295,7 @@ export default {
       that.setData({
         check_list: check_list
       });
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
@@ -314,7 +315,7 @@ export default {
             for (var i = 0; i < res.data.data.cart_list.length; i++) {
               if (res.data.data.cart_list[i].selected_merch == 1) {
                 res.data.data.cart_list[i]["src"] = "http://wximage.shedongyun.com/sdo2o/true.png";
-                res.data.data.cart_list[i].type = true;
+                res.data.data.cart_list[i].type = 'true';
               } else {
                 res.data.data.cart_list[i]["src"] = "http://wximage.shedongyun.com/sdo2o/false.png";
               }
@@ -322,7 +323,7 @@ export default {
               for (var m = 0; m < res.data.data.cart_list[i].goods_list.length; m++) {
                 if (res.data.data.cart_list[i].goods_list[m].selected == 1) {
                   res.data.data.cart_list[i].goods_list[m]["src"] = "http://wximage.shedongyun.com/sdo2o/true.png";
-                  res.data.data.cart_list[i].type = true;
+                  res.data.data.cart_list[i].type = 'true';
                 } else {
                   res.data.data.cart_list[i].goods_list[m]["src"] = "http://wximage.shedongyun.com/sdo2o/false.png";
                 }
@@ -553,13 +554,13 @@ export default {
 
         for (var i = 0; i < cart_list_data.length; i++) {
           if (cart_list_data[i]['checked'] == 'checked') {
-            gourl = true;
+            gourl = 'true';
             break;
           }
 
         }
       } else if (check_list != 'no') {
-        gourl = true;
+        gourl = 'true';
       }
 
       if (gourl) {
@@ -674,11 +675,12 @@ export default {
     },
     //去结算跳转
     settle_skip: function (e) {
+      console.log('选中图挨砖',e)
       var that = this;
       var type = e.currentTarget.dataset.type;
       var merchid = e.currentTarget.dataset.shopid;
 
-      if (type == true) {
+      if (type == 'true') {
         wx.navigateTo({
           url: '/pages/flow/flow?merchid=' + merchid
         });
@@ -702,7 +704,7 @@ export default {
         data.startRight = data.right;
       }
 
-      key = true;
+      key = 'true';
     },
     drawEnd: function (e) {
       var cardTeams = this.cardTeams;
