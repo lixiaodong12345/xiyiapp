@@ -30,7 +30,7 @@
             @touchend="touchE"
             :data-index="index"
           >
-            <view class="module_width" @tap="goodsDetail">
+            <view class="module_width" @tap="goodsDetail(item.goodsid)">
               <image :src="item.thumb" class="prod_image"></image>
               <view class="module_main">
                 <view class="shop_title">{{ item.title }}</view>
@@ -109,13 +109,12 @@ export default {
   },
   methods: {
     //点击跳转详情
-    goodsDetail: function(e) {
-      // console.log("e", e);
-      // var that = this;
-      // var good_id = e.currentTarget.dataset.id;
-      // uni.navigateTo({
-      //   url: "/pages/goods/goods?goods_id=" + good_id,
-      // });
+    goodsDetail: function(id) {
+      var that = this;
+      var good_id = id;
+      uni.navigateTo({
+        url: "/pages/goods/goods?goods_id=" + good_id,
+      });
     },
     load_list: function() {
       pages++;
@@ -132,7 +131,7 @@ export default {
           a: "goods",
           do: "collectlist",
           page: pages,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           key: app.globalData.key,
         },
         header: {

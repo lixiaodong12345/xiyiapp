@@ -160,16 +160,15 @@
       </view>
     </view>
     <!--协议-->
-    <block v-if="open_protocol==1">
     <view class="radio_width">
         <view class="cont">
           <view class="radio_wrap">
             <radio-group class="radio-group" @change="selectChange">
-              <input name="liab_check" :value="check_value" hidden="true"></input>
+              <input name="liab_check" :value="check_value" hidden="true" />
               <label class="radio_cont">
-                <image :src="read_empty" class="exemp" :style="original"></image> 
+                <image :src="read_empty" class="exemp" :style="original" /> 
                 <image :src="read_select" class="exemp" :style="original_select"></image> 
-                <checkbox value="1" checked hidden="true"></checkbox>
+                <radio value="1" hidden="true"></radio>
               </label>
             </radio-group>
           </view> 
@@ -177,7 +176,7 @@
           <text class="liab_name" @tap="statement_skip">《{{applytitle}}》</text>
         </view>
     </view><!--协议--> 
-    </block>
+  
     <view class="submit">
       <button v-if="status==0" class="trues" disabled="true" style="background:#55bcc5;color:#fff;">审核中</button>
       <button v-else formType="submit" class="true" type="submit">提交申请</button>
@@ -260,7 +259,7 @@
 </template>
 
 <script>
-
+import parser from "@/components/jyf-parser/jyf-parser";
 var app = getApp();
 var merchname = "";
 var salecate = "";
@@ -344,7 +343,9 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    "jyf-parser": parser,
+  },
   props: {},
   onLoad: function (options) {
     var that = this;
@@ -371,6 +372,12 @@ export default {
   onShow: function () {},
   onHide: function () {},
   methods: {
+    /**
+     * @params buttonClo 输入框输入事件
+     */
+    buttonClo:function(e){
+      
+    },
     startshow: function (e) {
       this.setData({
         startpop: "display:block"
@@ -468,7 +475,7 @@ export default {
       var name = e.target.id;
       console.log(name);
       var that = this;
-      wx.chooseImage({
+      uni.chooseImage({
         count: 1,
         // 默认9
         sizeType: ['original', 'compressed'],
@@ -478,8 +485,9 @@ export default {
         success: function (res) {
           console.log('调用摄像摇',res)
           var tempFilePaths = res.tempFilePaths;
-          wx.uploadFile({
-            url: app.globalData.domain + '&a=file&do=uploadImage&key=' + app.globalData.key,
+          uni.uploadFile({
+            // method:'POST',
+            url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
             filePath: tempFilePaths[0],
             name: 'file',
             header: {
@@ -677,6 +685,7 @@ export default {
     },
     // 协议选择
     selectChange: function (e) {
+      console.log('协议选择',e)
       var that = this;
       var check_value = e.detail.value;
 
@@ -825,7 +834,6 @@ export default {
         },
         success: function (res) {
           console.log('协议', res);
-
           if (res.data.code == 1) {
             //WxParse.wxParse('agreeContent', 'html', res.data.data.applycontent, that, 5)
             setTimeout(() => {

@@ -352,13 +352,15 @@ export default {
 
     // 不知名请求
     flow_show: function () {
+      /**
+       * openid不能为空
+       */
       var that = this;
       var uid = that.uid;
       var is_fast = that.is_fast;
       wx.request({
         url: app.globalData.domain,
         data: {
-          c: 'ewei_o2o',
           a: 'cart',
           do: 'list',
           uid: uid,
@@ -370,6 +372,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('res',res)
           // 商品配送方式
           paynum = res.data.data.total_price;
 
@@ -472,6 +475,9 @@ export default {
     },
     //获取总额数
     get_amount_sum: function () {
+      /**
+       * openid不能为空
+       */
       var that = this;
       var uid = that.uid;
       wx.request({

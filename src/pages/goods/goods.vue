@@ -42,10 +42,7 @@
         <text class="goods_name_cont">{{ goods_info_title }}</text>
         <!--分享按钮-->
         <view class="share_top" @tap="share_skip">
-          <image
-            src="http://wximage.shedongyun.com/sdo2o/button_share.png"
-            class="share_icon"
-          ></image>
+          <image :src="shareImg" class="share_icon"></image>
           <text class="share_name">分享</text>
         </view>
       </view>
@@ -473,7 +470,7 @@
         </view>
         <!--走规格-->
         <view class="outside_cont" :style="double_style">
-          <form @submit="formSubmit" :report-submit="istrue">
+          <form @submit="formSubmit" report-submit="true">
             <input
               name="number"
               :value="protuct_number"
@@ -484,15 +481,15 @@
               <!--加入洗衣篮-->
               <view class="Join_shopping_cart Join_shopping_cart_wrap">
                 <button
+                  ref="btn"
                   :id="goods_info_id"
-                  data-goods_spec="goods_spec"
-                  data-goods_num="goods_number"
+                  :data-goods_spec="goods_spec"
+                  :data_goods_num="goods_number"
                   data-fast="0"
                   type="submit"
-                  data-name="add_to_cart"
-                  data-number="protuct_number"
+                  data_name="add_to_cart"
+                  :data_number="protuct_number"
                   formType="submit"
-                  @tap="formSubmit"
                 >
                   加入洗衣篮
                 </button>
@@ -501,13 +498,15 @@
               <view class="buy_now buy_now_wrap">
                 <button
                   :id="goods_info_id"
-                  data-goods_spec="goods_spec"
-                  data-goods_num="goods_number"
+                  :data-goods_spec="goods_spec"
+                  :data_goods_num="goods_number"
+                  :data-goods_num="goods_number"
                   data-fast="1"
                   type="submit"
-                  data-name="buy_now"
-                  data-number="protuct_number"
+                  data_name="buy_now"
+                  :data_number="protuct_number"
                   form-type="submit"
+                  @tap="buy_now"
                 >
                   立即购买
                 </button>
@@ -517,7 +516,7 @@
         </view>
         <!--不走规格-->
         <view class="outside_cont" :style="single_style">
-          <form @submit="formSubmit" :report-submit="istrue">
+          <form @submit="formSubmit" report-submit="true">
             <view class="bottom_wrap">
               <view
                 class="Join_shopping_cart cate_shopping_cart_wrap"
@@ -525,11 +524,11 @@
               >
                 <button
                   :id="goods_info_id"
-                  data-goods_spec="goods_spec"
-                  data-goods_num="goods_number"
+                  :data-goods_spec="goods_spec"
+                  :data_goods_num="goods_number"
                   data-fast="0"
-                  data-name="add_to_cart"
-                  data-number="protuct_number"
+                  data_name="add_to_cart"
+                  :data_number="protuct_number"
                   form-type="submit"
                   class="font_cart"
                   style="background:#55bcc5"
@@ -540,14 +539,15 @@
               <view class="buy_now cate_now_wrap" :style="confirm_buy">
                 <button
                   :id="goods_info_id"
-                  data-goods_spec="goods_spec"
-                  data-goods_num="goods_number"
+                  :data-goods_spec="goods_spec"
+                  :data_goods_num="goods_number"
                   data-fast="1"
-                  data-name="buy_now"
-                  data-number="protuct_number"
+                  data_name="buy_now"
+                  :data_number="protuct_number"
                   formType="submit"
                   class="font_cart"
                   style="background:#55bcc5"
+                  @tap="buy_now"
                 >
                   确定
                 </button>
@@ -673,7 +673,8 @@ var allLimit = "";
 export default {
   data() {
     return {
-      istrue: true,
+      shareImg: "",
+      istrue: false,
       currType: 0,
       tis: "",
       tisshow: "",
@@ -806,7 +807,6 @@ export default {
     goods_collect: function(e) {
       var user_info = app.globalData;
       var that = this;
-
       if (user_info.uid == "") {
         wx.showToast({
           title: "请授权后收藏",
@@ -991,35 +991,18 @@ export default {
     // 加入洗衣篮 最后一步
     add_to_cart: function(event) {
       var that = this; //判断商品属性选择
-
       var goods_spec = that.goods_properties;
-      var goods_specsarr = that.specsarr;
-
-      if (that.goods_properties != false) {
-        for (var i = 0; i < goods_specsarr.length; i++) {
-          if (goods_specsarr[i] == null) {
-            wx.showToast({
-              title: "请选择属性",
-              icon: "success",
-              duration: 1500,
-            });
-            return;
-          }
-        }
-
-        if (goods_spec.length != goods_specsarr.length) {
-          wx.showToast({
-            title: "请选择属性",
-            icon: "success",
-            duration: 1500,
-          });
-          return;
-        }
+      var goods_specsarr = that.specsarr[""];
+      if (!goods_specsarr) {
+        uni.showToast({
+          title: "请选择3",
+          icon: "success",
+          duration: 1500,
+        });
+        return;
       }
-
-      var goods_string = goods_specsarr.join("_");
-      var addId = event.detail.target.id;
-      var goods_num = event.detail.target.dataset.goods_num;
+      var addId = event.id;
+      var goods_num = event.$attrs.data_goods_num;
       var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
@@ -1032,14 +1015,14 @@ export default {
           goods_num: goods_num,
           is_fast: 0,
           uid: uid,
-          goods_spec: goods_string,
+          goods_spec: goods_specsarr,
         },
+
         header: {
           "Content-Type": "application/json",
         },
         success: function(res) {
           var cart_number = 0;
-
           if (res.data.code == 1) {
             that.setData({
               cart_number: res.data.data.cart_number,
@@ -1051,7 +1034,7 @@ export default {
             });
           } else {
             wx.showToast({
-              title: res.data.msg,
+              title: "res.data.msg",
               icon: "success",
               duration: 1500,
             });
@@ -1063,35 +1046,39 @@ export default {
     buy_now: function(event) {
       var that = this;
       var shop_id = that.shop_id; //判断商品属性选择
-
       var goods_spec = that.goods_properties;
       var goods_specsarr = that.specsarr;
-
-      if (that.goods_properties != false) {
-        for (var i = 0; i < goods_specsarr.length; i++) {
-          if (goods_specsarr[i] == null) {
-            wx.showToast({
-              title: "请选择属性",
-              icon: "success",
-              duration: 2000,
-            });
-            return;
-          }
-        }
-
-        if (goods_spec.length != goods_specsarr.length) {
-          wx.showToast({
-            title: "请选择属性",
-            icon: "success",
-            duration: 2000,
-          });
-          return;
-        }
+      // if (that.goods_properties != false) {
+      //   for (var i = 0; i < goods_specsarr.length; i++) {
+      //     if (goods_specsarr[i] == null) {
+      //       wx.showToast({
+      //         title: "请选择属性1",
+      //         icon: "success",
+      //         duration: 1500,
+      //       });
+      //       return;
+      //     }
+      //   }
+      //   if (goods_spec.length != goods_specsarr.length) {
+      //     wx.showToast({
+      //       title: "请选择属性2",
+      //       icon: "success",
+      //       duration: 1500,
+      //     });
+      //     return;
+      //   }
+      // }
+      if (!that.specsarr[""]) {
+        wx.showToast({
+          title: "又出错了",
+          icon: "success",
+          duration: 1500,
+        });
+        return;
       }
-
       var goods_string = goods_specsarr.join("_");
-      var addId = event.detail.target.id;
-      var goods_num = event.detail.target.dataset.goods_num;
+      var addId = that.goods_info_id;
+      var goods_num = event.target.dataset.goods_num;
       var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
@@ -1151,7 +1138,6 @@ export default {
     },
     // 选择规格
     select_scalea: function(event) {
-      console.log("event", event);
       var that = this;
       currType = 0;
       that.setData({
@@ -1164,11 +1150,8 @@ export default {
       var catId = event.currentTarget.id;
       var specsstr = 0;
       var specsstrs = event.currentTarget.dataset.id;
-      console.log("that.specsstrs", specsstrs);
       // var specsarr = JSON.parse(JSON.stringify(that.specsarr))
-      // console.log('specsarr',specsarr)
       // specsarr.forEach(function (value, index, array) {
-      //   console.log('value',value,index,array)
       //   if (index == 0) {
       //     if (specsstr == 0) {
       //       specsstr = value;
@@ -1582,13 +1565,13 @@ export default {
     },
     //商品详情提交规格时请求的函数****************
     formSubmit: function(e) {
-      console.log("ee", e);
+      var btn = this.$refs.btn;
       var that = this;
       var uid = app.globalData.uid;
       var form_id = e.detail.formId;
-      var number_value = e.detail.target.dataset.number;
-
-      if (e.detail.target.dataset.name == "buy_now") {
+      // var number_value = e.detail.target.dataset.number
+      var number_value = btn.$attrs.data_number;
+      if (btn.$attrs.data_name == "buy_now") {
         if (number_value == 0) {
           wx.showToast({
             title: "已售罄",
@@ -1598,7 +1581,7 @@ export default {
           return false;
         }
 
-        this.buy_now(e);
+        that.buy_now(btn);
       } else {
         if (number_value == 0) {
           wx.showToast({
@@ -1609,7 +1592,7 @@ export default {
           return false;
         }
 
-        this.add_to_cart(e);
+        this.add_to_cart(btn);
       }
     },
     // 商品详情************************
@@ -1634,6 +1617,7 @@ export default {
           "Content-Type": "application/json",
         },
         success: function(res) {
+          console.log("res", res);
           setTimeout(() => {
             that.article_productContent = res.data.data.goods_info.content;
           }, 200);
@@ -1674,6 +1658,7 @@ export default {
               coupon_list: res.data.data.coupon_list,
               minbuy: minbuy,
               maxbuy: maxbuy,
+              shareImg: res.data.data.goods_info.thumb,
               goods_number: minbuy,
               goods_thumb: res.data.data.goods_info.thumb,
               goods_info_id: res.data.data.goods_info.id,
@@ -1767,7 +1752,6 @@ export default {
     attention: function(e) {
       var that = this;
       var uid = app.globalData.uid;
-      console.log("e", e);
       if (uid == "") {
         wx.showToast({
           title: "请授权后关注",
@@ -1784,7 +1768,7 @@ export default {
           data: {
             a: "follow",
             do: "add",
-            openid: uid,
+            uid: uid,
             merchid: merchid,
             key: app.globalData.key,
           },
@@ -1809,7 +1793,7 @@ export default {
           data: {
             a: "follow",
             do: "cancel",
-            openid: uid,
+            uid: uid,
             merchid: merchid,
             key: app.globalData.key,
           },
@@ -1842,6 +1826,9 @@ export default {
     },
     // 分享——保存图片到本地*********************
     share_data: function() {
+      /**
+       * openid不能为空
+       */
       var that = this;
       var uid = app.globalData.uid;
       var goodsId = that.goods_info_id;
@@ -1858,6 +1845,7 @@ export default {
           "Content-Type": "application/json",
         },
         success: function(res) {
+          console.log("res图片", res);
           if (res.data.code == 1) {
             that.setData({
               shareImg: res.data.data,
@@ -1916,7 +1904,6 @@ export default {
     },
     //进入店铺
     enter_shop: function(e) {
-      console.log("eee", e);
       var that = this;
       var shop_id = e.currentTarget.dataset.id;
       wx.navigateTo({
@@ -1940,6 +1927,7 @@ export default {
     },
     //优惠券高度
     coupon_height: function() {
+      console.log("dfv");
       var that = this;
       var query = wx.createSelectorQuery();
       query.select(".coupon_height").boundingClientRect();
@@ -1950,6 +1938,9 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 @import "./goods.css";
+element.style /deep/ uni-toast {
+  z-index: 999999 !important;
+}
 </style>

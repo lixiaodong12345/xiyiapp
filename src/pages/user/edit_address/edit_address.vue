@@ -130,7 +130,6 @@ export default {
       wx.request({
         url: app.globalData.domain,
         data: {
-          c: 'ewei_o2o',
           a: 'delivery',
           do: 'info',
           key: app.globalData.key,
@@ -182,7 +181,7 @@ export default {
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
-          a: 'delivery',
+          a: 'address',
           do: 'region_list',
           key: app.globalData.key
         },
@@ -190,8 +189,8 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('res1')
           if (res.data.code == 1) {
-            console.log(res.data.data);
             that.setData({
               province_list: res.data.data
             });
@@ -212,7 +211,7 @@ export default {
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
-          a: 'delivery',
+          a: 'address',
           do: 'region_list',
           pid: pid,
           key: app.globalData.key
@@ -221,7 +220,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data.data);
+          console.log('res2');
 
           if (res.data.code == 1) {
             that.setData({
@@ -245,7 +244,7 @@ export default {
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
-          a: 'delivery',
+          a: 'address',
           do: 'region_list',
           pid: pid,
           cid: cid,
@@ -255,7 +254,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data.data);
+          console.log('res3');
 
           if (res.data.code == 1) {
             that.setData({
@@ -271,21 +270,18 @@ export default {
       });
     },
     changepronince: function (e) {
+      console.log('省份',e)
       //改变省份
       var that = this;
       that.pronince_id = e.detail.value;
       that.setData({
         provinceindex: e.detail.value
       });
-      wx.showLoading({
-        title: '加载中'
-      }); //将选择的省份id发送到后台，获取城市列表
-
       wx.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
-          a: 'delivery',
+          a: 'address',
           do: 'region_list',
           pid: e.detail.value,
           key: app.globalData.key
@@ -315,10 +311,6 @@ export default {
       //改变城市
       var that = this;
       that.city_id = e.detail.value;
-      console.log('444', that.cityList);
-      wx.showLoading({
-        title: '加载中'
-      });
       that.setData({
         cityindex: e.detail.value
       }); //发送请求获取区域列表
@@ -327,7 +319,7 @@ export default {
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
-          a: 'delivery',
+          a: 'address',
           do: 'region_list',
           pid: that.pronince_id,
           cid: e.detail.value,
@@ -416,7 +408,7 @@ export default {
           a: 'delivery',
           do: 'change',
           key: app.globalData.key,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           realname: e.detail.value.consignee,
           mobile: e.detail.value.mobile,
           aid: to_commod,
@@ -432,6 +424,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('res4')
           if (res.data.code == 1) {
             that.setData({
               disabled: true
@@ -494,7 +487,7 @@ export default {
           a: 'delivery',
           do: 'add',
           key: app.globalData.key,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           realname: e.detail.value.consignee,
           mobile: e.detail.value.mobile,
           address: e.detail.value.address,
@@ -508,7 +501,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data);
+          console.log('res5')
           that.setData({
             loading: false
           });

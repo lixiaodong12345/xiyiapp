@@ -32,7 +32,7 @@
                 >{{ coupon.timestart }}~{{ coupon.timeend }}</text
               >
             </view>
-            <form :data-couponId="item.id" report-submit="true">
+            <form :data-couponId="coupon.id" report-submit="true">
               <view class="line_cont_right">
                 <view class="content">
                   <view class="conpon_bfb">
@@ -118,7 +118,7 @@
                 >{{ coupon.timestart }}~{{ coupon.timeend }}</text
               >
             </view>
-            <form :data-couponId="item.id" report-submit="true">
+            <form :data-couponId="coupon.id" report-submit="true">
               <view class="line_cont_right">
                 <view class="content">
                   <view class="conpon_bfb">
@@ -269,7 +269,7 @@ export default {
           uid: app.globalData.uid,
         },
         success: function(res) {
-          console.log("优惠券", res);
+          console.log("优惠券123", res);
           //优惠券列表
           that.setData({
             code: res.data.code,
@@ -283,6 +283,7 @@ export default {
           }
 
           if (res.data.code == 1) {
+            console.log("nihao");
             //成功
             that.setData({
               coupon_list: res.data.data,

@@ -136,7 +136,7 @@ export default {
           do: "list",
           lng: 116.98737,
           lat: 36.67789,
-          openid: app.globalData.uid,
+          uid: app.globalData.uid,
           key: app.globalData.key,
         },
         header: {

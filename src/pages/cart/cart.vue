@@ -216,15 +216,18 @@ export default {
     },
     //数据列表请求
     shopCart_list: function () {
+      /**
+       * openid不能为空 可能会有多个商户id
+       */
       var that = this;
       var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {
-          c: 'ewei_o2o',
           a: 'cart',
           do: 'list',
-          openid: uid,
+          // 商户id
+          uid:app.globalData.uid,
           is_fast: that.is_fast,
           key: app.globalData.key
         },
@@ -490,7 +493,7 @@ export default {
       var that = this;
       var but_id = e.currentTarget.dataset.but_id;
       var userInfo = app.globalData.userInfo;
-      var uid = userInfo.uid;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {

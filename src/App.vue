@@ -24,7 +24,7 @@ export default {
     userInfo: "",
     post_img_list: [],
     menucid: "",
-    openid: "",
+    openid: "oXfTW5TPM-xAVEt0H0Nf5X2S3kbg",
     uid: "",
     textare_value: "",
     title_value: "",
@@ -54,6 +54,7 @@ export default {
       return userInfo;
       // console.log("app的userInfo", userInfo);
     },
+
     // 分享备份
     goShareApp: function(page_link) {
       var path = "/pages/index";
