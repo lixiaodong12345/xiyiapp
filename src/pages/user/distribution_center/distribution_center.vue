@@ -390,6 +390,8 @@ export default {
           console.log("page自增1++", page);
         },
       });
+      page++;
+      console.log("page自增1++", page);
     },
     //加载更多请求的函数
     add_more_list: function() {

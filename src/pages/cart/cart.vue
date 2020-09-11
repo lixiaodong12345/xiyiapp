@@ -32,7 +32,7 @@
         </checkbox-group>
         <block v-for="(list, index2) in item.goods_list" :key="index2">
           <checkbox-group @change="changebox" :data-carts_id="list.id" data-name="good" :data-index="index" class="list_box"> 
-            <view :id="item.merchid" :data-index="index" :style="'right:' + list.right + 'px'" class="goods_list" @touchstart="drawStart" @touchmove="drawMove" @touchend="drawEnd">
+            <view :id="item.merchid" :data-index="index" :style="'right:' + list.right + 'px'" class="goods_list">
               <!--商品已选中-->
               <label :for="'a-' + list.id" class="cart_checkbox" v-if="list.selected == 1">
                 <checkbox :value="list.id" checked :id="'a-' + list.id"></checkbox>
@@ -67,9 +67,10 @@
                 </view>
               </view>
             </view><!--goods_list-->
-            <view :data-cart_id="list.id" :data-but_id="list.id" class="remove" @tap="dele_goods">
+            <button class="settle_skip btnClear" @tap="dele_goods" :data-cart_id="list.id" :data-but_id="list.id">删除</button>
+            <!-- <view :data-cart_id="list.id" :data-but_id="list.id" class="remove" @tap="dele_goods">
               <view>删除</view>
-            </view>
+            </view> -->
           </checkbox-group>
         </block>
         <view class="shop_settle" v-if="item.merch_total">
@@ -105,7 +106,7 @@
   </view>
 </view>
 <!--未登录状态-->
-<view :style="cart_none">
+<view :style="cart_none" v-show="!uid">
   <view class="cart_null">
     <image mode="widthFix" src="http://wximage.shedongyun.com/sdo2o/car_none.png"></image>
     <text>您还没有登录，请登录后查看</text>
@@ -168,6 +169,7 @@ export default {
         "right": 0,
         "startRight": 0
       }],
+      uid:app.globalData.uid,
       cart_none: 'display:none',
       cart_have: "",
       wechat_xcx_prompt: "",
@@ -201,6 +203,7 @@ export default {
 
       that.shopCart_list();
     }
+    that.shopCart_list()
   },
   // 左滑动删除结束*******************************************
   //转发分享按钮
@@ -302,6 +305,7 @@ export default {
           a: 'cart',
           do: 'check',
           uid: uid,
+          // openid:'oXfTW5TPM-xAVEt0H0Nf5X2S3kbg',
           key: app.globalData.key,
           cid: cat_id,
           sid: sid_id,
@@ -337,6 +341,7 @@ export default {
               cart_list: res.data.data.cart_list,
               sum_goods_price: res.data.data.total_price
             });
+            that.shopCart_list()
           } else {
             wx.showToast({
               title: res.data.msg,
@@ -533,6 +538,7 @@ export default {
               cart_list: res.data.data.cart_list,
               sum_goods_price: res.data.data.total_price
             });
+            that.shopCart_list()
           } else {
             wx.showToast({
               title: res.data.msg,
@@ -759,7 +765,7 @@ export default {
             }
           }
         } else {
-          //从左往右
+          // 从左往右
           var startRight;
           var change = startX - endX;
           startRight = parseInt(change);

@@ -26,7 +26,7 @@
                 class="userinfo-avatar"
                 src="http://wximage.shedongyun.com/sdo2o/head_empty.png"
               ></image>
-              <view class="user_monick">授权登录</view>
+              <view class="user_monick" v-if="!uid">授权登录</view>
               <!-- <button
                 open-type="getUserInfo"
                 @getuserinfo="bindGetUserInfo"
@@ -304,7 +304,7 @@ export default {
       bindmobile: "绑定手机",
       page_data: "user",
       copyright: app.globalData.copyright,
-      uid: "",
+      uid: app.globalData.uid,
       user_have: "",
       user_none: "",
       status: 0,
@@ -375,13 +375,13 @@ export default {
   methods: {
     // 用户点击授权跳转
     userLogin: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/userLogin/userLogin",
       });
     },
     //事件处理函数
     bindViewTap: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "../user/login/login",
       });
     },
@@ -462,27 +462,27 @@ export default {
       });
 
       if (e.currentTarget.dataset.name == "store_center") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/distribution_center/distribution_center",
         });
       } else if (e.currentTarget.dataset.name == "store_iss") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/distribution_login/distribution_login",
         });
       } else if (e.currentTarget.dataset.name == "store_is") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/distribution_submit/distribution_submit",
         });
       } else if (e.currentTarget.dataset.name == "clecment") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/user/collection_list/collection_list",
         });
       } else if (e.currentTarget.dataset.name == "addree") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/address/address",
         });
       } else if (e.currentTarget.dataset.name == "security") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/user/password_index/password_index",
         });
       } else if (e.currentTarget.dataset.name == "shop_add") {
@@ -490,56 +490,56 @@ export default {
         if (status_type == 0) {
           //商户入驻审核中
           // console.log("审核中++++");
-          wx.navigateTo({
+          uni.navigateTo({
             url: "../user/store_mall/store_mall?state=wait",
           });
         } else if (status_type == -1) {
           //商户入驻失败
           // console.log("审核失败++++");
-          wx.navigateTo({
+          uni.navigateTo({
             url: "/pages/user/enter_fail/enter_fail",
           });
         } else if (status_type == 1) {
           //商户入驻成功
           // console.log("审核成功++++");
-          wx.navigateTo({
+          uni.navigateTo({
             url: "/pages/user/enter_success/enter_success",
           });
         } else if (status_type == 2) {
           //待入住
-          wx.navigateTo({
+          uni.navigateTo({
             url: "../user/store_mall/store_mall",
           });
         } else {
           //未入驻
           // console.log("未申请++++");
-          wx.navigateTo({
+          uni.navigateTo({
             url: "../user/store_mall/store_mall",
           });
         }
       } else if (e.currentTarget.dataset.name == "coupon_list") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/my_coupon/my_coupon",
         });
       } else if (e.currentTarget.dataset.name == "get_coupon") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/get_coupon/get_coupon",
         });
       } else if (e.currentTarget.dataset.name == "about_us") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../about_us/about_us",
         });
       } else if (e.currentTarget.dataset.name == "contact_us") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../contact_us/contact_us",
         });
       } else if (e.currentTarget.dataset.name == "focus") {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/focus_list/focus_list",
         });
       } else if (e.currentTarget.dataset.name == "expense_detail") {
         //消费明细
-        wx.navigateTo({
+        uni.navigateTo({
           url: "../user/expense_detail/expense_detail",
         });
       }
@@ -779,11 +779,11 @@ export default {
       //     duration: 1500,
       //   });
       // } else {
-      //   wx.navigateTo({
+      //   uni.navigateTo({
       //     url: "/pages/user/order_list/order_list?order_status=" + order_status,
       //   });
       // }
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/order_list/order_list?order_status=" + order_status,
       });
     },
@@ -806,7 +806,7 @@ export default {
     },
     // 页面跳转
     skiping: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/bind_mobile/bind_mobile",
       });
     },
@@ -818,21 +818,21 @@ export default {
     //充值跳转
     recharge_skip: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/membership_card/membership_card",
       });
     },
     //积分和余额跳转至会员卡
     integral_jump: function(e) {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/membership_card/membership_card",
       });
     },
     //优惠券跳转至我的优惠券
     coupon_jump: function(e) {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/my_coupon/my_coupon",
       });
     },

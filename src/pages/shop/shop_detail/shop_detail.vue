@@ -525,7 +525,7 @@ export default {
           /**
            * @params uid 用户注册后
            */
-          uid: app.globalData.uid,
+          uid: app.globalData.uid ? app.globalData.uid : -1,
         },
         header: {
           "Content-Type": "application/json",
@@ -554,11 +554,8 @@ export default {
                 cancel: "display:none",
               });
             }
-            //WxParse.wxParse('productContent', 'html', res.data.data.shop_info.desc, that, 5)
             that.article_productContent = res.data.data.shop_info.desc;
-            //WxParse.wxParse('productContents', 'html', res.data.data.shop_info.serve_desc, that, 5)
             that.html = res.data.data.shop_info.serve_desc;
-            // that.$refs.article.setContent(res.data.data.shop_info.serve_desc);
           }
         },
       });

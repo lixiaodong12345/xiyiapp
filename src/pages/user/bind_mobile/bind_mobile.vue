@@ -22,7 +22,7 @@
 var app = getApp();
 var inputContent = {};
 function countdown(that) {
-  var second = that.data.second;
+  var second = that.second;
 
   if (second == 0) {
     that.setData({
@@ -85,8 +85,7 @@ export default {
         data: {
           a: 'user',
           do: 'checkmobile',
-          uid: user_info.id,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           mobile: e.detail.value.mobile,
           captcha: e.detail.value.captcha,
           key: app.globalData.key
@@ -127,8 +126,8 @@ export default {
       var that = this;
       var mobile = inputContent.mobile;
       var user_info = app.globalData.getUserInfo();
-      var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-
+      // var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+      var myreg = /^1(3|4|5|6|7|8|9)\d{9}$/
       if (!mobile) {
         wx.showToast({
           title: "请输入手机号",
@@ -161,7 +160,7 @@ export default {
         data: {
           a: 'sms',
           do: 'send',
-          uid: user_info.id,
+          uid: app.globalData.uid,
           mobile: mobile,
           key: app.globalData.key
         },

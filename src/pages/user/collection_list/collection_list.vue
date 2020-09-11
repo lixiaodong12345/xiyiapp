@@ -57,13 +57,20 @@
             <view class="back_height"></view> </view
           ><!--module_line-->
           <!--删除区-->
+          <button
+            class="settle_skip btnClear"
+            @tap="del_collection"
+            :data-coll_id="item.id"
+            :data-goods_id="item.goodsid"
+          >
+            删除
+          </button>
           <view
             class="line_del"
             :data-coll_id="item.id"
             :data-goods_id="item.goodsid"
             @tap="del_collection"
           >
-            <text>删除</text>
           </view>
         </view>
       </block>

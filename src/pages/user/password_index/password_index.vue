@@ -85,6 +85,7 @@ export default {
             if (res["cancel"]) {
             } else {
               app.globalData.uid = "";
+              app.globalData.userInfo = "";
               uni.reLaunch({
                 url: "/pages/user/index",
               });

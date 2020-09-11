@@ -122,10 +122,9 @@ export default {
       console.log('e',e)
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid =app.globalData.uid;
-
+      var uid = app.globalData.uid;
       if (recharge_money == '') {
-        wx.showToast({
+        uni.showToast({
           title: '请输入充值金额',
           icon: 'success',
           duration: 1500

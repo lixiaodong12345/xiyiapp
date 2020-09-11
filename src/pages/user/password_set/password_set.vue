@@ -85,8 +85,8 @@ export default {
       var mobile = that.phone_numb;
       console.log('mobile', mobile);
       var user_info = app.globalData.userInfo;
-      var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-
+      // var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+      var myreg = /^1(3|4|5|6|7|8|9)\d{9}$/
       if (!mobile) {
         wx.showToast({
           title: "请输入手机号",
@@ -116,7 +116,7 @@ export default {
         data: {
           a: 'sms',
           do: 'send',
-          uid: user_info.id,
+          uid: app.globalData.uid,
           mobile: mobile,
           key: app.globalData.key
         },
@@ -156,7 +156,7 @@ export default {
       var that = this;
       var codeValue = e.detail.value.code_value;
       var passdValue = e.detail.value.passd_value;
-      var uid = app.globalData.userInfo.id;
+      var uid = app.globalData.uid;
       wx.request({
         url: app.globalData.domain,
         data: {

@@ -1174,7 +1174,7 @@ export default {
     //搜索跳转
     goSearch: function () {
       var that = this;
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/search/search'
       });
     },

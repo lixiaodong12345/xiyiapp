@@ -352,7 +352,7 @@ export default {
     //导航条切换订单请求接口
     navLoad_list: function() {
       var that = this;
-      pages++;
+
       var uid = app.globalData.uid;
 
       if (load_more != 0) {
@@ -364,10 +364,10 @@ export default {
         data: {
           a: "order",
           do: "list",
-          page: pages,
-          uid: uid,
+          page: pages++,
+          openid: "o8Lz70Ae1ErJW3JrJIqm7KGHM-nI",
           key: app.globalData.key,
-          status: order_status,
+          status: 0,
         },
         header: {
           "content-type": "application/json",

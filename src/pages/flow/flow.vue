@@ -52,9 +52,9 @@
     <image v-else mode="widthFix" class="logo" src="http://wximage.shedongyun.com/sdo2o/order_merch.png"></image>
     <text>{{item.merchname}}</text>
   </view>
-  <block v-for="(item, index2) in item.goods_list" :key="index2">
-    <view class="cart_goods" v-if="item.selected == 1">
-      <image class="cart_goods_image" :src="item.thumb"></image>
+  <block v-for="(iitem, index2) in item.goods_list" :key="index2">
+    <view class="cart_goods" v-if="iitem.selected == 1">
+      <image class="cart_goods_image" :src="iitem.thumb"></image>
       <view class="goods_one_text">
         <text class="goods_name">{{item.title}}</text>
         <view class="goods_attr_box">
@@ -66,11 +66,11 @@
           </block>
         </view> -->
         <view class="market_price">
-          <text class="goods_price"><text class="price_symble">¥</text>{{item.marketprice}}</text>
-          <input name="goods_id" :value="item.id" style="display:none;"></input>
+          <text class="goods_price"><text class="price_symble">¥</text>{{iitem.marketprice}}</text>
+          <input name="goods_id" :value="iitem.id" style="display:none;"></input>
         </view>
       </view>
-      <view class="ui-number">x{{item.total}}</view>
+      <view class="ui-number">x{{iitem.total}}</view>
     </view>
   </block>
   <view class="oder_remarks pad_remarks">
@@ -141,7 +141,7 @@
     </view>
     <view class="coupon_cont">
       <checkbox-group @change="couponChange">
-        <block v-for="(item, index) in userCouponViewList" :key="index">
+        <block v-for="(item, index3) in userCouponViewList" :key="index3">
           <view class="coupon_one">
             <image src="http://wximage.shedongyun.com/sdo2o/white_coupon.png" class="white_coupon"></image>
             <view class="one_cont">
@@ -225,7 +225,7 @@
           <text v-if="pwdVal.length>i"></text>
         </view>
       </view>
-      <input class="input_control" password type="number" :focus="payFocus" @input="inputPwd" maxlength="6"></input>
+      <input class="input_control" type="password" :focus="payFocus" @input="inputPwd" maxlength="6"></input>
   </view>
 </view>
 </view>
@@ -358,7 +358,7 @@ export default {
       var that = this;
       var uid = that.uid;
       var is_fast = that.is_fast;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'cart',
@@ -392,7 +392,7 @@ export default {
               sum_goods_price: res.data.data.total_price,
               //使用的优惠券
               userCouponViewList: res.data.data.member_coupon_list,
-              userCouponLength: res.data.data.member_coupon_list.length
+              // userCouponLength: res.data.data.member_coupon_list.length
             });
           }
         }
@@ -402,7 +402,7 @@ export default {
     address_shohuo: function () {
       var that = this;
       var uid = that.uid;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
@@ -480,7 +480,7 @@ export default {
        */
       var that = this;
       var uid = that.uid;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
@@ -496,7 +496,7 @@ export default {
           'content-type': 'application/json'
         },
         success: function (res) {
-          wx.hideToast();
+          uni.hideToast();
 
           if (res.data.code == 1) {
             that.setData({
@@ -521,7 +521,7 @@ export default {
 
       if (pay_type == 1) {
         // 微信支付,获取用户codecode
-        wx.login({
+        uni.login({
           success: function (res) {
             if (res.data.code) {
               that.send_order(res.data.code);
@@ -545,7 +545,7 @@ export default {
     judge_passd: function () {
       var that = this;
       var uid = app.globalData.userInfo.id;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'user',
@@ -564,14 +564,14 @@ export default {
             });
           } else if (res.data.code == 0) {
             //密码没设置 不可用
-            wx.showModal({
+            uni.showModal({
               title: '提示',
               content: '您未设置支付密码,请至我的>安全中心设置支付密码后，方可使用余额支付',
 
               success(res) {
                 if (res.confirm) {
                   console.log('用户点击确定');
-                  wx.navigateTo({
+                  uni.navigateTo({
                     url: '/pages/user/password_set/password_set'
                   });
                 } else if (res.cancel) {
@@ -611,6 +611,7 @@ export default {
     },
     //第一步触发支付方式
     method_payment: function (e) {
+      console.log('出发支付方式',e)
       var that = this;
       that.setData({
         display_states: 'display:none'
@@ -639,7 +640,7 @@ export default {
       }); //收货地址判断
 
       if (address_id == '' || address_id == null) {
-        wx.showToast({
+        uni.showToast({
           title: '请填写收货地址',
           duration: 1500
         });
@@ -647,7 +648,7 @@ export default {
       }
 
       if (service_day == '' && service_time == '') {
-        wx.showToast({
+        uni.showToast({
           title: '请选择服务时间',
           duration: 1500
         });
@@ -655,7 +656,7 @@ export default {
       }
 
       if (service_day == null && service_time == null) {
-        wx.showToast({
+        uni.showToast({
           title: '请选择服务时间',
           duration: 1500
         });
@@ -670,7 +671,7 @@ export default {
     send_order: function (e) {
       var that = this;
       var uid = that.uid;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
@@ -704,7 +705,7 @@ export default {
             var nonceStr = success_res.data.data.pay.nonceStr;
             var weixin_package = success_res.data.data.pay.package;
             var paySign = success_res.data.data.pay.paySign;
-            wx.requestPayment({
+            uni.requestPayment({
               'timeStamp': timeStamp.toString(),
               'nonceStr': nonceStr,
               'package': weixin_package,
@@ -712,7 +713,7 @@ export default {
               'paySign': paySign,
               success: function (re) {
                 // 微信支付成功
-                wx.request({
+                uni.request({
                   // "更改订单状态操作",
                   url: app.globalData.domain,
                   data: {
@@ -735,18 +736,18 @@ export default {
                   fail: function (res) {}
                 });
                 setTimeout(function () {
-                  wx.redirectTo({
+                  uni.redirectTo({
                     url: '/pages/flow_success/flow_success'
                   });
                 }, 1500);
               },
               fail: function (res) {
-                wx.showToast({
+                uni.showToast({
                   title: '支付失败',
                   icon: 'success',
                   duration: 1500,
                   success: function () {
-                    wx.redirectTo({
+                    uni.redirectTo({
                       url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
                     });
                   }
@@ -755,13 +756,13 @@ export default {
               complete: function (res) {}
             });
           } else if (res.data.code == -1) {
-            wx.showToast({
+            uni.showToast({
               icon: 'success',
               title: res.data.msg,
               duration: 1500
             });
           } else {
-            wx.showToast({
+            uni.showToast({
               title: '服务器繁忙',
               duration: 1500
             });
@@ -770,7 +771,7 @@ export default {
         complete: function () {},
         //跳转到已结束任务列表页
         goshopCart: function () {
-          wx.switchTab({
+          uni.switchTab({
             url: '/cart/cart',
             success: function (res) {// success
             },
@@ -800,12 +801,12 @@ export default {
         payFocus: false,
         pwdVal: ''
       });
-      wx.showToast({
-        title: '支付失败',
+      uni.showToast({
+        title: '支付取消',
         icon: 'success',
         duration: 1500,
         success: function () {
-          wx.redirectTo({
+          uni.redirectTo({
             url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
           });
         }
@@ -838,7 +839,7 @@ export default {
       var that = this;
       var pwdVal = that.pwdVal;
       var uid = app.globalData.userInfo.id;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'user',
@@ -851,10 +852,12 @@ export default {
           'content-type': 'application/json'
         },
         success: function (res) {
+          console.log('res',res)
           if (res.data.code == 1) {
             that.setData({
               showPayPwdInput: false,
-              payFocus: false
+              payFocus: false,
+              pwdVal: ''
             });
             that.callback_passd();
           }
@@ -867,22 +870,25 @@ export default {
       var that = this;
       var uid = that.uid; //添加订单
 
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'order',
-          do: 'add',
+          do: 'orderPayBalance',
           key: app.globalData.key,
+          orderid:'',
           uid: uid,
-          invoice_title: that.invoice_title,
-          invoiceinfo: that.invoiceinfo,
-          invoice: that.invoice_title,
-          notice: that.notice_cont,
-          address_id: that.address_id,
-          is_fast: that.is_fast,
-          service_time: that.spread_service,
-          couponid: couponId
+           // do: 'add',
+          // invoice_title: that.invoice_title,
+          // invoiceinfo: that.invoiceinfo,
+          // invoice: that.invoice_title,
+          // notice: that.notice_cont,
+          // address_id: that.address_id,
+          // is_fast: that.is_fast,
+          // service_time: that.spread_service,
+          // couponid: couponId
+
         },
         header: {
           'content-type': 'application/json'
@@ -893,7 +899,7 @@ export default {
           if (res.data.code == 1) {
             var success_res = res; //发起支付+支付方式及扣除余额
 
-            wx.request({
+            uni.request({
               url: app.globalData.domain,
               data: {
                 a: 'order',
@@ -907,7 +913,7 @@ export default {
               },
               success: function (res) {
                 if (res.data.code == 1) {
-                  wx.request({
+                  uni.request({
                     // 支付成功后更改订单状态操作"
                     url: app.globalData.domain,
                     data: {
@@ -929,18 +935,18 @@ export default {
                     fail: function (res) {}
                   });
                   setTimeout(function () {
-                    wx.redirectTo({
+                    uni.redirectTo({
                       url: '/pages/flow_success/flow_success'
                     });
                   }, 1000);
                 } else {
-                  wx.showToast({
+                  uni.showToast({
                     title: res.data.msg,
                     icon: 'success',
                     duration: 1500,
                     success: function () {
                       setTimeout(function () {
-                        wx.redirectTo({
+                        uni.redirectTo({
                           url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
                         });
                       }, 2000);
@@ -951,13 +957,13 @@ export default {
               fail: function (res) {}
             });
           } else if (res.data.code == -1) {
-            wx.showToast({
+            uni.showToast({
               icon: 'success',
               title: res.data.msg,
               duration: 1500
             });
           } else {
-            wx.showToast({
+            uni.showToast({
               title: '服务器繁忙',
               duration: 1500
             });
@@ -966,7 +972,7 @@ export default {
         complete: function () {},
         //跳转到已结束任务列表页
         goshopCart: function () {
-          wx.switchTab({
+          uni.switchTab({
             url: '/cart/cart',
             success: function (res) {// success
             },
@@ -1002,7 +1008,7 @@ export default {
     },
     del_goods: function (e) {
       var that = this;
-      wx.showModal({
+      uni.showModal({
         title: '提示',
         content: '您确定要移除这个商品吗？',
         success: function (res) {
@@ -1013,14 +1019,14 @@ export default {
       });
     },
     addressSkip: function () {
-      wx.redirectTo({
+      uni.redirectTo({
         url: '/pages/user/address/address'
       });
     },
     //下单选择服务时间——数据值
     order_serviceTime: function () {
       var that = this;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'shop',
@@ -1137,7 +1143,7 @@ export default {
       var that = this;
       var uid = that.uid;
       var is_fast = that.is_fast;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'cart',

@@ -28,6 +28,14 @@
               <image :src="item.logo" class="prod_logo"></image>
             </navigator>
             <view class="module_main">
+              <button
+                class="settle_skip"
+                :data-coll_id="item.id"
+                :data-goods_id="item.goodsid"
+                @tap.stop="del_collection"
+              >
+                删除
+              </button>
               <navigator
                 :url="'/pages/shop/shop_detail/shop_detail?id=' + item.id"
                 hover-class="none"
@@ -63,14 +71,14 @@
             </view> </view
           ><!--module_line-->
           <!--删除区-->
-          <view
+          <!-- <view
             class="line_del"
             :data-coll_id="item.id"
             :data-goods_id="item.goodsid"
             @tap="del_collection"
           >
             <text>取消关注</text>
-          </view>
+          </view> -->
         </view>
       </block>
     </view>
@@ -308,4 +316,20 @@ export default {
 </script>
 <style>
 @import "./focus_list.css";
+.settle_skip {
+  width: 124rpx;
+  color: #fff;
+  float: right;
+  font-size: 30rpx;
+  text-align: center;
+  height: 44rpx;
+  line-height: 44rpx;
+  margin-top: 20rpx;
+  margin-right: 4%;
+  background: #55bcc5;
+  margin-left: 24rpx;
+  position: absolute;
+  right: 68rpx;
+  top: -12rpx;
+}
 </style>

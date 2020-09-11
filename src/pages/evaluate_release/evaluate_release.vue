@@ -178,7 +178,7 @@ export default {
           a: 'comment',
           do: 'send',
           key: app.globalData.key,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           orderid: order_id,
           //订单id
           level: starIndex,
@@ -207,7 +207,11 @@ export default {
                 });
               }
             });
-          } else {}
+          } else {
+            //  wx.navigateTo({
+            //         url: '/pages/evaluate_success/evaluate_success'
+            //       }, 5000);
+          }
         }
       });
     },
