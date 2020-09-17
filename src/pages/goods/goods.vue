@@ -178,7 +178,7 @@
   <!--店铺介绍及进入店铺-->
   <view class="store_cont">
     <view class="shop_head">
-      <image v-if="shop.logo==null" src="http://wximage.shedongyun.com/sdo2o/proprieta.png" class="store_logo"></image>
+      <image v-if="shop.logo=='null'" src="http://wximage.shedongyun.com/sdo2o/proprieta.png" class="store_logo"></image>
       <image v-else :src="shop.logo" class="store_logo"></image>
       <view class="store_main">
         <view class="store_name">
@@ -428,7 +428,7 @@
       <image @tap="hide_couponlist" mode="widthFix" src="http://wximage.shedongyun.com/sdo2o/particula_delect.png"></image>
     </view>
     <scroll-view class="coupon_height" scroll-y="true">
-      <block v-for="(item, index) in coupon_list" :key="index" v-if="coupon_list != null || coupon_list != ''">
+      <block v-for="(item, index) in coupon_list" :key="index" v-if="coupon_list != 'null' || coupon_list != ''">
         <view class="couponbox_list">
           <view class="coupon_list_left">
             <view class="couponlist_price">
@@ -583,7 +583,7 @@ export default {
       comment_info: "",
       commentNum: "",
       shareImg: "",
-      html: "",
+      html: '',
       goodsSpec:''
     };
   },
@@ -695,17 +695,17 @@ export default {
   // },
   ,
   methods: {
-    htmlFn(html) {
-      let temp = "";
-      if (html.length == 0) return "";
-      temp = html.replace(/&amp;/g, "&");
-      temp = temp.replace(/&lt;/g, "<");
-      temp = temp.replace(/&gt;/g, ">");
-      temp = temp.replace(/&nbsp;/g, " ");
-      temp = temp.replace(/&#39;/g, "'");
-      temp = temp.replace(/&quot;/g, '"');
-      return temp;
-    },
+    // htmlFn(html) {
+    //   let temp = "";
+    //   if (html.length == 0) return "";
+    //   temp = html.replace(/&amp;/g, "&");
+    //   temp = temp.replace(/&lt;/g, "<");
+    //   temp = temp.replace(/&gt;/g, ">");
+    //   temp = temp.replace(/&nbsp;/g, " ");
+    //   temp = temp.replace(/&#39;/g, "'");
+    //   temp = temp.replace(/&quot;/g, '"');
+    //   return temp;
+    // },
     // 商品收藏
     goods_collect: function (e) {
       var user_info = wx.getStorageSync('userInfo');

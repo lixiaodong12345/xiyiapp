@@ -238,8 +238,8 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">
 </script>
 <script>
-var jweixin = require('jweixin-module')
-console.log('jweixin',jweixin)
+// var jweixin = require('jweixin-module')
+// console.log('jweixin',jweixin)
 // var {Wechat} = require('../../components/wechat/wechat-jssdk');
 // console.log('Wechat',Wechat)
 var app = getApp();

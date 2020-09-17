@@ -145,8 +145,6 @@ export default {
           "content-type": "application/json",
         },
         success: function(res) {
-          console.log("res.data", res.data);
-
           if (res.data.code == 1) {
             if (res.data.data != "null") {
               that.setData({

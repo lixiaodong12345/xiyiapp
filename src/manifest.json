@@ -99,7 +99,10 @@
                     }
                 },
                 "ad" : {},
-                "push" : {}
+                "push" : {},
+                "speech" : {
+                    "ifly" : {}
+                }
             },
             "icons" : {
                 "android" : {

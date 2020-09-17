@@ -345,9 +345,14 @@ export default {
               icon: "success",
               title: "登录成功",
             });
+            // setTimeout(function() {
+            //   uni.switchTab({
+            //     url: "/pages/index",
+            //   });
+            // }, 500);
             setTimeout(function() {
-              uni.switchTab({
-                url: "/pages/index",
+              uni.navigateTo({
+                url: "/pages/goods/goods?goods_id=229",
               });
             }, 500);
           }

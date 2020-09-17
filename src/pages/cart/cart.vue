@@ -81,28 +81,6 @@
       </view><!--一个店铺-->
       <view class="back_height" v-if="item.merch_total"></view>
     </block>
-    <!-- <view class="cart_footer">
-      <view class="qx"  bindtap="qx">
-        <checkbox  value="checkAll" checked="checkAll" id="checkAll"/>
-        <text>全选</text>
-      </view>
-      <checkbox-group bindchange=""> 
-        <image wx:if="{{all_type==0}}" src='http://wximage.shedongyun.com/sdo2o/true.png'
-        data-type="{{all_type}}" bindtap='all_select' class='select'></image>
-        <image wx:else src='http://wximage.shedongyun.com/sdo2o/false.png'
-        data-type="{{all_type}}" bindtap='all_select' class='select'></image>
-        <image class='select' src='http://wximage.shedongyun.com/sdo2o/true.png'></image>
-        <checkbox checked  id="a-{{item.id}}"></checkbox>
-        <text class="cart_footer_texta" style="margin-left:0rpx;">全选</text>
-      </checkbox-group>
-      <view class='all_price'>
-        <text class="cart_footer_texta" style="margin-left:20rpx;">总计:</text>
-        <text class="cart_footer_prie">￥{{sum_goods_price}}</text>
-      </view>
-      <navigator url="../flow/flow" hover-class='none'>
-        <view class="cart_footer_button">去结算</view>
-      </navigator>
-    </view> -->
   </view>
 </view>
 <!--未登录状态-->
@@ -114,21 +92,6 @@
     <button @tap="user_login" class="login_skip">去登录</button>
   </view>
 </view>
-
-
-<!--授权弹框-->
-<!-- <view class="auth_mask" style='{{login_state}}'>
-  <view class="accredit">
-    <view class="prompt_title">提示</view>
-    <view class="prompt_main">
-      <image src='{{wechat_xcx_logo}}' class="she_logo"></image>
-      <text class="prompt_cont">{{wechat_xcx_prompt}}</text>
-    </view>
-    <view class="prompt_wrap" bindtap="close_skip">
-    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="user_info" >确定进入该小程序    </button>
-    </view>
-  </view>
-</view> -->
 </view>
 </template>
 

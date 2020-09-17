@@ -141,7 +141,7 @@ export default {
         return;
       }
 
-      uni.request({
+      wx.request({
         url: app.globalData.domain,
         data: {
           a: 'recharge',
@@ -167,8 +167,13 @@ export default {
             uni.requestPayment({
               provider: 'wxpay',
               orderInfo: res.data.data.pay, 
+              // 'timeStamp': JSON.stringify(res.data.data.pay.timeStamp),  
+              // 'nonceStr': res.data.data.pay.nonceStr,
+              // 'appid':'wx9a85250386b83441' , 
+              // 'package': res.data.data.pay.package,  
+              // 'signType': res.data.data.pay.signType,  
               success: function (res) {
-                wx.showToast({
+                uni.showToast({
                   title: 'res',
                   icon: 'success',
                   duration: 1500
@@ -181,8 +186,8 @@ export default {
               },
               fail: function (res) {
                 console.log('res',res)
-                wx.showToast({
-                  title: res,
+                uni.showModal({
+                  title: 'fail',
                   icon: 'success',
                   duration: 1500
                 });
