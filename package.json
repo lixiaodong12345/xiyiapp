@@ -54,6 +54,7 @@
     "@dcloudio/uni-stat": "^2.0.0-28820200820001",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
+    "jweixin-module": "^1.6.0",
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
     "regenerator-runtime": "^0.12.1",

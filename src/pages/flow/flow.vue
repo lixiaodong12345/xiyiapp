@@ -219,19 +219,29 @@
           <view class="input_back" @tap.stop="hidePayLayer"><image src="/static/static/images/balan_shut.png"></image></view>
           <text>请输入余额支付密码</text>
       </view>
-      <view class="input_tip"><text>￥{{total_price}}元</text></view>
-      <view class="input_row" @tap.stop="getFocus">
+      <view class="input_tip"><text>￥{{total_price}}元</text>
+        <input class="input_control" type="number" :focus="payFocus"
+        placeholder="请输入6位密码"
+        @input="inputPwd" :value="intVal" maxlength="6">
+      </view>
+      <!-- <view class="input_row" @tap.stop="getFocus">
         <view v-for="(item, i) in 6" :key="i" class="pwd_item">
           <text v-if="pwdVal.length>i"></text>
         </view>
-      </view>
-      <input class="input_control" type="password" :focus="payFocus" @input="inputPwd" maxlength="6"></input>
+      </view> -->
+      
+      
   </view>
 </view>
 </view>
 </template>
-
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js">
+</script>
 <script>
+var jweixin = require('jweixin-module')
+console.log('jweixin',jweixin)
+// var {Wechat} = require('../../components/wechat/wechat-jssdk');
+// console.log('Wechat',Wechat)
 var app = getApp();
 var pay_type = 1;
 var address_id = 0;
@@ -249,6 +259,7 @@ export default {
   data() {
     return {
       tis: '',
+      intVal:'',
       tisshow: '',
       user_address_list: '',
       user_default_address: 'null',
@@ -315,7 +326,8 @@ export default {
       spread_service: "",
       goods_number: "",
       serviceRules: "",
-      multiIndex: ""
+      multiIndex: "",
+      providerList:[]
     };
   },
 
@@ -336,6 +348,7 @@ export default {
     that.address_shohuo();
     that.flow_show();
     that.order_serviceTime();
+    // that.getProvider();
   },
   onShow: function () {},
   //转发分享按钮
@@ -349,7 +362,39 @@ export default {
       var i = e.currentTarget.dataset.index;
       collect_goods[i].content = star;
     },
-
+    //获取系统服务商
+    // getProvider:function(){
+    //   var that = this
+    //   uni.getProvider({
+    //     service: "payment",
+    //     success: (e) => {
+    //         console.log("payment success:" + JSON.stringify(e));
+    //         let providerList = [];
+    //         e.provider.map((value) => {
+    //             switch (value) {
+    //                 case 'alipay':
+    //                     providerList.push({
+    //                         name: '支付宝',
+    //                         id: value,
+    //                         loading: false
+    //                     });
+    //                     break;
+    //                 case 'wxpay':
+    //                     providerList.push({
+    //                         name: '微信',
+    //                         id: value,
+    //                         loading: false
+    //                     });
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
+    //         })
+    //         this.providerList = JSON.stringify(providerList);
+    //         console.log('providerList',providerList)
+    //     },
+    //   })
+    // },
     // 不知名请求
     flow_show: function () {
       /**
@@ -479,7 +524,7 @@ export default {
        * openid不能为空
        */
       var that = this;
-      var uid = that.uid;
+      var uid = app.globalData.uid;
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -533,7 +578,7 @@ export default {
         });
       } else {
         console.log('微信支付no++++');
-        that.send_order(0);
+        that.send_order();
       }
     },
     radioChange: function (e) {
@@ -586,6 +631,7 @@ export default {
     },
     //方式选择
     paywayChange: function (e) {
+      console.log(',',e)
       var that = this;
       var selectValue = e.detail.value;
 
@@ -668,7 +714,7 @@ export default {
       });
     },
     //触发微信支付
-    send_order: function (e) {
+    send_order: function () {
       var that = this;
       var uid = that.uid;
       uni.request({
@@ -706,6 +752,7 @@ export default {
             var weixin_package = success_res.data.data.pay.package;
             var paySign = success_res.data.data.pay.paySign;
             uni.requestPayment({
+              provider:['wxpay','alipay'],
               'timeStamp': timeStamp.toString(),
               'nonceStr': nonceStr,
               'package': weixin_package,
@@ -805,11 +852,11 @@ export default {
         title: '支付取消',
         icon: 'success',
         duration: 1500,
-        success: function () {
-          uni.redirectTo({
-            url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
-          });
-        }
+        // success: function () {
+        //   uni.redirectTo({
+        //     url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
+        //   });
+        // }
       });
     },
 
@@ -822,14 +869,22 @@ export default {
 
     /*输入密码监听*/
     inputPwd: function (e) {
+      console.log('eee',e)
       var that = this;
       that.setData({
-        pwdVal: e.detail.value
+        pwdVal: e.detail.value,
+        intVal:e.detail.value
       });
 
       if (e.detail.value.length == 6) {
+        
         that.match_password();
-      } // if (e.detail.value.length >= 6) {
+        that.setData({
+          intVal:''
+        });
+      }
+
+       // if (e.detail.value.length >= 6) {
       //   this.hidePayLayer();
       // }
 
@@ -838,7 +893,7 @@ export default {
     match_password: function () {
       var that = this;
       var pwdVal = that.pwdVal;
-      var uid = app.globalData.userInfo.id;
+      var uid = app.globalData.uid;
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -860,6 +915,17 @@ export default {
               pwdVal: ''
             });
             that.callback_passd();
+          }else if(res.data.code == 0){
+            uni.showToast({
+              title: '密码错误',
+              icon: 'success',
+              duration: 1500,
+            });
+            //隐藏输入框
+            that.setData({
+ 
+              pwdVal: ''
+            });
           }
         },
         fail: function (res) {}
@@ -868,26 +934,26 @@ export default {
     //密码成功后回调的函数
     callback_passd: function () {
       var that = this;
-      var uid = that.uid; //添加订单
-
+      var uid = app.globalData.uid; //添加订单
+      //生成订单
       uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
           a: 'order',
-          do: 'orderPayBalance',
+          do: 'app_order_add',
           key: app.globalData.key,
-          orderid:'',
           uid: uid,
-           // do: 'add',
-          // invoice_title: that.invoice_title,
-          // invoiceinfo: that.invoiceinfo,
-          // invoice: that.invoice_title,
-          // notice: that.notice_cont,
-          // address_id: that.address_id,
-          // is_fast: that.is_fast,
-          // service_time: that.spread_service,
-          // couponid: couponId
+          type:'',
+          shopid:'',
+          invoice_title: that.invoice_title,
+          invoiceinfo: that.invoiceinfo,
+          invoice: that.invoice_title,
+          notice: that.notice_cont,
+          address_id: that.address_id,
+          is_fast: that.is_fast,
+          service_time: that.spread_service,
+          couponid: couponId
 
         },
         header: {

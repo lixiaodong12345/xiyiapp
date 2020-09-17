@@ -12,7 +12,7 @@
     <text class="balance_name margin_left">充值</text>
     <input type="number" @input="focusPoint" class="balance_input margin_right" placeholder="请输入充值金额"></input>
   </view>
-  <view class="balance_select">
+  <!-- <view class="balance_select">
     <checkbox-group @change="selectChange">
       <block v-for="(item, index) in selectList" :key="index">
         <view :class="'balance_one ' + (item.checked==true?'select_balance':'')">
@@ -24,7 +24,7 @@
         </view>
       </block>
     </checkbox-group>
-  </view>
+  </view> -->
 </view>
 <button form-type="submit" class="login_button" type="primary">立即充值</button>
 </form>
@@ -84,11 +84,13 @@ export default {
     },
     //input手动输入金额
     focusPoint: function (e) {
+      console.log('e',e)
       var that = this;
       recharge_money = e.detail.value;
     },
     //充值选择
     selectChange: function (e) {
+      console.log('e',e)
       var that = this;
       var selectArr = e.detail.value;
       var selectList = that.selectList;
@@ -119,7 +121,7 @@ export default {
     },
     //发起充值form请求
     bind_submit: function (e) {
-      console.log('e',e)
+      console.log('e',e,recharge_money)
       var that = this;
       var user_info = app.globalData.userInfo;
       var uid = app.globalData.uid;
@@ -143,7 +145,7 @@ export default {
         url: app.globalData.domain,
         data: {
           a: 'recharge',
-          do: 'recharge',
+          do: 'add_recharge',
           key: app.globalData.key,
           uid: uid,
           recharge_money: recharge_money
@@ -153,27 +155,37 @@ export default {
         },
         success: function (res) {
           console.log('充值',res)
+           wx.showToast({
+            title: 'tiaozhuan',
+            icon: 'success',
+            duration: 1500
+          });
           if (res.data.code == 1) {
+            console.log('充值',JSON.parse(res.data.data.logno))
             var lognoid = res.data.data.logno;
+
             uni.requestPayment({
-              'timeStamp': res.data.data.pay.timeStamp.toString(),
-              'nonceStr': res.data.data.pay.nonceStr,
-              'package': res.data.data.pay.package,
-              'signType': res.data.data.pay.signType,
-              'paySign': res.data.data.pay.paySign,
+              provider: 'wxpay',
+              orderInfo: res.data.data.pay, 
               success: function (res) {
-                console.log('res')
+                wx.showToast({
+                  title: 'res',
+                  icon: 'success',
+                  duration: 1500
+                });
+                console.log('res',res)
                 // 微信支付成功回调
                 uni.redirectTo({
                   url: '/pages/user/account_success/account_success?lognoid=' + lognoid
                 });
               },
               fail: function (res) {
+                console.log('res',res)
                 wx.showToast({
-                title: res.data.msg,
-                icon: 'success',
-                duration: 1500
-        });
+                  title: res,
+                  icon: 'success',
+                  duration: 1500
+                });
               }
             });
           } else {}

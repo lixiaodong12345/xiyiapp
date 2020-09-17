@@ -9,18 +9,6 @@
         "devServer" : {
             "https" : false
         },
-        // "h5": {
-        //     "devServer": {
-        //       "port": 8000, //端口号
-        //       "disableHostCheck": true,
-        //       "proxy": {
-        //         "/api": {
-        //           "target": "http://wsxy.sns318.net/merchant/index.php", //目标接口域名
-        //           "changeOrigin": true, //是否跨域
-        //           "secure": false // 设置支持https协议的代理
-        //         }
-        //       }
-        //     },
         "sdkConfigs" : {
             "maps" : {
                 "qqmap" : {
@@ -40,14 +28,13 @@
         },
         "modules" : {
             "Maps" : {},
-            "Payment" : {},
             "Geolocation" : {},
             "OAuth" : {},
             "Bluetooth" : {},
             "Contacts" : {},
             "iBeacon" : {},
             "Push" : {},
-            "Share" : {}
+            "Payment" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -92,13 +79,7 @@
             /* ios打包配置 */
             "sdkConfigs" : {
                 "maps" : {},
-                "oauth" : {
-                    "weixin" : {
-                        "appid" : "wx9a85250386b83441",
-                        "appsecret" : "",
-                        "UniversalLinks" : ""
-                    }
-                },
+                "oauth" : {},
                 "payment" : {
                     "weixin" : {
                         "__platform__" : [ "ios", "android" ],

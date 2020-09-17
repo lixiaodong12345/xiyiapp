@@ -245,7 +245,7 @@
   <view class="xiangqing-cont">
     <block class="ht_block">
       <view :style="pro_typebox=='01'?'display:block':'display:none'" class="xiangqing-cont-main">
-        <jyf-parser :html="htmlFn(article_productContent)"></jyf-parser>
+        <jyf-parser :html="html"></jyf-parser>
       </view>
     </block>
   </view>
@@ -583,7 +583,8 @@ export default {
       comment_info: "",
       commentNum: "",
       shareImg: "",
-      article_productContent: ""
+      html: "",
+      goodsSpec:''
     };
   },
 
@@ -911,44 +912,18 @@ export default {
       var that = this; //判断商品属性选择
       var goods_spec = that.goods_properties;
       var goods_specsarr = that.specsarr;
-
-      // if (that.goods_properties != false) {
-      //   for (var i = 0; i < goods_specsarr.length; i++) {
-      //     if (goods_specsarr[i] == null) {
-      //       wx.showToast({
-      //         title: '请选择属性1',
-      //         icon: 'success',
-      //         duration: 1500
-      //       });
-      //       return;
-      //     }
-      //   }
-      //   if (goods_spec.length != goods_specsarr.length) {
-      //     wx.showToast({
-      //       title: '请选择属性2',
-      //       icon: 'success',
-      //       duration: 1500
-      //     });
-      //     return;
-      //   }
-      // }
-      // if (!goods_specsarr) {
-      //   uni.showToast({
-      //     title: "请选择商品属性",
-      //     icon: "success",
-      //     duration: 1500,
-      //   });
-      //   return;
-      // }
-      if (!that.specsarr[""]) {
-        uni.showToast({
-          title: "请选择属性",
-          icon: "success",
-          duration: 1500,
-        });
-        return;
+      if(that.goodsSpec == 1){
+        if (!that.specsarr[""]) {
+          uni.showToast({
+            title: "请选择属性",
+            icon: "success",
+            duration: 1500,
+          });
+          return;
+        }
       }
-
+      
+      console.log('000000',that.goodsSpec)
       var goods_string = goods_specsarr.join("_");
       console.log('goods_string的类型是' + typeof goods_string + '字符串是' + goods_string);
       var addId = event.currentTarget.dataset.id;
@@ -1001,15 +976,17 @@ export default {
 
       var goods_spec = that.goods_properties;
       var goods_specsarr = that.specsarr;
-      if (!that.specsarr[""]) {
-        uni.showToast({
-          title: "请选择属性",
-          icon: "success",
-          duration: 1500,
-        });
-        return;
+      if(that.goodsSpec == 1){
+        if (!that.specsarr[""]) {
+          uni.showToast({
+            title: "请选择属性",
+            icon: "success",
+            duration: 1500,
+          });
+          return;
+        }
       }
-
+      
       // if (that.goods_properties != false) {
       //   for (var i = 0; i < goods_specsarr.length; i++) {
       //     if (goods_specsarr[i] == null) {
@@ -1037,7 +1014,7 @@ export default {
       var addId = event.currentTarget.dataset.id;
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           key: app.globalData.key,
@@ -1060,7 +1037,7 @@ export default {
             that.setData({
               cart_number: res.data.data.cart_number
             });
-            wx.request({
+            uni.request({
               url: app.globalData.domain,
               data: {
                 a: 'cart',
@@ -1636,10 +1613,10 @@ export default {
             console.log('res',res)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
           setTimeout(() => {
-            that.article_productContent = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
+            that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
           }, 200);
-          console.log(res.data.data.goods_spec);
-
+          that.goodsSpec = res.data.data.goods_spec.length
+          console.log('sdvs',res.data.data.goods_spec,that.goodsSpec);
           if (res.data.code != 1) {
             that.setData({
               tis: '您要的商品不见了...',
@@ -1960,15 +1937,15 @@ export default {
       });
     },
     //优惠券高度
-    coupon_height: function () {
+    coupon_height: function (res) {
       var that = this;
       var query = wx.createSelectorQuery();
       query.select('.coupon_height').boundingClientRect();
-      query.exec(res => {
-        var listHeight = res[0].height; // 获取list高度
+      // query.exec(res => {
+      //   var listHeight = res[0].height; // 获取list高度
 
-        console.log('listHeight', listHeight);
-      });
+      //   console.log('listHeight', listHeight);
+      // });
     }
   }
 };

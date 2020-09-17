@@ -23,8 +23,8 @@
          <text class="locate_name">{{openCityName}}</text>
          <image src="http://wximage.shedongyun.com/sdo2o/search_downs.png" class="search_downs"></image>
         </view>
-        <view class="section">
-          <input @focus="goSearch" :placeholder="searchplaceholder" type="search" class="input_text" placeholder-class="plholder"></input>
+        <view class="section" @tap="goSearch">
+          <input :placeholder="searchplaceholder" type="search" class="input_text" placeholder-class="plholder"></input>
           <image src="http://wximage.shedongyun.com/sdo2o/green_icon.png" class="green_icon"></image>
         </view>
       </form>
@@ -309,8 +309,8 @@
          <text class="locate_name">{{openCityName}}</text>
          <image src="http://wximage.shedongyun.com/sdo2o/search_downs.png" class="search_downs"></image>
         </view>
-        <view class="section">
-          <input @focus="goSearch" :placeholder="searchplaceholder" type="search" class="input_text" placeholder-class="plholder"></input>
+        <view class="section" @tap="goSearch">
+          <input :placeholder="searchplaceholder" type="search" class="input_text" placeholder-class="plholder"></input>
           <image src="http://wximage.shedongyun.com/sdo2o/green_icon.png" class="green_icon"></image>
         </view>      
       </form>
@@ -1174,7 +1174,7 @@ export default {
     //搜索跳转
     goSearch: function () {
       var that = this;
-      wx.redirectTo({
+      uni.navigateTo({
         url: '/pages/search/search'
       });
     },

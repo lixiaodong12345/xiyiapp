@@ -188,9 +188,9 @@ export default {
   onShow: function () {
     // 读取购物
     var that = this;
-    var user_info = app.globalData.userInfo;
+    var uid = app.globalData.uid;
 
-    if (user_info == '') {
+    if (uid == '') {
       that.setData({
         cart_have: 'display:none',
         cart_none: 'display:block'
@@ -692,7 +692,7 @@ export default {
         });
       } else {
         wx.showToast({
-          title: '请选择商品',
+          title: '商品不能少于起批量',
           icon: 'success',
           duration: 2000
         });
