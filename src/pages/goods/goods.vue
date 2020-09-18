@@ -243,11 +243,11 @@
     </view> -->
   </view>
   <view class="xiangqing-cont">
-    <block class="ht_block">
+    <view class="ht_block">
       <view :style="pro_typebox=='01'?'display:block':'display:none'" class="xiangqing-cont-main">
         <jyf-parser :html="html"></jyf-parser>
       </view>
-    </block>
+    </view>
   </view>
   <!-- <view style="{{pro_typebox=='02'?'display:block':'display:none'}}" class='pro_specification'> 
     <view class='pro_specification_list'>
@@ -488,7 +488,6 @@
 </template>
 
 <script>
-import parser from "@/components/jyf-parser/jyf-parser";
 var app = getApp();
 var currLatitude = '';
 var currLongitude = '';
@@ -507,6 +506,7 @@ var currType;
 var haveLimit = '';
 var allLimit = '';
 var Uid = app.globalData.uid
+import parser from "@/components/jyf-parser/jyf-parser";
 export default {
   data() {
     return {
@@ -583,7 +583,7 @@ export default {
       comment_info: "",
       commentNum: "",
       shareImg: "",
-      html: '',
+      html: "",
       goodsSpec:''
     };
   },
@@ -695,17 +695,17 @@ export default {
   // },
   ,
   methods: {
-    // htmlFn(html) {
-    //   let temp = "";
-    //   if (html.length == 0) return "";
-    //   temp = html.replace(/&amp;/g, "&");
-    //   temp = temp.replace(/&lt;/g, "<");
-    //   temp = temp.replace(/&gt;/g, ">");
-    //   temp = temp.replace(/&nbsp;/g, " ");
-    //   temp = temp.replace(/&#39;/g, "'");
-    //   temp = temp.replace(/&quot;/g, '"');
-    //   return temp;
-    // },
+    htmlFn(html) {
+      let temp = "";
+      if (html.length == 0) return "";
+      temp = html.replace(/&amp;/g, "&");
+      temp = temp.replace(/&lt;/g, "<");
+      temp = temp.replace(/&gt;/g, ">");
+      temp = temp.replace(/&nbsp;/g, " ");
+      temp = temp.replace(/&#39;/g, "'");
+      temp = temp.replace(/&quot;/g, '"');
+      return temp;
+    },
     // 商品收藏
     goods_collect: function (e) {
       var user_info = wx.getStorageSync('userInfo');
@@ -1610,11 +1610,10 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-            console.log('res',res)
+            console.log('res',res,res.data.data.goods_info.content)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
-          setTimeout(() => {
-            that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
-          }, 200);
+          // that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
+          that.html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
           that.goodsSpec = res.data.data.goods_spec.length
           console.log('sdvs',res.data.data.goods_spec,that.goodsSpec);
           if (res.data.code != 1) {

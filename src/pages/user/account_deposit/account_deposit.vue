@@ -119,6 +119,29 @@ export default {
         }
       }
     },
+    // 二次签名
+    	// wxappPay(res){
+      //   console.log('res',res)
+			// 	var payObj = res.data.data.pay;
+      //   // console.log(payObj);
+      //         var payData = JSON.stringify({
+			// 					"noncestr":res.data.data.pay.nonceStr,
+			// 					"package":res.data.data.pay.package,
+			// 					"parsign":res.data.data.pay.patSign,
+			// 					"signtype":res.data.data.pay.signType,
+      //           "timestamp":res.data.data.pay.timeStamp,
+			// 				});
+			// 	console.log("签名：",payObj.paySign);
+			// 	uni.requestPayment({
+			// 		timestamp:payObj.timeStamp,
+			// 		noncestr:payObj.nonceStr,
+			// 		package:payObj.package,
+			// 		signtype:"MD5",
+			// 		sign:payObj.paySign,
+			// 	    success: function (res) {
+			// 	    },
+			// 	});
+			// },
     //发起充值form请求
     bind_submit: function (e) {
       console.log('e',e,recharge_money)
@@ -140,8 +163,7 @@ export default {
         });
         return;
       }
-
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: 'recharge',
@@ -161,17 +183,24 @@ export default {
             duration: 1500
           });
           if (res.data.code == 1) {
-            console.log('充值',JSON.parse(res.data.data.logno))
+            // that.wxappPay(res)
             var lognoid = res.data.data.logno;
-
+            var packageStr = res.data.data.pay.package.slice(10)
+            console.log(packageStr)
+            var payData = JSON.stringify({
+                "appid":res.data.data.pay.appId,
+                'partnerid':res.data.data.pay.partnerid,
+                
+                "package": 'Sign=WXPay',
+								"noncestr":res.data.data.pay.nonceStr,
+                "timestamp":res.data.data.pay.timeStamp,
+                'sign':res.data.data.pay.paySign,
+                "prepayid":packageStr,
+              });
+              console.log('payData',payData)
             uni.requestPayment({
               provider: 'wxpay',
-              orderInfo: res.data.data.pay, 
-              // 'timeStamp': JSON.stringify(res.data.data.pay.timeStamp),  
-              // 'nonceStr': res.data.data.pay.nonceStr,
-              // 'appid':'wx9a85250386b83441' , 
-              // 'package': res.data.data.pay.package,  
-              // 'signType': res.data.data.pay.signType,  
+              orderInfo: payData,  
               success: function (res) {
                 uni.showToast({
                   title: 'res',

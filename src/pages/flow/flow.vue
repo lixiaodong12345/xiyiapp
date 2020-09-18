@@ -356,6 +356,8 @@ export default {
     return app.globalData.goShareApp('/pages/index');
   },
   methods: {
+    // 解决一下bug
+    coupon_switch:function(){},
     produnctCom(e) {
       var that = this;
       let star = e.detail.value;

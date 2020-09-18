@@ -34,7 +34,9 @@
             "Contacts" : {},
             "iBeacon" : {},
             "Push" : {},
-            "Payment" : {}
+            "Payment" : {},
+            "Share" : {},
+            "Speech" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -83,7 +85,7 @@
                 "payment" : {
                     "weixin" : {
                         "__platform__" : [ "ios", "android" ],
-                        "appid" : "wx9a85250386b83441",
+                        "appid" : "wx108ec956c9d21b26",
                         "UniversalLinks" : ""
                     },
                     "appleiap" : {},
@@ -94,7 +96,7 @@
                 "geolocation" : {},
                 "share" : {
                     "weixin" : {
-                        "appid" : "wx9a85250386b83441",
+                        "appid" : "wx108ec956c9d21b26",
                         "UniversalLinks" : ""
                     }
                 },
