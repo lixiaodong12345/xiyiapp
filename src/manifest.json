@@ -1,5 +1,5 @@
 {
-    "name" : "洗衣app",
+    "name" : "com.wta.NewCloudApp.jiuwei265402",
     "appid" : "__UNI__DE96165",
     "description" : "",
     "versionName" : "1.0.0",
@@ -84,13 +84,9 @@
                 "oauth" : {},
                 "payment" : {
                     "weixin" : {
-                        "__platform__" : [ "ios", "android" ],
+                        "__platform__" : [ "android" ],
                         "appid" : "wx108ec956c9d21b26",
                         "UniversalLinks" : ""
-                    },
-                    "appleiap" : {},
-                    "alipay" : {
-                        "__platform__" : [ "ios", "android" ]
                     }
                 },
                 "geolocation" : {},

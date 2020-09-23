@@ -120,28 +120,27 @@ export default {
       }
     },
     // 二次签名
-    	// wxappPay(res){
-      //   console.log('res',res)
-			// 	var payObj = res.data.data.pay;
-      //   // console.log(payObj);
-      //         var payData = JSON.stringify({
-			// 					"noncestr":res.data.data.pay.nonceStr,
-			// 					"package":res.data.data.pay.package,
-			// 					"parsign":res.data.data.pay.patSign,
-			// 					"signtype":res.data.data.pay.signType,
-      //           "timestamp":res.data.data.pay.timeStamp,
-			// 				});
-			// 	console.log("签名：",payObj.paySign);
-			// 	uni.requestPayment({
-			// 		timestamp:payObj.timeStamp,
-			// 		noncestr:payObj.nonceStr,
-			// 		package:payObj.package,
-			// 		signtype:"MD5",
-			// 		sign:payObj.paySign,
-			// 	    success: function (res) {
-			// 	    },
-			// 	});
-			// },
+    // wxappPay(res){
+    //   // var payObj = res.data.data.pay;
+    //   // var payData = JSON.stringify({
+    //   //   nonceStr:res.data.data.pay.noncestr,
+    //   //   package:res.data.data.pay.package,
+    //   //   paysign:res.data.data.pay.paysign,
+    //   //   signType:"MD5",
+    //   //   timeStamp:res.data.data.pay.timestamp,
+    //   // });
+    //   // payData = JSON.parse(payData)
+    //   console.log('直行道这里是第二次签名')
+    //   uni.requestPayment({
+    //     nonceStr:res.data.data.pay.noncestr,
+    //     package:res.data.data.pay.package,
+    //     paysign:res.data.data.pay.paysign,
+    //     signType:"MD5",
+    //     timeStamp:res.data.data.pay.timestamp,
+    //     success: function (res) {
+    //     },
+    //   });
+    // },
     //发起充值form请求
     bind_submit: function (e) {
       console.log('e',e,recharge_money)
@@ -185,19 +184,21 @@ export default {
           if (res.data.code == 1) {
             // that.wxappPay(res)
             var lognoid = res.data.data.logno;
-            var packageStr = res.data.data.pay.package.slice(10)
-            console.log(packageStr)
+            // var prepayidstr = res.data.data.pay.prepayid.slice(10)
+            // console.log('prepayidstr',prepayidstr)
             var payData = JSON.stringify({
-                "appid":res.data.data.pay.appId,
+                "appid":res.data.data.pay.appid,
                 'partnerid':res.data.data.pay.partnerid,
+                "package": res.data.data.pay.package,
+                "prepayid":res.data.data.pay.prepayid,
+                // 'prepayid':res.data.data.pay.prepayid,
+								"noncestr":res.data.data.pay.noncestr,
+                "timestamp":res.data.data.pay.timestamp,
+                'sign':res.data.data.pay.paySign
                 
-                "package": 'Sign=WXPay',
-								"noncestr":res.data.data.pay.nonceStr,
-                "timestamp":res.data.data.pay.timeStamp,
-                'sign':res.data.data.pay.paySign,
-                "prepayid":packageStr,
               });
-              console.log('payData',payData)
+              // payData = JSON.parse(payData)
+            console.log('payData',payData,payData.prepayid)
             uni.requestPayment({
               provider: 'wxpay',
               orderInfo: payData,  

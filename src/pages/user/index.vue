@@ -741,7 +741,7 @@ export default {
       var that = this;
       var user_info = app.globalData.userInfo;
       var uid = app.globalData.uid;
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           a: "user",
