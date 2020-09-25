@@ -213,7 +213,7 @@ export default {
       });
     },
     titijiao: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/scale/number/number",
       });
     },

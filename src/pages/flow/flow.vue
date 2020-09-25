@@ -183,7 +183,7 @@
     <image src="/static/static/images/flow_shut.png" class="flow_shut" @tap="shut_payment"></image>
   </view>
   <radio-group @change="paywayChange">
-  <view class="way_select">
+  <view class="way_select" @tap.stop="showPayPwdInput = true">
     <image src="/static/static/images/balan_logo.png" class="balan_logo"></image>
     <text class="select_title">余额支付</text>
     <view class="check_one check_pay">
@@ -196,7 +196,7 @@
       </view>
     </view>
   </view>
-  <view class="way_select">
+  <view class="way_select" @tap="send_order">
     <image src="/static/static/images/micro_logo.png" class="micro_logo"></image>
     <text class="select_title">微信支付</text>
     <view class="check_one check_pay">
@@ -259,7 +259,7 @@ export default {
   data() {
     return {
       tis: '',
-      intVal:'',
+      intVal:null,
       tisshow: '',
       user_address_list: '',
       user_default_address: 'null',
@@ -299,7 +299,7 @@ export default {
       modal_show: 'display:none',
       showPayPwdInput: false,
       //是否展示密码输入层
-      pwdVal: '',
+      pwdVal: null,
       //输入的密码
       payFocus: true //文本框焦点
       ,
@@ -462,6 +462,7 @@ export default {
           'content-type': 'application/json'
         },
         success: function (res) {
+          console.log('地址res',res)
           that.setData({
             default_address: res.data.data.isdefault,
             user_default_address: res.data.data,
@@ -678,6 +679,7 @@ export default {
       var order_id = e.detail.value.goods_id;
       var address_id = e.detail.value.address_id;
       var is_fast = e.detail.value.is_fast;
+      console.log('获取的时间',arr,notice_cont,spread_service)
       that.setData({
         invoice_title: invoice_title,
         invoiceinfo: invoiceinfo,
@@ -724,7 +726,7 @@ export default {
         data: {
           c: 'ewei_o2o',
           a: 'order',
-          do: 'add',
+          do: 'app_order_add',
           key: app.globalData.key,
           uid: uid,
           invoice_title: that.invoice_title,
@@ -747,19 +749,23 @@ export default {
             that.setData({
               modal_show: 'display:none'
             }); // 发起支付
+            var orderId = res.data.data.order_id
+            var payData = JSON.stringify({
+              "appid":res.data.data.pay.appid,
+              'partnerid':res.data.data.pay.partnerid,
+              "package": res.data.data.pay.package,
+              "prepayid":res.data.data.pay.prepayid,
+              // 'prepayid':res.data.data.pay.prepayid,
+              "noncestr":res.data.data.pay.noncestr,
+              "timestamp":res.data.data.pay.timestamp,
+              'sign':res.data.data.pay.paySign
+            });
+            payData = JSON.parse(payData)
+            console.log('payData',payData)
 
-            var success_res = res;
-            var timeStamp = success_res.data.data.pay.timeStamp;
-            var nonceStr = success_res.data.data.pay.nonceStr;
-            var weixin_package = success_res.data.data.pay.package;
-            var paySign = success_res.data.data.pay.paySign;
             uni.requestPayment({
-              provider:['wxpay','alipay'],
-              'timeStamp': timeStamp.toString(),
-              'nonceStr': nonceStr,
-              'package': weixin_package,
-              'signType': 'MD5',
-              'paySign': paySign,
+              provider:'wxpay',
+              orderInfo: payData,
               success: function (re) {
                 // 微信支付成功
                 uni.request({
@@ -770,10 +776,9 @@ export default {
                     a: 'order',
                     do: 'order_pay',
                     key: app.globalData.key,
-                    uid: uid,
-                    orderid: success_res.data.data.order_id,
-                    type: 0,
-                    form_id: form_id
+                    orderid: orderId,
+                    type: 1,
+                    isalipay:1
                   },
                   header: {
                     'content-type': 'application/json'
@@ -797,7 +802,7 @@ export default {
                   duration: 1500,
                   success: function () {
                     uni.redirectTo({
-                      url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
+                      url: '/pages/user/order_detail/order_detail?order_id=' + res.data.data.order_id
                     });
                   }
                 });
@@ -848,7 +853,7 @@ export default {
       this.setData({
         showPayPwdInput: false,
         payFocus: false,
-        pwdVal: ''
+        pwdVal: null
       });
       uni.showToast({
         title: '支付取消',
@@ -882,7 +887,7 @@ export default {
         
         that.match_password();
         that.setData({
-          intVal:''
+          intVal:null
         });
       }
 
@@ -914,7 +919,7 @@ export default {
             that.setData({
               showPayPwdInput: false,
               payFocus: false,
-              pwdVal: ''
+              pwdVal: null
             });
             that.callback_passd();
           }else if(res.data.code == 0){
@@ -926,7 +931,7 @@ export default {
             //隐藏输入框
             that.setData({
  
-              pwdVal: ''
+              pwdVal: null
             });
           }
         },
@@ -936,7 +941,7 @@ export default {
     //密码成功后回调的函数
     callback_passd: function () {
       var that = this;
-      var uid = app.globalData.uid; //添加订单
+      var uid = app.globalData.uid;
       //生成订单
       uni.request({
         url: app.globalData.domain,
@@ -989,10 +994,9 @@ export default {
                       a: 'order',
                       do: 'order_pay',
                       key: app.globalData.key,
-                      uid: uid,
                       orderid: success_res.data.data.order_id,
-                      type: 0,
-                      form_id: form_id
+                      type: 1,
+                      isalipay:1
                     },
                     header: {
                       'content-type': 'application/json'
@@ -1017,7 +1021,7 @@ export default {
                         uni.redirectTo({
                           url: '/pages/user/order_detail/order_detail?order_id=' + success_res.data.data.order_id
                         });
-                      }, 2000);
+                      }, 1000);
                     }
                   });
                 }
@@ -1041,7 +1045,7 @@ export default {
         //跳转到已结束任务列表页
         goshopCart: function () {
           uni.switchTab({
-            url: '/cart/cart',
+            url: '/pages/cart/cart',
             success: function (res) {// success
             },
             fail: function (res) {// fail

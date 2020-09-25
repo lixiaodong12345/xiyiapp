@@ -189,7 +189,7 @@ export default {
               icon: 'success',
               duration: 5000
             });
-            wx.navigateTo({
+            uni.navigateTo({
               url: '/pages/scale/handling/handling?order_id=' + order_id
             });
           } else {

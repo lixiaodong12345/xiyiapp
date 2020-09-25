@@ -203,7 +203,7 @@ export default {
       console.log(e);
       var that = this;
       var text = that.searchText;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/shop/shop_search/shop_search?text=" + text
       });
     },
@@ -262,7 +262,7 @@ export default {
           url: link_wxapp
         });
       } else {
-        wx.navigateTo({
+        uni.navigateTo({
           url: link_wxapp
         });
       }

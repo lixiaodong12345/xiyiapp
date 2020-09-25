@@ -10,21 +10,17 @@
           <view class="cancel_line">
             <text class="cancel_reason">{{ item.reasionname }}</text>
             <view class="cancel_select">
-              <image
+              <!-- <image
                 src="http://wximage.shedongyun.com/sdo2o/false.png"
-                :class="
-                  'select_logo ' + (item.checked == true ? 'hide' : 'show')
-                "
-              ></image>
-              <image
+                :class="'select_logo ' + (item.checked ? 'hide' : 'show')"
+              ></image> -->
+              <!-- <image
                 src="http://wximage.shedongyun.com/sdo2o/true.png"
-                :class="
-                  'select_logo ' + (item.checked == true ? 'show' : 'hide')
-                "
-              ></image>
-              <label class="checkbox_check">
-                <radio :value="item.id" :checked="item.checked"></radio>
-              </label>
+                :class="'select_logo ' + (item.checked ? 'show' : 'hide')"
+              ></image> -->
+              <!-- <label class="checkbox_check"> -->
+              <radio :value="item.id" :checked="item.checked"></radio>
+              <!-- </label> -->
             </view> </view
           ><!--一条结束-->
         </block>
@@ -44,7 +40,7 @@ var reasion = "";
 export default {
   data() {
     return {
-      reasonList: "",
+      reasonList: [],
     };
   },
 
@@ -78,8 +74,7 @@ export default {
           "content-type": "application/json",
         },
         success: function(res) {
-          console.log("取消原因", res);
-
+          console.log("res", res);
           if (res.data.code == 1) {
             that.setData({
               reasonList: res.data.data,
@@ -92,7 +87,8 @@ export default {
       var that = this;
       var reason_id = e.detail.value;
       var reasonList = that.reasonList;
-
+      console.log("切换的值", e);
+      console.log("reasonList", reasonList);
       for (var i = 0; i < reasonList.length; i++) {
         if (reasonList[i].id == reason_id) {
           reasonList[i].checked = true;
@@ -127,7 +123,7 @@ export default {
           do: "cancel",
           key: app.globalData.key,
           orderid: orderid,
-          uid: uid,
+          uid: app.globalData.uid,
           reasion: reasion,
         },
         header: {
@@ -135,14 +131,15 @@ export default {
         },
         success: function(res) {
           if (res.data.code == 1) {
+            reasion = "";
             wx.showToast({
               title: "取消成功",
               icon: "success",
               duration: 1500,
               success: function() {
                 setTimeout(function() {
-                  wx.redirectTo({
-                    url: "/pages/user/order_list/order_list?order_status=all",
+                  uni.switchTab({
+                    url: "/pages/index",
                   });
                 }, 1000);
               },

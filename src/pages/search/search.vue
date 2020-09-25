@@ -132,12 +132,12 @@ export default {
 
       if (selectType == "pro") {
         //服务
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/category/category?keyword=" + keyword,
         });
       } else if (selectType == "store") {
         //商家
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/merchant_list/merchant_list?search_value=" + keyword,
         });
       } //搜索存储********
@@ -196,12 +196,12 @@ export default {
 
       if (selectType == "pro") {
         //服务
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/category/category?keyword=" + keyword,
         });
       } else if (selectType == "store") {
         //商家
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/merchant_list/merchant_list?search_value=" + keyword,
         });
       } //搜索存储*******************

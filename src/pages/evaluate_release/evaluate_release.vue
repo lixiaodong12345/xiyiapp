@@ -201,14 +201,14 @@ export default {
               duration: 2000,
               success: function () {
                 setTimeout(function () {
-                  wx.navigateTo({
+                  uni.navigateTo({
                     url: '/pages/evaluate_success/evaluate_success'
                   }, 5000);
                 });
               }
             });
           } else {
-            //  wx.navigateTo({
+            //  uni.navigateTo({
             //         url: '/pages/evaluate_success/evaluate_success'
             //       }, 5000);
           }

@@ -533,7 +533,7 @@ export default {
       }
 
       if (gourl) {
-        wx.navigateTo({
+        uni.navigateTo({
           url: '../flow/flow'
         });
       } else {
@@ -650,7 +650,7 @@ export default {
       var merchid = e.currentTarget.dataset.shopid;
 
       if (type == 'true') {
-        wx.navigateTo({
+        uni.navigateTo({
           url: '/pages/flow/flow?merchid=' + merchid
         });
       } else {

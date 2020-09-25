@@ -359,11 +359,11 @@ export default {
               console.log('提交返回值', res);
 
               if (res.data.code == 1) {
-                wx.navigateTo({
+                uni.navigateTo({
                   url: '/pages/user/distribut_success/distribut_success'
                 });
               } else {
-                wx.navigateTo({
+                uni.navigateTo({
                   url: '/pages/user/distribut_fail/distribut_fail'
                 });
               }
@@ -407,11 +407,11 @@ export default {
           console.log('提交返回值', res);
 
           if (res.data.code == 1) {
-            wx.navigateTo({
+            uni.navigateTo({
               url: '/pages/user/distribut_success/distribut_success'
             });
           } else {
-            wx.navigateTo({
+            uni.navigateTo({
               url: '/pages/user/distribut_fail/distribut_fail'
             });
           }
@@ -444,11 +444,11 @@ export default {
           console.log('提交返回值', res);
 
           if (res.data.code == 1) {
-            wx.navigateTo({
+            uni.navigateTo({
               url: '/pages/user/distribut_success/distribut_success'
             });
           } else {
-            wx.navigateTo({
+            uni.navigateTo({
               url: '/pages/user/distribut_fail/distribut_fail'
             });
           }
@@ -457,13 +457,13 @@ export default {
     },
     // 银行卡取消
     bank_cancel: function () {
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/user/distribution_center/distribution_center'
       });
     },
     // 支付宝取消
     alipay_cancel: function () {
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/user/distribution_center/distribution_center'
       });
     },

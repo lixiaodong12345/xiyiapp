@@ -217,7 +217,7 @@ export default {
     //提交注册按钮
     install_finish: function(e) {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/userLogin/userLogin",
       });
       var user_code = /^(?!\d+$)(?![a-z]+$)[a-z0-9]{6,18}$/;

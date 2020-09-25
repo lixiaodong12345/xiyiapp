@@ -244,9 +244,10 @@
   </view>
   <view class="xiangqing-cont">
     <view class="ht_block">
-      <view :style="pro_typebox=='01'?'display:block':'display:none'" class="xiangqing-cont-main">
+      <!-- <view :style="pro_typebox=='01'?'display:block':'display:none'" class="xiangqing-cont-main">
         <jyf-parser :html="html"></jyf-parser>
-      </view>
+      </view> -->
+      <jyf-parser :html="html"></jyf-parser>
     </view>
   </view>
   <!-- <view style="{{pro_typebox=='02'?'display:block':'display:none'}}" class='pro_specification'> 
@@ -1050,7 +1051,7 @@ export default {
                 'Content-Type': 'application/json'
               },
               success: function (res) {
-                wx.navigateTo({
+                uni.navigateTo({
                   url: '../flow/flow?is_fast=1' + "&merchid=" + shop_id
                 });
                 setTimeout(function () {
@@ -1612,8 +1613,8 @@ export default {
         success: function (res) {
             console.log('res',res,res.data.data.goods_info.content)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
-          // that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
-          that.html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
+          that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
+          // that.html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
           that.goodsSpec = res.data.data.goods_spec.length
           console.log('sdvs',res.data.data.goods_spec,that.goodsSpec);
           if (res.data.code != 1) {
@@ -1916,7 +1917,7 @@ export default {
     enter_shop: function (e) {
       var that = this;
       var shop_id = e.currentTarget.dataset.id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/shop/shop_detail/shop_detail?id=' + shop_id
       });
     },
@@ -1931,7 +1932,7 @@ export default {
     evaluat_skip: function (e) {
       var that = this;
       var goods_id = e.currentTarget.dataset.id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/evaluate_list/evaluate_list?goods_id=' + goods_id
       });
     },

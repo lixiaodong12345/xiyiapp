@@ -214,7 +214,7 @@ export default {
     },
     // 页面跳转
     skiping: function () {
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/user/bind_mobile/bind_mobile'
       });
     },

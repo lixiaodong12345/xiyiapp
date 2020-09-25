@@ -297,13 +297,14 @@ export default {
   onReachBottom: function() {
     var that = this;
     console.log("加载更多");
+    pages++;
     that.load_list();
   },
   methods: {
     /*加载订单列表信息*/
     load_list: function() {
       var that = this;
-      pages++;
+
       var uid = app.globalData.uid;
 
       if (load_more != 0) {
@@ -318,13 +319,14 @@ export default {
           page: pages,
           uid: uid,
           key: app.globalData.key,
-          status: order_status,
+          status: that.order_status,
         },
         header: {
           "content-type": "application/json",
         },
         success: function(res) {
           if (res.data.code == 1) {
+            // that.order_list.push(res.data.data);
             that.setData({
               order_list: res.data.data,
             });
@@ -339,6 +341,7 @@ export default {
     },
     // 导航条切换订单状态
     nav_switch: function(e) {
+      console.log("导航条", e);
       var that = this;
       var currNav = e.currentTarget.dataset.nav;
       order_status = currNav;
@@ -365,9 +368,9 @@ export default {
           a: "order",
           do: "list",
           page: pages++,
-          openid: "o8Lz70Ae1ErJW3JrJIqm7KGHM-nI",
+          uid: app.globalData.uid,
           key: app.globalData.key,
-          status: 0,
+          status: that.order_status,
         },
         header: {
           "content-type": "application/json",
@@ -430,7 +433,7 @@ export default {
               });
             } else {
               // 直接跳转到详情页,并将操作结果提示出来
-              wx.navigateTo({
+              uni.navigateTo({
                 url:
                   "/pages/user/order_detail/order_detail?msg=" +
                   res.data.msg +
@@ -506,7 +509,7 @@ export default {
     /*评论订单*/
     comment_order: function(e) {
       if (e.target.dataset.order_id) {
-        wx.navigateTo({
+        uni.navigateTo({
           url:
             "/pages/user/order_comment/order_comment?order_id=" +
             e.target.dataset.order_id,
@@ -610,7 +613,7 @@ export default {
     order_evaluat: function(e) {
       var that = this;
       var order_id = e.currentTarget.dataset.order_id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/evaluate_release/evaluate_release?order_id=" + order_id,
       });
     },
@@ -618,22 +621,22 @@ export default {
     order_detail: function(e) {
       var that = this;
       var order_id = e.currentTarget.dataset.order_id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/order_detail/order_detail?order_id=" + order_id,
       });
     },
     refund_apply: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "../../../pages/refund/refund_apply/refund_apply",
       });
     },
     scales_apply: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "../../../pages/scale/scales_apply/scales_apply",
       });
     },
     stateful: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "../../../pages/logistics/stateful/stateful",
       });
     },

@@ -119,7 +119,7 @@ export default {
   methods: {
     go_storeindex: function(e) {
       console.log(e);
-      wx.navigateTo({
+      uni.navigateTo({
         url:
           "../store_index/store_index?store_id=" + e.currentTarget.dataset.id,
       });

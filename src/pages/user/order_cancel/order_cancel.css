@@ -1,70 +1,69 @@
-.cancel_title{
-  width:100%;
-  padding:28rpx 0rpx 20rpx 0rpx;
+.cancel_title {
+  width: 100%;
+  padding: 28rpx 0rpx 20rpx 0rpx;
   background: #f2f2f2;
-  border-top:1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
-.cancel_title text{
-  width:90%;
-  margin:0 auto;
-  display:block;
-  font-size:30rpx;
-  color:#808080;
+.cancel_title text {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+  font-size: 30rpx;
+  color: #808080;
 }
-.cancel_wrap{
-  width:100%;
+.cancel_wrap {
+  width: 100%;
   overflow: hidden;
-  margin-bottom:110rpx;
+  margin-bottom: 110rpx;
 }
-.cancel_line{
-  width:95%;
-  float:right;
-  border-bottom:1px solid #efefef;
-  padding:30rpx 0rpx;
+.cancel_line {
+  width: 95%;
+  float: right;
+  border-bottom: 1px solid #efefef;
+  padding: 30rpx 0rpx;
 }
-.cancel_reason{
-  float:left;
-  color:#808080;
-  font-size:30rpx;
+.cancel_reason {
+  float: left;
+  color: #808080;
+  font-size: 30rpx;
 }
-.cancel_select{
-  width:40rpx;
-  height:40rpx;
-  float:right;
-  margin-right:5%;
-  position:relative;
+.cancel_select {
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  margin-right: 5%;
+  position: relative;
 }
-.checkbox_check{
-  position:absolute;
-  top:-4rpx;
-  left:0px;
+.checkbox_check {
+  position: absolute;
+  top: -4rpx;
+  left: 0px;
   opacity: 0;
 }
-.select_logo{
-  display:block;
-  width:40rpx;
-  height:40rpx;
-
+.select_logo {
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
 }
-.calcel_button{
-  border-radius:0rpx;
+.calcel_button {
+  border-radius: 0rpx;
   background: #55bcc5;
-  height:100rpx;
-  line-height:100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   text-align: center;
-  color:#fff;
-  font-size:30rpx;
-  position:fixed;
-  bottom:0rpx;
-  left:0rpx;
-  width:100%;
+  color: #fff;
+  font-size: 30rpx;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
 }
-.calcel_button::after{
-  border:none;
+.calcel_button::after {
+  border: none;
 }
-.hide{
-  display:none;
+.hide {
+  display: none;
 }
-.show{
-  display:block;
+.show {
+  display: block;
 }

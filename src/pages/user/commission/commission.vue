@@ -135,7 +135,7 @@ export default {
         return;
       }
 
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/distribution_wait/distribution_wait?money=" + money,
       });
     },

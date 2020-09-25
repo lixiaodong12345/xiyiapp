@@ -448,14 +448,14 @@ export default {
           url: link_wxapp,
         });
       } else {
-        wx.navigateTo({
+        uni.navigateTo({
           url: link_wxapp,
         });
       }
     },
     //商家入驻跳转
     merchant_skip: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/store_mall/store_mall",
       });
     },

@@ -191,16 +191,21 @@
       <view class="detail_line">
         <text class="line_left">收货地址:</text>
         <text class="line_right"
-          >{{ order_info.address_info.province
-          }}{{ order_info.address_info.city
-          }}{{ order_info.address_info.area }}</text
+          >{{
+            order_info.address_info.province
+              ? order_info.address_info.province
+              : ""
+          }}{{ order_info.address_info.city ? order_info.address_info.city : ""
+          }}{{
+            order_info.address_info.area ? order_info.address_info.area : ""
+          }}</text
         >
       </view>
       <view class="detail_line bottom_line">
         <text class="line_left">联系人:</text>
         <text class="line_right"
-          >{{ order_info.address_info.realname }}
-          {{ order_info.address_info.mobile }}</text
+          >{{ order_info.address_info.realname
+          }}{{ order_info.address_info.mobile }}</text
         >
       </view>
       <view class="detail_line">
@@ -253,7 +258,7 @@
           data-edit="order_pay"
           hover-class="none"
           class="immed_pay"
-          >立即支付</navigator
+          >微信支付</navigator
         >
 
         <navigator
@@ -386,7 +391,7 @@ export default {
           do: "info",
           key: app.globalData.key,
           orderid: order_ids,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
         },
         header: {
           "content-type": "application/json",
@@ -434,11 +439,11 @@ export default {
 
         success(res) {
           if (res.confirm) {
-            wx.navigateTo({
+            uni.navigateTo({
               url: "/pages/user/order_list/order_list?order_status=all",
             });
           } else if (res.cancel) {
-            wx.navigateTo({
+            uni.navigateTo({
               url: "/pages/user/order_list/order_list?order_status=all",
             });
           }
@@ -459,7 +464,7 @@ export default {
     // 跳转物流详情
     gologistic: function(e) {
       console.log(e);
-      wx.navigateTo({
+      uni.navigateTo({
         url:
           "../../../pages/user/Logistics/Logistics?orderid=" +
           e.currentTarget.dataset.id,
@@ -469,7 +474,7 @@ export default {
     return_refund: function() {
       var that = this;
       var user_info = app.globalData.userInfo;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "../../../pages/scale/scales_apply/scales_apply?",
       });
     },
@@ -478,7 +483,7 @@ export default {
     order_cancel: function(e) {
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = user_info.uid;
+      var uid = app.globalData.uid;
       var orderid = e.currentTarget.dataset.order_id;
       wx.redirectTo({
         url:
@@ -504,7 +509,7 @@ export default {
           a: "order",
           do: "receive",
           orderid: e.target.dataset.order_id,
-          uid: user_info.uid,
+          uid: app.globalData.uid,
           key: app.globalData.key,
         },
         header: {
@@ -519,7 +524,7 @@ export default {
                 duration: 1500,
                 success: function() {
                   setTimeout(function() {
-                    wx.navigateTo({
+                    uni.navigateTo({
                       url:
                         "/pages/user/order_list/order_list?order_status=complete",
                     });
@@ -550,73 +555,78 @@ export default {
           url: app.globalData.domain,
           data: {
             a: "order",
-            do: "orderPay",
+            do: "app_order_pay",
             orderid: e.target.dataset.order_id,
-            uid: user_info.uid,
+            uid: app.globalData.uid,
             key: app.globalData.key,
           },
           header: {
             "content-type": "application/json",
           },
           success: function(res) {
-            //console.log(res.data)
-            // 发起支付
-            var success_res = res;
-            var timeStamp = success_res.data.data.pay.timeStamp;
-            var nonceStr = success_res.data.data.pay.nonceStr;
-            var weixin_package = success_res.data.data.pay.package;
-            var paySign = success_res.data.data.pay.paySign;
-            console.log(success_res.data.data.pay);
-            wx.requestPayment({
-              timeStamp: timeStamp.toString(),
-              nonceStr: nonceStr,
-              package: weixin_package,
-              signType: "MD5",
-              paySign: paySign,
-              success: function(re) {
-                wx.showToast({
-                  title: "支付成功!",
-                  icon: "success",
-                  duration: 1000,
-                }); // 微信支付成功
+            console.log("调用微信支付", res);
+            if (res.data.code == 1) {
+              var payData = JSON.stringify({
+                appid: res.data.data.pay.appid,
+                partnerid: res.data.data.pay.partnerid,
+                package: res.data.data.pay.package,
+                prepayid: res.data.data.pay.prepayid,
+                // 'prepayid':res.data.data.pay.prepayid,
+                noncestr: res.data.data.pay.noncestr,
+                timestamp: res.data.data.pay.timestamp,
+                sign: res.data.data.pay.paySign,
+              });
+              payData = JSON.parse(payData);
+              console.log("payData", payData, payData.prepayid);
+              wx.requestPayment({
+                provider: "wxpay",
+                orderInfo: payData,
+                success: function(re) {
+                  wx.showToast({
+                    title: "支付成功!",
+                    icon: "success",
+                    duration: 1000,
+                  }); // 微信支付成功
 
-                wx.request({
-                  // "更改订单状态操作",
-                  url: app.globalData.domain,
-                  data: {
-                    c: "ewei_o2o",
-                    a: "order",
-                    do: "order_pay",
-                    key: app.globalData.key,
-                    uid: user_info.uid,
-                    orderid: success_res.data.data.order_id,
-                  },
-                  header: {
-                    "content-type": "application/json",
-                  },
-                  success: function(res) {
-                    if (res.data.code == 1) {
-                      wx.redirectTo({
-                        url: "/pages/done/done",
+                  wx.request({
+                    // "更改订单状态操作",
+                    url: app.globalData.domain,
+                    data: {
+                      c: "ewei_o2o",
+                      a: "order",
+                      do: "order_pay",
+                      key: app.globalData.key,
+                      uid: app.globalData.uid,
+                      orderid: res.data.data.order_id,
+                    },
+                    header: {
+                      "content-type": "application/json",
+                    },
+                    success: function(res) {
+                      if (res.data.code == 1) {
+                        wx.redirectTo({
+                          url: "/pages/done/done",
+                        });
+                      }
+                    },
+                    fail: function() {
+                      wx.showToast({
+                        title: "订单状态更改失败",
+                        icon: "loading",
+                        duration: 1500,
                       });
-                    }
-                  },
-                  fail: function() {
-                    wx.showToast({
-                      title: "订单状态更改失败",
-                      icon: "loading",
-                      duration: 1500,
-                    });
-                  },
-                });
-              },
-              fail: function(re) {
-                console.log(re);
-              },
-              complete: function(re) {
-                console.log(re);
-              },
-            });
+                    },
+                  });
+                },
+                fail: function(re) {
+                  console.log(re);
+                },
+                complete: function(re) {
+                  console.log(re);
+                },
+              });
+            }
+
             /*
             if (res.data.err == '07') {
               // 微信支付,获取用户code
@@ -633,7 +643,7 @@ export default {
             else {
               console.log("跳转跳转跳转");
               // 直接跳转到详情页,并将操作结果提示出来
-              // wx.navigateTo({
+              // uni.navigateTo({
               //   url: '/pages/user/order_detail/order_detail?msg=' + res.data.msg + '&order_id=' + e.target.dataset.order_id
               // })
             }*/
@@ -774,7 +784,7 @@ export default {
     order_evaluat: function(e) {
       var that = this;
       var order_id = e.currentTarget.dataset.order_id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/evaluate_release/evaluate_release?order_id=" + order_id,
       });
     },

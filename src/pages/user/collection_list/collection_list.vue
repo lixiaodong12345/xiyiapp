@@ -214,7 +214,7 @@ export default {
     },
     cate_skip: function() {
       setTimeout(function() {
-        wx.navigateTo({
+        uni.navigateTo({
           url: "/pages/gcates/gcates",
         });
       }, 1000);

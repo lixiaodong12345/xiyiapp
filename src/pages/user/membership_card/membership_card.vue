@@ -313,7 +313,7 @@ export default {
     //充值中心跳转
     top_skip: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/account_deposit/account_deposit",
       });
     },

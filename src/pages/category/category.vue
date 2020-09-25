@@ -718,12 +718,12 @@ export default {
     detail_skip: function (e) {
       var that = this;
       var good_id = e.currentTarget.dataset.id;
-      wx.navigateTo({
+      uni.navigateTo({
         url: '/pages/goods/goods?goods_id=' + good_id
       });
     },
     gataBack: function () {
-      wx.navigateBack({
+      uni.navigateBack({
         delta: 1
       });
     }

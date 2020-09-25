@@ -176,11 +176,6 @@ export default {
         },
         success: function (res) {
           console.log('充值',res)
-           wx.showToast({
-            title: 'tiaozhuan',
-            icon: 'success',
-            duration: 1500
-          });
           if (res.data.code == 1) {
             // that.wxappPay(res)
             var lognoid = res.data.data.logno;
@@ -197,7 +192,7 @@ export default {
                 'sign':res.data.data.pay.paySign
                 
               });
-              // payData = JSON.parse(payData)
+              payData = JSON.parse(payData)
             console.log('payData',payData,payData.prepayid)
             uni.requestPayment({
               provider: 'wxpay',
@@ -215,9 +210,8 @@ export default {
                 });
               },
               fail: function (res) {
-                console.log('res',res)
-                uni.showModal({
-                  title: 'fail',
+                uni.showToast({
+                  title: '取消支付',
                   icon: 'success',
                   duration: 1500
                 });

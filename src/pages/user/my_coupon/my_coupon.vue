@@ -234,7 +234,7 @@ export default {
   onShareAppMessage: function() {},
   methods: {
     usercoupon: function() {
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/gcates/gcates",
       });
     },

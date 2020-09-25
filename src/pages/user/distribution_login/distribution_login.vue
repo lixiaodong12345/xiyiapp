@@ -207,13 +207,13 @@ export default {
               refund_list: res.data.data.user_is_refund
             });
             setTimeout(function () {
-              wx.navigateTo({
+              uni.navigateTo({
                 url: '/pages/user/distribution_submit/distribution_submit'
               });
             }, 1500);
           } else if (res.data.code == 2) {
             setTimeout(function () {
-              wx.navigateTo({
+              uni.navigateTo({
                 url: '/pages/user/distribution_success/distribution_success'
               });
             }, 1500);

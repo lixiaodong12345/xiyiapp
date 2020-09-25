@@ -452,6 +452,7 @@ export default {
     },
     //收货地址添加
     add_address: function (e) {
+      console.log('添加地址',e)
       var that = this;
       var user_info = app.globalData.userInfo; //手机号正则表达式
 

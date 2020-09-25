@@ -658,7 +658,7 @@ export default {
               duration: 2000,
               success: function () {
                 setTimeout(function () {
-                  wx.navigateBack({
+                  uni.navigateBack({
                     changed: true
                   });
                 }, 4000);

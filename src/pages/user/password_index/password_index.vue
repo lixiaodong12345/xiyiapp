@@ -101,25 +101,25 @@ export default {
     },
     passd_skip: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/password_set/password_set",
       });
     },
     mobile_skip: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/bind_mobile/bind_mobile",
       });
     },
     modification_mobile: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/modification_mobile/modification_mobile",
       });
     },
     forget_password: function() {
       var that = this;
-      wx.navigateTo({
+      uni.navigateTo({
         url: "/pages/user/forget_password/forget_password",
       });
     },
