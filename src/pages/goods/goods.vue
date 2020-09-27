@@ -245,9 +245,9 @@
   <view class="xiangqing-cont">
     <view class="ht_block">
       <!-- <view :style="pro_typebox=='01'?'display:block':'display:none'" class="xiangqing-cont-main">
-        <jyf-parser :html="html"></jyf-parser>
+        <jyf-parser v-html="add_html"></jyf-parser>
       </view> -->
-      <jyf-parser :html="html"></jyf-parser>
+      <jyf-parser v-html="add_html" class="zujian"></jyf-parser>
     </view>
   </view>
   <!-- <view style="{{pro_typebox=='02'?'display:block':'display:none'}}" class='pro_specification'> 
@@ -507,7 +507,7 @@ var currType;
 var haveLimit = '';
 var allLimit = '';
 var Uid = app.globalData.uid
-import parser from "@/components/jyf-parser/jyf-parser";
+import parser from "@/component/jyf-parser/jyf-parser";
 export default {
   data() {
     return {
@@ -584,7 +584,7 @@ export default {
       comment_info: "",
       commentNum: "",
       shareImg: "",
-      html: "",
+      add_html: "",
       goodsSpec:''
     };
   },
@@ -774,7 +774,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data);
 
           if (res.data.code == 1) {
             that.setData({
@@ -818,9 +817,6 @@ export default {
         return;
       }
 
-      console.log('加haveLimit++', haveLimit);
-      console.log('减allLimit++', allLimit);
-
       if (allLimit != 0) {
         if (e.detail.value > allLimit) {
           wx.showToast({
@@ -848,8 +844,6 @@ export default {
         return;
       }
 
-      console.log('加haveLimit++', haveLimit);
-      console.log('减allLimit++', allLimit);
 
       if (allLimit != 0) {
         var buyCurrent = that.goods_number + haveLimit;
@@ -886,8 +880,6 @@ export default {
         new_goods_number = that.goods_number;
       }
 
-      console.log('加haveLimit++', haveLimit);
-      console.log('减allLimit++', allLimit);
 
       if (allLimit != 0) {
         var buyCurrent = that.goods_number + haveLimit;
@@ -909,7 +901,7 @@ export default {
     //加入洗衣篮和立即购买大模块********************************************************************************
     // 加入洗衣篮 最后一步
     add_to_cart: function (event) {
-      console.log('事件对象',event)
+
       var that = this; //判断商品属性选择
       var goods_spec = that.goods_properties;
       var goods_specsarr = that.specsarr;
@@ -924,9 +916,9 @@ export default {
         }
       }
       
-      console.log('000000',that.goodsSpec)
+
       var goods_string = goods_specsarr.join("_");
-      console.log('goods_string的类型是' + typeof goods_string + '字符串是' + goods_string);
+
       var addId = event.currentTarget.dataset.id;
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
@@ -971,7 +963,7 @@ export default {
     //购买服务最后一步
     buy_now: function (event) {
       var that = this;
-      console.log('购买服务最后一步'); //店铺id
+
 
       var shop_id = that.shop_id; //判断商品属性选择
 
@@ -1011,7 +1003,7 @@ export default {
       // }
 
       var goods_string = goods_specsarr.join("_");
-      console.log('goods_string的类型是' + typeof goods_string + '字符串是' + goods_string);
+
       var addId = event.currentTarget.dataset.id;
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
@@ -1073,7 +1065,7 @@ export default {
     },
     // 选择规格
     select_scalea: function (event) {
-      console.log('e的初始值', event);
+
       var that = this;
       currType = 0;
       that.setData({
@@ -1081,24 +1073,13 @@ export default {
       });
       var openid = wx.getStorageSync('userInfo').openid;
       var flag_name = event.currentTarget.dataset.name;
-      console.log('flag_name的初值', flag_name);
+
       var click_id = event.currentTarget.dataset.id;
       that.specsarr[flag_name] = click_id;
       var catId = event.currentTarget.id;
       var specsstr = 0;
       var specsstrs = event.currentTarget.dataset.id;
-      // console.log('specsarr',that.specsarr)
-      // that.specsarr.forEach(function (value, index, array) {
-      //   if (index == 0) {
-      //     if (specsstr == 0) {
-      //       specsstr = value;
-      //     } else {
-      //       specsstr = value + specsstr;
-      //     }
-      //   } else if (index != 0) {
-      //     specsstr = specsstr + '_' + value;
-      //   }
-      // });
+
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -1165,7 +1146,6 @@ export default {
     // 加入洗衣篮——不走规格  直接弹框
     show_view: function (e) {
       var that = this;
-      console.log('加入',e)
       if (that.is_authority == "0") {
         wx.showToast({
           title: '无购买权限',
@@ -1205,17 +1185,6 @@ export default {
     // 点击购买服务按钮购买服务 不走规格 直接弹窗
     show_view_cart: function () {
       var that = this;
-      console.log('点击购买服务-不走规格'); // var areaType=area_type;
-      // var areaMsg = area_msg
-      // console.log('areaType', areaType);
-      // if (areaType=='false'){
-      //   wx.showToast({
-      //     title: areaMsg,
-      //     icon: 'success',
-      //     duration: 2000
-      //   })
-      //   return false;
-      // }
 
       if (that.is_authority == "0") {
         wx.showToast({
@@ -1258,8 +1227,6 @@ export default {
     // 1、点击规格购买服务弹框
     judgeCategory: function (e) {
       var that = this;
-      console.log('点击规格步骤购买服务');
-      console.log('已授权+++');
       if(!app.globalData.uid){
         wx.showToast({
           title: '请先去登录',
@@ -1276,7 +1243,6 @@ export default {
     //2、购买服务——走规格模块
     cate_view_cart: function () {
       var that = this;
-      console.log('走规格函数');
 
       if (that.totle == "0") {
         wx.showToast({
@@ -1328,7 +1294,6 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log('服务区域返回数据', res);
 
           if (res.data.code == 1) {
             //用来判断是否在合适区域 ture在
@@ -1358,12 +1323,10 @@ export default {
       if (!userInfo || from_share_uid) {
         wx.login({
           success: function (res) {
-            console.log('login+++++', res);
 
             if (res.code) {
               wx.getUserInfo({
                 success: function (res2) {
-                  console.log('res2信息++', res2);
                   var userInfo = res2.userInfo;
                   var nickName = userInfo.nickName;
                   var avatarUrl = userInfo.avatarUrl;
@@ -1384,12 +1347,10 @@ export default {
                       key: app.globalData.key
                     },
                     success: function (res) {
-                      console.log('授权登录成功+++', res);
 
                       if (res.data.code == 1) {
                         app.globalData.openid = res.data.data.openid;
                         app.globalData.userInfo = res.data.data;
-                        console.log('login+++点击规则');
                         that.setData({
                           show_view_style: 'display:block',
                           double_style: 'display:block',
@@ -1403,7 +1364,6 @@ export default {
                         try {
                           wx.setStorageSync('userInfo', res.data.data);
                         } catch (e) {
-                          console.log('保存用户信息到缓存出错！');
                         }
                       } else {}
                     }
@@ -1429,12 +1389,10 @@ export default {
     //   if (!userInfo || from_share_uid) {
     //     wx.login({
     //       success: function (res) {
-    //         console.log('login+++++', res);
 
     //         if (res.code) {
     //           wx.getUserInfo({
     //             success: function (res2) {
-    //               console.log('res2信息++', res2);
     //               var userInfo = res2.userInfo;
     //               var nickName = userInfo.nickName;
     //               var avatarUrl = userInfo.avatarUrl;
@@ -1455,12 +1413,10 @@ export default {
     //                   key: app.globalData.key
     //                 },
     //                 success: function (res) {
-    //                   console.log('授权登录成功+++', res);
 
     //                   if (res.data.code == 1) {
     //                     app.globalData.openid = res.data.data.openid;
     //                     app.globalData.userInfo = res.data.data;
-    //                     console.log('login+++加入洗衣篮');
     //                     that.setData({
     //                       user_have: 'display:block',
     //                       user_none: 'display:none',
@@ -1472,7 +1428,6 @@ export default {
     //                     try {
     //                       wx.setStorageSync('userInfo', res.data.data);
     //                     } catch (e) {
-    //                       console.log('保存用户信息到缓存出错！');
     //                     }
     //                   } else {}
     //                 }
@@ -1499,12 +1454,10 @@ export default {
     //   if (!userInfo || from_share_uid) {
     //     wx.login({
     //       success: function (res) {
-    //         console.log('login+++++', res);
 
     //         if (res.code) {
     //           wx.getUserInfo({
     //             success: function (res2) {
-    //               console.log('res2信息++', res2);
     //               var userInfo = res2.userInfo;
     //               var nickName = userInfo.nickName;
     //               var avatarUrl = userInfo.avatarUrl;
@@ -1525,12 +1478,10 @@ export default {
     //                   key: app.globalData.key
     //                 },
     //                 success: function (res) {
-    //                   console.log('授权登录成功+++', res);
 
     //                   if (res.data.code == 1) {
     //                     app.globalData.openid = res.data.data.openid;
     //                     app.globalData.userInfo = res.data.data;
-    //                     console.log('login+++立即购买');
     //                     that.setData({
     //                       user_have: 'display:block',
     //                       user_none: 'display:none',
@@ -1542,7 +1493,6 @@ export default {
     //                     try {
     //                       wx.setStorageSync('userInfo', res.data.data);
     //                     } catch (e) {
-    //                       console.log('保存用户信息到缓存出错！');
     //                     }
     //                   } else {}
     //                 }
@@ -1558,14 +1508,12 @@ export default {
     // },
     //商品详情提交规格时请求的函数****************
     formSubmit: function (e) {
-        console.log('事件2',e)
       var that = this;
       var openid = app.globalData.openid;
       var form_id = e.detail.formId;
       var number_value = e.detail.target.dataset.number;
 
       if (e.detail.target.dataset.name == "buy_now") {
-        console.log('购买服务form+++++');
 
         if (number_value == 0) {
           wx.showToast({
@@ -1578,7 +1526,6 @@ export default {
 
         this.buy_now(e);
       } else {
-        console.log('添加洗衣篮form+++++');
 
         if (number_value == 0) {
           wx.showToast({
@@ -1611,10 +1558,10 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-            console.log('res',res,res.data.data.goods_info.content)
+            console.log('res',res,res,res.data.data.goods_info.content)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
-          that.html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
-          // that.html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
+          that.add_html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
+          // that.add_html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
           that.goodsSpec = res.data.data.goods_spec.length
           console.log('sdvs',res.data.data.goods_spec,that.goodsSpec);
           if (res.data.code != 1) {
@@ -1634,8 +1581,6 @@ export default {
             } else {
               var minbuy = parseInt(res.data.data.goods_info.minbuy);
             }
-
-            console.log("商品属性", res.data.data.goods_info);
 
             if (res.data.data.goods_info.ispresell != 0) {
               var timae = Date.parse(res.data.data.goods_info.preselltimeend);
@@ -1685,11 +1630,8 @@ export default {
             });
             haveLimit = res.data.data.goods_info.userbuy;
             allLimit = res.data.data.goods_info.usermaxbuy;
-            console.log('最初haveLimit+++', haveLimit);
-            console.log('最初allLimit+++', allLimit);
 
             if (res.data.data.goods_info.price_section != undefined) {
-              console.log('区间价+++');
               currType = 1;
               that.setData({
                 currType: currType,
@@ -1705,7 +1647,6 @@ export default {
 
     /*领取优惠券*/
     receiveCoupon: function (e) {
-      console.log("领取优惠券", e);
       var openid = wx.getStorageSync('userInfo').openid;
       var that = this;
       var couponId = e.currentTarget.dataset.id;
@@ -1829,7 +1770,6 @@ export default {
       });
     },
     info_box: function (e) {
-      console.log("显示", e);
       this.setData({
         pro_typebox: e.currentTarget.dataset.type
       });
@@ -1876,12 +1816,10 @@ export default {
               });
             },
             fail: function (res) {
-              console.log('fail', res);
             }
           });
         },
         fail: function () {
-          console.log('fail');
         }
       });
     },
@@ -1907,7 +1845,6 @@ export default {
     //联系商家
     phone_call: function (e) {
       var that = this;
-      console.log('e+++', e);
       var phone_value = e.currentTarget.dataset.phone;
       wx.makePhoneCall({
         phoneNumber: phone_value
@@ -1943,8 +1880,6 @@ export default {
       query.select('.coupon_height').boundingClientRect();
       // query.exec(res => {
       //   var listHeight = res[0].height; // 获取list高度
-
-      //   console.log('listHeight', listHeight);
       // });
     }
   }
@@ -1952,4 +1887,13 @@ export default {
 </script>
 <style>
 @import "./goods.css";
+.zujian{
+  width:100%;
+}
+.zujian /deep/ p {
+  width:100%;
+}
+.zujian /deep/ img{
+  width:100%;
+}
 </style>

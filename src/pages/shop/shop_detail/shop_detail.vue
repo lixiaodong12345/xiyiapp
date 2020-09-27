@@ -327,7 +327,7 @@ var nums = 0;
 var prices = 0;
 var cid = "";
 var shopid;
-import parser from "@/components/jyf-parser/jyf-parser";
+import parser from "@/component/jyf-parser/jyf-parser";
 export default {
   data() {
     return {

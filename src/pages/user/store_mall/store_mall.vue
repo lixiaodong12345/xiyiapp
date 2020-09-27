@@ -259,7 +259,7 @@
 </template>
 
 <script>
-import parser from "@/components/jyf-parser/jyf-parser";
+import parser from "@/component/jyf-parser/jyf-parser";
 var app = getApp();
 var merchname = "";
 var salecate = "";
