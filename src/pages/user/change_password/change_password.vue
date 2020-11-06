@@ -1,30 +1,5 @@
 <template>
 <form @submit="install_finish">
-  <view class="password_line">
-    <text class="passd_title">输入手机号</text>
-    <input
-      type="number"
-      :value="mobile"
-      name="mobile"
-      @input="synchr_phone"
-      class="passd_input"
-      placeholder="请输入手机号"
-    />
-  </view>
-  <view class="password_line">
-    <text class="passd_title">输入验证码</text>
-    <input
-      name="code"
-      type="number"
-      :value="code"
-      class="passd_input"
-      placeholder="请输入手机验证码"
-    />
-    <button @tap="get_sms_code" :style="none_style">获取验证码</button>
-    <button @tap="countdown" class="second" :style="have_style">
-      {{ second }}s倒计时
-    </button>
-  </view>
   <view class="password_wrap">
     <view class="password_line">
       <text class="passd_title">重置密码</text>
@@ -174,15 +149,13 @@ export default {
       // var uid = app.globalData.userInfo.id;
       let password = e.detail.value.passd_value
       let confirm_password = e.detail.value.confirm_password
-      if(mobile != '' && code !='' && password != '' && confirm_password != ''){
+      if(password != '' && confirm_password != ''){
         wx.request({
           url: app.globalData.domain,
           data: {
             a: 'auth',
-            do: 'forget_password',
+            do: 'change_password',
             key: app.globalData.key,
-            mobile:mobile,
-            code:code,
             password:password,
             confirm_password:confirm_password
           },
@@ -196,6 +169,9 @@ export default {
                 title: '设置密码成功',
                 duration: 2000
               });
+              uni.switchTab({
+                  url:'/pages/user/index'
+              })
             } else {
               wx.showToast({
                 title: res.data.msg,
@@ -217,5 +193,5 @@ export default {
 };
 </script>
 <style>
-@import "./forget_password.css";
+@import "../forget_password/forget_password.css";
 </style>

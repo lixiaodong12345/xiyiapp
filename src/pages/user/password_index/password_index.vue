@@ -6,7 +6,8 @@
         src="/static/static/images/set_right.png"
         class="set_right"
       ></image>
-      <text class="passd_set">未设置</text>
+      <text class="passd_set" v-if="payment_code == '未设置'">未设置</text>
+      <text class="passd_set" v-else>已设置</text>
     </view>
     <!-- <view class="password_line">
     <text class="passd_title">修改支付密码</text>
@@ -21,7 +22,7 @@
       ></image>
       <text class="passd_set">未绑定</text>
     </view>
-    <view class="password_line" @tap="forget_password">
+    <view class="password_line" @tap="change_password">
       <text class="passd_title">修改密码</text>
       <image
         src="/static/static/images/set_right.png"
@@ -60,13 +61,17 @@
 var app = getApp();
 export default {
   data() {
-    return {};
+    return {
+      payment_code: app.globalData.payment_code,
+    };
   },
 
   components: {},
   props: {},
   onLoad: function(options) {
-    console.log("一斤页面", app.globalData.uid);
+    console.log("app", app);
+    this.payment_code = app.globalData.payment_code;
+    console.log("一斤页面", app.globalData.payment_code, this.payment_code);
   },
   onReady: function() {},
   onShow: function() {},
@@ -117,11 +122,18 @@ export default {
         url: "/pages/user/modification_mobile/modification_mobile",
       });
     },
-    forget_password: function() {
+    change_password: function() {
       var that = this;
-      uni.navigateTo({
-        url: "/pages/user/forget_password/forget_password",
-      });
+      if (app.globalData.uid) {
+        uni.navigateTo({
+          url: "/pages/user/change_password/change_password",
+        });
+      } else {
+        uni.showToast({
+          title: "请先去登录",
+          icon: "none",
+        });
+      }
     },
   },
 };

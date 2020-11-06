@@ -45,6 +45,7 @@ export default {
     switch_type: 0,
     bar_title: "",
     integral: "",
+    payment_code: "未设置",
     //获取当前登录微信用户信息
     getUserInfo: function() {
       // wx.removeStorageSync({

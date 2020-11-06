@@ -213,6 +213,12 @@
     {
       "path": "pages/user/forget_password/forget_password",
       "style": {
+        "navigationBarTitleText": "忘记密码"
+      }
+    },
+    {
+      "path": "pages/user/change_password/change_password",
+      "style": {
         "navigationBarTitleText": "修改密码"
       }
     },

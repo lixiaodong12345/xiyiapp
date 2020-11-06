@@ -188,8 +188,11 @@ export default {
               title: "登录成功",
             });
             setTimeout(function() {
+              // uni.switchTab({
+              //   url: "/pages/index",
+              // });
               uni.switchTab({
-                url: "/pages/index",
+                url: "/pages/cart/cart",
               });
             }, 500);
           }
@@ -314,11 +317,11 @@ export default {
     //用户账号和密码登录
     account: function(e) {
       let that = this;
-      // let username = "baidu3";
-      // let password = "baidu3";
+      let username = "baidu3";
+      let password = "baidu3";
       // 这里做了一些修改 输入框的值没有直接赋值
-      let username = e.detail.value.userName;
-      let password = e.detail.value.password;
+      // let username = e.detail.value.userName;
+      // let password = e.detail.value.password;
       if (username == "" && password == "") {
         uni.showToast({
           icon: "none",
@@ -349,8 +352,11 @@ export default {
               title: "登录成功",
             });
             setTimeout(function() {
+              // uni.switchTab({
+              //   url: "/pages/index",
+              // });
               uni.switchTab({
-                url: "/pages/index",
+                url: "/pages/cart/cart",
               });
             }, 500);
           }

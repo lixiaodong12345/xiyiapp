@@ -217,9 +217,9 @@ export default {
     //提交注册按钮
     install_finish: function(e) {
       var that = this;
-      uni.navigateTo({
-        url: "/pages/user/userLogin/userLogin",
-      });
+      // uni.navigateTo({
+      //   url: "/pages/user/userLogin/userLogin",
+      // });
       var user_code = /^(?!\d+$)(?![a-z]+$)[a-z0-9]{6,18}$/;
       // var codeValue = e.detail.value.code_value;
       // var passdValue = e.detail.value.passd_value;

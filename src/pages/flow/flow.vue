@@ -796,8 +796,9 @@ export default {
                 }, 1500);
               },
               fail: function (res) {
+                console.log('res',res)
                 uni.showToast({
-                  title: '支付失败',
+                  title: res,
                   icon: 'success',
                   duration: 1500,
                   success: function () {

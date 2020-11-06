@@ -19,9 +19,9 @@
             ></image>
             <input
               name="input"
-              @input.stop="focusPoint"
+              @input="focusPoint"
               @confirm="soft_trigger"
-              :value="input_value"
+              v-model="input_value"
               confirm-type="search"
               :placeholder="searchplaceholder"
               type="text"
@@ -118,9 +118,7 @@ export default {
     // 获取焦点——取值
     focusPoint: function(e) {
       var that = this;
-      that.setData({
-        inputVal: e.detail.value,
-      });
+      that.inputVal = e.detail.value;
     },
     //搜索方法——手动搜索
     search: function(e) {
@@ -304,9 +302,8 @@ export default {
     // 清除搜索输入框
     clearInput: function(e) {
       var that = this;
-      that.setData({
-        input_value: "",
-      });
+      console.log("你点击了");
+      that.input_value = "";
     },
   },
 };

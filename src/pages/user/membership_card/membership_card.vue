@@ -56,106 +56,115 @@
       </view>
     </view>
     <!--积分明细-->
-    <view :class="currId == 0 ? 'wrap_show' : 'wrap_hide'">
-      <!--有数据-->
-      <view :style="integral_show">
-        <view class="particul_year">
-          <view class="particul_main">
-            <!--一条消费-->
-            <view class="particul_line">
-              <image
-                src="/static/static/images/card_out.png"
-                class="particul_logo"
-              ></image>
-              <view class="particul_inform">
-                <view class="inform_title">光面皮衣大褂</view>
-                <text class="inform_use">[商城消费]</text>
-                <view class="inform_time">09-02 12：45</view>
-                <view class="inform_money"
-                  >-500<text class="inform_name">积分</text></view
-                >
-              </view> </view
-            ><!--particul_line-->
-            <view class="particul_line">
-              <image
-                src="/static/static/images/card_enter.png"
-                class="particul_logo"
-              ></image>
-              <view class="particul_inform">
-                <view class="inform_title">充值</view>
-                <text class="inform_use">[充值]</text>
-                <view class="inform_time">09-02 12：45</view>
-                <view class="inform_money red_color"
-                  >+500<text class="inform_name">积分</text></view
-                >
-              </view> </view
-            ><!--particul_line-->
-          </view> </view
-        ><!--particul_year-->
+    <view v-if="uid">
+      <view :class="currId == 0 ? 'wrap_show' : 'wrap_hide'">
+        <!--有数据-->
+        <view :style="integral_show">
+          <view class="particul_year">
+            <view class="particul_main">
+              <!--一条消费-->
+              <view class="particul_line">
+                <image
+                  src="/static/static/images/card_out.png"
+                  class="particul_logo"
+                ></image>
+                <view class="particul_inform">
+                  <view class="inform_title">光面皮衣大褂</view>
+                  <text class="inform_use">[商城消费]</text>
+                  <view class="inform_time">09-02 12：45</view>
+                  <view class="inform_money"
+                    >-500<text class="inform_name">积分</text></view
+                  >
+                </view> </view
+              ><!--particul_line-->
+              <view class="particul_line">
+                <image
+                  src="/static/static/images/card_enter.png"
+                  class="particul_logo"
+                ></image>
+                <view class="particul_inform">
+                  <view class="inform_title">充值</view>
+                  <text class="inform_use">[充值]</text>
+                  <view class="inform_time">09-02 12：45</view>
+                  <view class="inform_money red_color"
+                    >+500<text class="inform_name">积分</text></view
+                  >
+                </view> </view
+              ><!--particul_line-->
+            </view> </view
+          ><!--particul_year-->
+        </view>
+        <!--无数据-->
+        <view class="none_oder_stati" :style="integral_hide">
+          <image
+            src="http://wximage.shedongyun.com/sdo2o/none_goods.png"
+          ></image>
+          <text>当前时间段没有消费明细哦~</text>
+        </view>
       </view>
-      <!--无数据-->
-      <view class="none_oder_stati" :style="integral_hide">
-        <image src="http://wximage.shedongyun.com/sdo2o/none_goods.png"></image>
-        <text>当前时间段没有消费明细哦~</text>
+      <!--余额明细-->
+      <view :class="currId == 1 ? 'wrap_show' : 'wrap_hide'">
+        <!--有数据-->
+        <view :style="balance_show">
+          <view class="particul_year">
+            <view class="particul_main">
+              <!--一条消费-->
+              <view class="particul_line">
+                <image
+                  src="/static/static/images/card_out.png"
+                  class="particul_logo"
+                ></image>
+                <view class="particul_inform">
+                  <view class="inform_title">光面皮衣大褂</view>
+                  <text class="inform_use">[商城消费]</text>
+                  <view class="inform_time">09-02 12：45</view>
+                  <view class="inform_money"
+                    >-500<text class="inform_name">积分</text></view
+                  >
+                </view> </view
+              ><!--particul_line-->
+              <view class="particul_line">
+                <image
+                  src="/static/static/images/card_out.png"
+                  class="particul_logo"
+                ></image>
+                <view class="particul_inform">
+                  <view class="inform_title">光面皮衣大褂</view>
+                  <text class="inform_use">[商城消费]</text>
+                  <view class="inform_time">09-02 12：45</view>
+                  <view class="inform_money"
+                    >-500<text class="inform_name">积分</text></view
+                  >
+                </view> </view
+              ><!--particul_line-->
+              <view class="particul_line">
+                <image
+                  src="/static/static/images/card_enter.png"
+                  class="particul_logo"
+                ></image>
+                <view class="particul_inform">
+                  <view class="inform_title">光面皮衣大褂</view>
+                  <text class="inform_use">[充值]</text>
+                  <view class="inform_time">09-02 12：45</view>
+                  <view class="inform_money red_color"
+                    >+500<text class="inform_name">积分</text></view
+                  >
+                </view> </view
+              ><!--particul_line-->
+            </view> </view
+          ><!--particul_year-->
+        </view>
+        <!--无数据-->
+        <view class="none_oder_stati" :style="balance_hide">
+          <image
+            src="http://wximage.shedongyun.com/sdo2o/none_goods.png"
+          ></image>
+          <text>当前时间段没有消费明细哦~</text>
+        </view>
       </view>
     </view>
-    <!--余额明细-->
-    <view :class="currId == 1 ? 'wrap_show' : 'wrap_hide'">
-      <!--有数据-->
-      <view :style="balance_show">
-        <view class="particul_year">
-          <view class="particul_main">
-            <!--一条消费-->
-            <view class="particul_line">
-              <image
-                src="/static/static/images/card_out.png"
-                class="particul_logo"
-              ></image>
-              <view class="particul_inform">
-                <view class="inform_title">光面皮衣大褂</view>
-                <text class="inform_use">[商城消费]</text>
-                <view class="inform_time">09-02 12：45</view>
-                <view class="inform_money"
-                  >-500<text class="inform_name">积分</text></view
-                >
-              </view> </view
-            ><!--particul_line-->
-            <view class="particul_line">
-              <image
-                src="/static/static/images/card_out.png"
-                class="particul_logo"
-              ></image>
-              <view class="particul_inform">
-                <view class="inform_title">光面皮衣大褂</view>
-                <text class="inform_use">[商城消费]</text>
-                <view class="inform_time">09-02 12：45</view>
-                <view class="inform_money"
-                  >-500<text class="inform_name">积分</text></view
-                >
-              </view> </view
-            ><!--particul_line-->
-            <view class="particul_line">
-              <image
-                src="/static/static/images/card_enter.png"
-                class="particul_logo"
-              ></image>
-              <view class="particul_inform">
-                <view class="inform_title">光面皮衣大褂</view>
-                <text class="inform_use">[充值]</text>
-                <view class="inform_time">09-02 12：45</view>
-                <view class="inform_money red_color"
-                  >+500<text class="inform_name">积分</text></view
-                >
-              </view> </view
-            ><!--particul_line-->
-          </view> </view
-        ><!--particul_year-->
-      </view>
-      <!--无数据-->
-      <view class="none_oder_stati" :style="balance_hide">
-        <image src="http://wximage.shedongyun.com/sdo2o/none_goods.png"></image>
-        <text>当前时间段没有消费明细哦~</text>
-      </view>
+    <view v-else class="integral_hidden">
+      请登录后查看
     </view>
   </view>
 </template>
@@ -174,6 +183,7 @@ var balance_page = 1;
 export default {
   data() {
     return {
+      uid: app.globalData.uid,
       giantView: "false",
       tabSelectname: "分类",
       years: years,

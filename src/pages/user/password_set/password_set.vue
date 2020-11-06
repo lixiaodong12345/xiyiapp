@@ -176,6 +176,7 @@ export default {
               title: '设置密码成功',
               duration: 2000
             });
+            app.globalData.payment_code == '已设置'
           } else {}
         }
       });

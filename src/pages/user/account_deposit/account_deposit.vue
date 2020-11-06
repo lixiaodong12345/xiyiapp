@@ -210,6 +210,7 @@ export default {
                 });
               },
               fail: function (res) {
+                console.log('res',res)
                 uni.showToast({
                   title: '取消支付',
                   icon: 'success',

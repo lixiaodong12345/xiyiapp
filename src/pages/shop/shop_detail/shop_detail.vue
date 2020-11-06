@@ -421,9 +421,9 @@ export default {
       var that = this;
       var uid = app.globalData.uid;
 
-      if (uid == null) {
+      if (!uid) {
         wx.showToast({
-          title: "请授权后关注",
+          title: "请登录后关注",
           icon: "success",
           duration: 1500,
         });
@@ -431,7 +431,6 @@ export default {
       }
 
       var merchid = e.currentTarget.dataset.merchid;
-
       if (e.currentTarget.dataset.type == "add") {
         wx.request({
           url: app.globalData.domain,

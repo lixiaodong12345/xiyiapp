@@ -91,7 +91,7 @@
           data-type="time"
           @tap="bar_switch"
           data-bar="1"
-          >新入住</text
+          >新入驻</text
         >
         <text
           :class="'one_module ' + (navBar == 2 ? 'current_title' : '')"

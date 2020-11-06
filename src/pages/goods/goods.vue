@@ -269,7 +269,7 @@
       </view>
     </block>
   </view> -->
-  <view class="Technical_support" style="height:200rpx; margin-top:70rpx;">
+  <view class="Technical_support">
     <text class="Technical_support_text">{{copyright}}</text>
   </view>
 
@@ -952,7 +952,7 @@ export default {
             });
           } else {
             wx.showToast({
-              title: res.data.msg,
+              title: '购物车中已存在',
               icon: 'success',
               duration: 1500
             });

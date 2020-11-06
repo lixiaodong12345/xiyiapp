@@ -170,47 +170,55 @@ export default {
       var that = this;
       console.log("删除++++");
       var user_info = app.globalData;
+      wx.showModal({
+        title: "删除提示",
+        content: "您确定要删除这款服务吗？",
+        success: function(res) {
+          if (res.confirm) {
+            // 发送请求删除
+            if (e.currentTarget.dataset.coll_id) {
+              console.log("1111111"); // 发送请求删除该收藏
 
-      if (e.currentTarget.dataset.coll_id) {
-        console.log("1111111"); // 发送请求删除该收藏
+              wx.request({
+                url: app.globalData.domain,
+                data: {
+                  a: "goods",
+                  do: "delcollect",
+                  uid: user_info.uid,
+                  gid: e.currentTarget.dataset.goods_id,
+                  key: app.globalData.key,
+                },
+                header: {
+                  "content-type": "application/json",
+                },
+                success: function(res) {
+                  console.log("删除返回数据", res);
 
-        wx.request({
-          url: app.globalData.domain,
-          data: {
-            a: "goods",
-            do: "delcollect",
-            uid: user_info.uid,
-            gid: e.currentTarget.dataset.goods_id,
-            key: app.globalData.key,
-          },
-          header: {
-            "content-type": "application/json",
-          },
-          success: function(res) {
-            console.log("删除返回数据", res);
-
-            if (res.data.code == 1) {
-              wx.showToast({
-                title: res.data.msg,
-                icon: "success",
-                duration: 1500,
-                success: function() {
-                  setTimeout(function() {
-                    pages = 0;
-                    that.load_list();
-                  }, 1000);
+                  if (res.data.code == 1) {
+                    wx.showToast({
+                      title: res.data.msg,
+                      icon: "success",
+                      duration: 1500,
+                      success: function() {
+                        setTimeout(function() {
+                          pages = 0;
+                          that.load_list();
+                        }, 1000);
+                      },
+                    });
+                  } else {
+                    wx.showToast({
+                      title: res.data.msg,
+                      icon: "success",
+                      duration: 1500,
+                    });
+                  }
                 },
               });
-            } else {
-              wx.showToast({
-                title: res.data.msg,
-                icon: "success",
-                duration: 1500,
-              });
             }
-          },
-        });
-      }
+          }
+        },
+      });
     },
     cate_skip: function() {
       setTimeout(function() {
