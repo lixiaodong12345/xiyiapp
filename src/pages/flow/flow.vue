@@ -334,6 +334,7 @@ export default {
   components: {},
   props: {},
   onLoad: function (query) {
+    console.log('query',query)
     var that = this;
     var uid = app.globalData.uid;
     var is_fast = query.is_fast ? query.is_fast : 0;

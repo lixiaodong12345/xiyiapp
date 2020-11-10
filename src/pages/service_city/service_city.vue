@@ -112,6 +112,7 @@ export default {
     },
     //点击切换
     locate_switch: function(e) {
+      console.log("e", e);
       var that = this;
       var switch_value = e.currentTarget.dataset.city;
       wx.setStorageSync("currLocate", switch_value);

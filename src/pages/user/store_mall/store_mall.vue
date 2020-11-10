@@ -473,46 +473,76 @@ export default {
         sourceType: ['album', 'camera'],
         // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
+          console.log('res',res)
           var tempFilePaths = res.tempFilePaths;
-          uni.uploadFile({
-            // method:'POST',
-            url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
-            filePath: tempFilePaths[0],
-            name: 'file',
+          uni.request({
+            method:'POST',
+            // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+            url:'http://wsxy.sns318.net/merchant/index.php',
+            // data:JSON.stringify({
+            //   a:'file',
+            //   do:'uploadImage',
+            //   file:'res.tempFiles[0].path',
+            //   key:app.globalData.key
+            // }),
             header: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "application/json"
             },
-            success: function (res) {
-              var data = JSON.parse(res.data);
-              if (name == "ShopPtOne") {
-                card_behind = data.data;
-                that.setData({
-                  img01: data.data,
-                  ShopPtOne: data.data
-                });
-              } else if (name == "ShopPtTwo") {
-                card_front = data.data;
-                that.setData({
-                  img02: data.data,
-                  ShopPtTwo: data.data
-                });
-              } else if (name == "ShopPtThrree") {
-                card_front = data.data;
-                that.setData({
-                  img03: data.data,
-                  ShopPtThrree: data.data
-                });
-              } else if (name == "ShopPtfour") {
-                card_front = data.data;
-                that.setData({
-                  img04: data.data,
-                  ShopPtfour: data.data
-                });
-              }
-            },
-            fail: function (res) {
+            success:function(res){
+              console.log('res1',res)
             }
-          });
+          })
+          // uni.uploadFile({
+          //   // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+          //   url:'http://wsxy.sns318.net/merchant/index.php',
+          //   name: 'file',
+          //   filePath: tempFilePaths[0],
+          //   formData:{
+          //     c:'ewei_o2o',
+          //     a:'file',
+          //     do:'uploadImage',
+          //     key:app.globalData.key,
+          //     file:res.tempFiles[0].path
+          //   },
+          //   '_method': 'POST',
+          //   // file:res.tempFiles[0].path,
+            
+          //   header: {
+          //     "Content-Type": "multipart/form-data"
+          //   },
+          //   success: function (res) {
+          //     console.log('res',res)
+          //     var data = JSON.parse(res.data);
+          //     if (name == "ShopPtOne") {
+          //       card_behind = data.data;
+          //       that.setData({
+          //         img01: data.data,
+          //         ShopPtOne: data.data
+          //       });
+          //     } else if (name == "ShopPtTwo") {
+          //       card_front = data.data;
+          //       that.setData({
+          //         img02: data.data,
+          //         ShopPtTwo: data.data
+          //       });
+          //     } else if (name == "ShopPtThrree") {
+          //       card_front = data.data;
+          //       that.setData({
+          //         img03: data.data,
+          //         ShopPtThrree: data.data
+          //       });
+          //     } else if (name == "ShopPtfour") {
+          //       card_front = data.data;
+          //       that.setData({
+          //         img04: data.data,
+          //         ShopPtfour: data.data
+          //       });
+          //     }
+          //   },
+          //   fail: function (res) {
+          //     console.log('res',res)
+          //   }
+          // });
         }
       });
     },

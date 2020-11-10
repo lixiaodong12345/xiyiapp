@@ -619,6 +619,7 @@ export default {
   components: {},
   props: {},
   onLoad: function (options) {
+    console.log('options',options)
     //城市是否开通服务接口
     var that = this;
     wx.getLocation({
@@ -687,7 +688,8 @@ export default {
     that.drag_drop(); //登录字段获取
 
   },
-  onShow: function () {
+  onShow: function (option) {
+    console.log('option',option)
     var that = this;
     var judge_city = app.globalData.switch_type;
 
