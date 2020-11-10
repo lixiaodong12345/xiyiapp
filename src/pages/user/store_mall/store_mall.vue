@@ -476,15 +476,17 @@ export default {
           console.log('res',res)
           var tempFilePaths = res.tempFilePaths;
           uni.request({
+            url:'https://wsxy.sns318.net/merchant/index.php',
             method:'POST',
             // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
-            url:'http://wsxy.sns318.net/merchant/index.php',
-            // data:JSON.stringify({
-            //   a:'file',
-            //   do:'uploadImage',
-            //   file:'res.tempFiles[0].path',
-            //   key:app.globalData.key
-            // }),
+            
+            data:{
+              c:'ewei_o2o',
+              a:'file',
+              do:'uploadImage',
+              file:'res.tempFiles[0].path',
+              key:app.globalData.key
+            },
             header: {
               "Content-Type": "application/json"
             },
@@ -493,18 +495,18 @@ export default {
             }
           })
           // uni.uploadFile({
-          //   // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
-          //   url:'http://wsxy.sns318.net/merchant/index.php',
+          //   url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+          //   // url:'http://wsxy.sns318.net/merchant/index.php',
           //   name: 'file',
           //   filePath: tempFilePaths[0],
-          //   formData:{
-          //     c:'ewei_o2o',
-          //     a:'file',
-          //     do:'uploadImage',
-          //     key:app.globalData.key,
-          //     file:res.tempFiles[0].path
-          //   },
-          //   '_method': 'POST',
+          //   // formData:{
+          //   //   c:'ewei_o2o',
+          //   //   a:'file',
+          //   //   do:'uploadImage',
+          //   //   key:app.globalData.key,
+          //   //   file:res.tempFiles[0].path
+          //   // },
+          //   // '_method': 'POST',
           //   // file:res.tempFiles[0].path,
             
           //   header: {

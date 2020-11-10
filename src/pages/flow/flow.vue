@@ -539,7 +539,7 @@ export default {
           key: app.globalData.key,
           is_fast: that.is_fast,
           address_id: address_id,
-          merchid: merchid
+          // merchid: merchid
         },
         header: {
           'content-type': 'application/json'
