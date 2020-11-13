@@ -58,7 +58,7 @@ export default {
     dataInform: function () {
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -146,7 +146,7 @@ export default {
       console.log('e',e,recharge_money)
       var that = this;
       var user_info = app.globalData.userInfo;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       if (recharge_money == '') {
         uni.showToast({
           title: '请输入充值金额',

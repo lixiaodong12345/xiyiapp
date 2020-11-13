@@ -336,7 +336,7 @@ export default {
   onLoad: function (query) {
     console.log('query',query)
     var that = this;
-    var uid = app.globalData.uid;
+    var uid = app.globalData.uid
     var is_fast = query.is_fast ? query.is_fast : 0;
     that.is_fast = is_fast;
     merchid = query.merchid;
@@ -528,7 +528,7 @@ export default {
        * openid不能为空
        */
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -902,7 +902,7 @@ export default {
     match_password: function () {
       var that = this;
       var pwdVal = that.pwdVal;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -943,7 +943,7 @@ export default {
     //密码成功后回调的函数
     callback_passd: function () {
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       //生成订单
       uni.request({
         url: app.globalData.domain,

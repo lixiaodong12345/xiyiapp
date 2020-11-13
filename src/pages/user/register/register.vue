@@ -290,17 +290,42 @@ export default {
           "Content-Type": "application/json",
         },
         success: function(res) {
-          // console.log("注册", res);
+          console.log("注册", res);
           if (res.data.code === 0) {
             wx.showToast({
               icon: "none",
-              title: "注册成功,请去登录",
+              title: "注册成功",
             });
             setTimeout(function() {
-              uni.navigateTo({
-                url: "/pages/user/userLogin/userLogin",
+              uni.request({
+                url: app.globalData.domain,
+                data: {
+                  a: "auth",
+                  do: "account_login",
+                  key: app.globalData.key,
+                  username: username,
+                  password: password,
+                },
+                success: function(res) {
+                  if (res.data.code != 1) {
+                    uni.showToast({
+                      icon: "none",
+                      title: res.data.msg,
+                    });
+                  } else {
+                    app.globalData.uid = res.data.data.id;
+                    app.globalData.userInfo = res.data.data;
+
+                    uni.switchTab({
+                      url: "/pages/index",
+                    });
+                    //   uni.switchTab({
+                    //     url: "/pages/cart/cart",
+                    //   });
+                  }
+                },
               });
-            }, 500);
+            }, 1500);
           } else if (res.data.code === 1) {
             wx.showToast({
               title: res.data.msg,

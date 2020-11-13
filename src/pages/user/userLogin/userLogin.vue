@@ -347,17 +347,18 @@ export default {
           } else {
             app.globalData.uid = res.data.data.id;
             app.globalData.userInfo = res.data.data;
+            uni.setStorageSync("storage_login", res.data.data);
             uni.showToast({
               icon: "success",
               title: "登录成功",
             });
             setTimeout(function() {
-              // uni.switchTab({
-              //   url: "/pages/index",
-              // });
               uni.switchTab({
-                url: "/pages/cart/cart",
+                url: "/pages/index",
               });
+              //   uni.switchTab({
+              //     url: "/pages/cart/cart",
+              //   });
             }, 500);
           }
         },

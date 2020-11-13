@@ -6,7 +6,7 @@
         src="/static/static/images/set_right.png"
         class="set_right"
       ></image>
-      <text class="passd_set" v-if="payment_code == '未设置'">未设置</text>
+      <text class="passd_set" v-if="!storage_set_password">未设置</text>
       <text class="passd_set" v-else>已设置</text>
     </view>
     <!-- <view class="password_line">
@@ -63,6 +63,7 @@ export default {
   data() {
     return {
       payment_code: app.globalData.payment_code,
+      storage_set_password: "",
     };
   },
 
@@ -72,6 +73,7 @@ export default {
     console.log("app", app);
     this.payment_code = app.globalData.payment_code;
     console.log("一斤页面", app.globalData.payment_code, this.payment_code);
+    this.storage_set_password = uni.getStorageSync("getStorageSync");
   },
   onReady: function() {},
   onShow: function() {},
@@ -91,6 +93,7 @@ export default {
             } else {
               app.globalData.uid = "";
               app.globalData.userInfo = "";
+              uni.removeStorageSync("storage_login");
               uni.reLaunch({
                 url: "/pages/user/index",
               });

@@ -87,7 +87,8 @@
           <block v-for="(item, index) in vateList" :key="index">
             <view class="cont_one">
               <label>
-                <text :class="'cont_name ' + (item.checked==true?'select_nav':'')">{{item.groupname}}</text>
+                <text :class="'cont_name ' + (item.checked==true?'select_nav':'')">
+                  {{item.groupname}}</text>
                 <radio :value="item.id" :checked="item.checked" class="cont_check"></radio>
               </label>
             </view>

@@ -53,7 +53,7 @@ export default {
       phone_numb: "",
       loading: false,
       none_style: "",
-      have_style: ""
+      have_style: "",
     };
   },
 
@@ -61,6 +61,7 @@ export default {
   props: {},
   onLoad: function (options) {
     var that = this;
+
   },
   onReady: function () {},
   onShow: function () {},
@@ -156,7 +157,7 @@ export default {
       var that = this;
       var codeValue = e.detail.value.code_value;
       var passdValue = e.detail.value.passd_value;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -177,6 +178,7 @@ export default {
               duration: 2000
             });
             app.globalData.payment_code == '已设置'
+              uni.setStorageSync('storage_set_password', 'ok');
           } else {}
         }
       });

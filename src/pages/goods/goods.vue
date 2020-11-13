@@ -189,8 +189,14 @@
           </view>
           <!-- <text class="store_inform">全部产品：{{shop.goodsnum}}件</text> -->
         </view>
-        <text v-if="shop.goods_info.merchid!=0" @tap="attention" data-type="add" :data-merchid="shop.goods_info.merchid" :style="add" class="select_intro">点击关注</text>
-        <text v-if="shop.goods_info.merchid!=0" @tap="attention" data-type="cancel" :data-merchid="shop.goods_info.merchid" :style="cancel" class="select_intro">取消关注</text>
+        <text v-if="shop.goods_info.merchid!=0" @tap="attention" 
+        data-type="add"
+         :data-merchid="shop.goods_info.merchid" :style="add" 
+         class="select_intro">点击关注</text>
+        <text v-if="shop.goods_info.merchid!=0" @tap="attention" 
+        data-type="cancel" :data-merchid="shop.goods_info.merchid" 
+        :style="cancel"
+         class="select_intro">取消关注</text>
       </view>
     </view>
     <!--进入店铺-->
@@ -236,7 +242,7 @@
   <!--详情内容-->
   <view class="borderh15"></view>
   <view class="main-product">
-    <view class="shop_intro">商家介绍</view>
+    <view class="shop_intro">服务详情</view>
     <!-- <view class="main-product-title">
       <text data-type='01' bindtap='info_box' class="{{pro_typebox=='01'?'active':''}}">商品介绍</text>
       <text data-type='02' bindtap='info_box' class="{{pro_typebox=='02'?'active':''}}">规格参数</text>
@@ -329,13 +335,13 @@
       <view class="attr_boxs">
         <block v-for="(item, index) in goods_properties" :key="index" v-if="goods_properties != 'null'">
           <view class="waiwrapper">
-            <view class="attr_title">{{item.title}}</view>
+            <!-- <view class="attr_title">{{item.title}}</view> -->
             <view>
               <radio-group class="attr_border">
                 <label v-for="(values, index2) in item.spec_items" 
-                :key="index2" @tap="select_scalea" :id="goods_info_id" 
+                :key="index2" @click="select_scalea" :id="goods_info_id" 
                 :data-id="values.id" :data-name="id" :data-ck="checkId[id]" 
-                :class="'attr_item ' + (checkId[id] == values.id?'active':'')">
+                :class="'attr_item ' + (checkId[id] == values.id ? 'active':'')">
                   <view v-if="checkId[id] == values.id" style="display:inline-block;" class="attr_item_select">
                     <radio class="attr_selsec"></radio>{{values.title}}
                   </view>
@@ -506,7 +512,7 @@ var prime_type = "";
 var currType;
 var haveLimit = '';
 var allLimit = '';
-var Uid = app.globalData.uid
+var uid = app.globalData.uid
 import parser from "@/component/jyf-parser/jyf-parser";
 export default {
   data() {
@@ -585,7 +591,8 @@ export default {
       commentNum: "",
       shareImg: "",
       add_html: "",
-      goodsSpec:''
+      goodsSpec:'',
+      globalData_specsstrs:''
     };
   },
 
@@ -918,10 +925,11 @@ export default {
       
 
       var goods_string = goods_specsarr.join("_");
-
+      console.log('goods_string',goods_string)
       var addId = event.currentTarget.dataset.id;
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
+      let globalData_specsstrs = that.globalData_specsstrs
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -933,7 +941,7 @@ export default {
           goods_num: goods_num,
           is_fast: 0,
           uid: app.globalData.uid,
-          goods_spec: goods_string
+          goods_spec: globalData_specsstrs
         },
         header: {
           'Content-Type': 'application/json'
@@ -1069,7 +1077,8 @@ export default {
       var that = this;
       currType = 0;
       that.setData({
-        currType: currType
+        currType: currType,
+        globalData_specsstrs:event.currentTarget.dataset.id
       });
       var openid = wx.getStorageSync('userInfo').openid;
       var flag_name = event.currentTarget.dataset.name;
@@ -1095,6 +1104,8 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
+          console.log('specsarr',that.specsarr)
+
           if (res.data.code == 1 && res.data.data.title && res.data.data.marketprice) {
             var stock = res.data.data.stock;
             that.setData({
@@ -1558,12 +1569,11 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-            console.log('res',res,res,res.data.data.goods_info.content)
+            console.log('res',res)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
           that.add_html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
           // that.add_html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
           that.goodsSpec = res.data.data.goods_spec.length
-          console.log('sdvs',res.data.data.goods_spec,that.goodsSpec);
           if (res.data.code != 1) {
             that.setData({
               tis: '您要的商品不见了...',
@@ -1719,6 +1729,7 @@ export default {
             a: 'follow',
             do: 'add',
             uid: app.globalData.uid,
+            //商户id
             merchid: merchid,
             key: app.globalData.key
           },
@@ -1730,6 +1741,8 @@ export default {
               add: "display:none",
               cancel: "display:block"
             });
+            // uni.setStorageSync("storage_attention", '已关注');
+            // app.globalData.shop_attention == '已关注'
             wx.showToast({
               title: "关注成功",
               icon: 'success',
@@ -1755,6 +1768,8 @@ export default {
               add: "display:block",
               cancel: "display:none"
             });
+            // uni.removeStorageSync('storage_key');
+            // app.globalData.shop_attention == '未关注'
             wx.showToast({
               title: "取消关注成功",
               icon: 'success',

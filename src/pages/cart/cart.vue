@@ -43,9 +43,9 @@
                 <checkbox :value="list.id" :id="'a-' + list.id"></checkbox>
                 <image :src="list.src"></image>
               </label>
-              <image class="cart_list_image" :src="list.thumb"></image>
+              <image class="cart_list_image" :src="list.thumb" :data-id="list.goodsid" @click.stop="goods_tail"></image>
               <view class="goods_one">
-                <view class="goods_title_price">
+                <view class="goods_title_price" :data-id="list.goodsid" @click.stop="goods_tail">
                   <text class="goods_title">{{list.title}}</text>
                   <text class="take_style">上门取件</text>
                 </view> 
@@ -146,12 +146,12 @@ export default {
     var that = this;
     var is_fast = query.is_fast ? query.is_fast : 0;
     that.is_fast = is_fast;
-    var uid = app.globalData.uid;
+    var uid = app.globalData.uid
   },
   onShow: function () {
     // 读取购物
     var that = this;
-    var uid = app.globalData.uid;
+    var uid = app.globalData.uid
 
     if (uid == '') {
       that.setData({
@@ -168,6 +168,7 @@ export default {
     }
     that.shopCart_list()
   },
+  
   // 左滑动删除结束*******************************************
   //转发分享按钮
   onShareAppMessage: function () {
@@ -180,13 +181,20 @@ export default {
         url:'/pages/user/userLogin/userLogin'
       })
     },
+    goods_tail:function(e){
+      console.log('eee',e)
+      let goods_id = e.currentTarget.dataset.id
+      uni.navigateTo({
+        url: '/pages/goods/goods?goods_id=' + goods_id
+      });
+    },
     //数据列表请求
     shopCart_list: function () {
       /**
        * openid不能为空 可能会有多个商户id
        */
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -236,7 +244,7 @@ export default {
     changebox: function (e) {
       console.log('发生改变',e)
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       var carlsit = that.cart_list;
       var cat_id = "";
       var sid_id = "";
@@ -318,7 +326,7 @@ export default {
     //全选商品事件
     all_select: function (e) {
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       if (e.currentTarget.dataset.type == 1) {
         that.setData({
           all_type: 0
@@ -398,7 +406,7 @@ export default {
     },
     send_change_list: function (check_list, id, number_jia, number_jian, number_change) {
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       wx.request({
         url: app.globalData.domain,
         data: {
@@ -462,7 +470,7 @@ export default {
       var that = this;
       var but_id = e.currentTarget.dataset.but_id;
       var userInfo = app.globalData.userInfo;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       wx.request({
         url: app.globalData.domain,
         data: {

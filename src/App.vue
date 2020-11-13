@@ -44,6 +44,7 @@ export default {
     currLocate: "",
     switch_type: 0,
     bar_title: "",
+    shop_attention: "未关注",
     integral: "",
     payment_code: "未设置",
     //获取当前登录微信用户信息

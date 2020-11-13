@@ -33,10 +33,10 @@
             "Bluetooth" : {},
             "Contacts" : {},
             "iBeacon" : {},
-            "Push" : {},
             "Payment" : {},
             "Share" : {},
-            "Speech" : {}
+            "Speech" : {},
+            "Push" : {}
         },
         /* 模块配置 */
         "distribute" : {

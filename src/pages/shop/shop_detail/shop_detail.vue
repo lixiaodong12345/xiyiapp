@@ -31,32 +31,32 @@
           <text class="comp_firm">{{ shop_info.merchgroupname }}</text>
         </view>
         <!--关注-->
-        <view
-          class="focus_before"
+        <text
           @tap="attention"
           data-type="add"
           :data-merchid="shop_info.id"
           :style="add"
+          class="focus_before"
         >
           <image
             src="http://wximage.shedongyun.com/sdo2o/focus_no.png"
             class="focus_no"
           ></image>
           <text class="focus_name">关注</text>
-        </view>
-        <view
-          class="focus_before focus_after"
+        </text>
+        <text
           @tap="attention"
           data-type="cancel"
           :data-merchid="shop_info.id"
           :style="cancel"
+          class="focus_before focus_after"
         >
           <image
             src="http://wximage.shedongyun.com/sdo2o/focus_been.png"
             class="focus_no"
           ></image>
           <text class="focus_name">已关注</text>
-        </view>
+        </text>
         <!--电话-->
         <view @tap="collphone" :data-tel="shop_info.mobile" class="make_phone">
           <view class="phone_main">
@@ -356,6 +356,8 @@ export default {
       best_list: "",
       article_productContent: "",
       html: "",
+      shop_attention: "",
+      storage_attention: "",
     };
   },
 
@@ -364,17 +366,21 @@ export default {
   },
   props: {},
   onLoad: function(options) {
+    // this.storage_attention = uni.getStorageSync("storage_attention");
+    console.log("that", this.storage_attention);
     shopid = options.id;
+    // this.shop_attention = app.globalData.shop_attention;
+    // console.log("shop_attention", this.shop_attention);
     wx.setNavigationBarTitle({
       title: app.globalData.bar_title,
     });
+    // this.attention();
+    this.getSHopinfo();
   },
   onReady: function() {},
 
   /*生命周期函数--监听页面显示*/
-  onShow: function() {
-    this.getSHopinfo();
-  },
+  onShow: function() {},
 
   /*生命周期函数--监听页面隐藏*/
   onHide: function() {},
@@ -445,27 +451,16 @@ export default {
             "Content-Type": "application/json",
           },
           success: function(res) {
-            if (res.data.code == 1) {
-              that.setData({
-                add: "display:none",
-                cancel: "display:block",
-              });
-              wx.showToast({
-                title: "关注成功",
-                icon: "success",
-                duration: 1500,
-              });
-            } else {
-              that.setData({
-                add: "display:blocke",
-                cancel: "display:none",
-              });
-              wx.showToast({
-                title: "关注失败",
-                icon: "success",
-                duration: 1500,
-              });
-            }
+            that.setData({
+              add: "display:none",
+              cancel: "display:block",
+            });
+            // uni.setStorageSync("storage_attention", "已关注");
+            wx.showToast({
+              title: "关注成功",
+              icon: "success",
+              duration: 1500,
+            });
           },
         });
       } else {
@@ -482,27 +477,16 @@ export default {
             "Content-Type": "application/json",
           },
           success: function(res) {
-            if (res.data.code == 1) {
-              that.setData({
-                add: "display:block",
-                cancel: "display:none",
-              });
-              wx.showToast({
-                title: "取消关注成功",
-                icon: "success",
-                duration: 1500,
-              });
-            } else {
-              that.setData({
-                add: "display:none",
-                cancel: "display:block",
-              });
-              wx.showToast({
-                title: "取消关注失败",
-                icon: "success",
-                duration: 1500,
-              });
-            }
+            that.setData({
+              add: "display:block",
+              cancel: "display:none",
+            });
+            // uni.removeStorageSync("storage_attention");
+            wx.showToast({
+              title: "取消关注成功",
+              icon: "success",
+              duration: 1500,
+            });
           },
         });
       }

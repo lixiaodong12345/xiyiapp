@@ -455,6 +455,13 @@ export default {
     },
     //商家入驻跳转
     merchant_skip: function() {
+      if (!app.globalData.uid) {
+        wx.showToast({
+          title: "请登录后申请",
+          duration: 1500,
+        });
+        return;
+      }
       uni.navigateTo({
         url: "/pages/user/store_mall/store_mall",
       });

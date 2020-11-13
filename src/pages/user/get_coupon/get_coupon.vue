@@ -206,7 +206,7 @@ export default {
   onShow: function() {
     var that = this;
     that.getCouponByStore();
-    uid = app.globalData.uid;
+    var uid = app.globalData.uid;
   },
   onHide: function() {},
   onUnload: function() {},

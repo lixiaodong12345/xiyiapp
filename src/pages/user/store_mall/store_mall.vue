@@ -349,7 +349,7 @@ export default {
   props: {},
   onLoad: function (options) {
     var that = this;
-    var uid = app.globalData.uid;
+    var uid = app.globalData.uid
     that.setData({
       uid: uid
     });
@@ -465,7 +465,7 @@ export default {
     upImage: function (e) {
       var name = e.target.id;
       var that = this;
-      uni.chooseImage({
+      wx.chooseImage({
         count: 1,
         // 默认9
         sizeType: ['original', 'compressed'],
@@ -475,79 +475,146 @@ export default {
         success: function (res) {
           console.log('res',res)
           var tempFilePaths = res.tempFilePaths;
-          uni.request({
-            url:'https://wsxy.sns318.net/merchant/index.php',
-            method:'POST',
-            // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+          wx.uploadFile({
+            // url: app.globalData.domain,
+            // url:'http://wsxy.sns318.net/merchant/index.php?c=ewei_o2o',
+            url:'https://wsxy.sns318.net/merchant/index.php?c=ewei_o2o',
+            name: 'file',
+            filePath: tempFilePaths[0],
+		        formData: {
+			'a': 'file',
+			'c': 'ewei_o2o',
+      'key': app.globalData.key,
+      'do':'uploadImage',
+        // 'file':
+		    },
             
-            data:{
-              c:'ewei_o2o',
-              a:'file',
-              do:'uploadImage',
-              file:'res.tempFiles[0].path',
-              key:app.globalData.key
-            },
             header: {
-              "Content-Type": "application/json"
+              // "Content-Type": "multipart/form-data"
             },
-            success:function(res){
-              console.log('res1',res)
+            success: function (res) {
+              console.log('res',res)
+              var data = JSON.parse(res.data);
+              if (name == "ShopPtOne") {
+                card_behind = data.data;
+                that.setData({
+                  img01: data.data,
+                  ShopPtOne: data.data
+                });
+              } else if (name == "ShopPtTwo") {
+                card_front = data.data;
+                that.setData({
+                  img02: data.data,
+                  ShopPtTwo: data.data
+                });
+              } else if (name == "ShopPtThrree") {
+                card_front = data.data;
+                that.setData({
+                  img03: data.data,
+                  ShopPtThrree: data.data
+                });
+              } else if (name == "ShopPtfour") {
+                card_front = data.data;
+                that.setData({
+                  img04: data.data,
+                  ShopPtfour: data.data
+                });
+              }
+            },
+            fail: function (res) {
+              console.log('res',res)
             }
-          })
-          // uni.uploadFile({
-          //   url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
-          //   // url:'http://wsxy.sns318.net/merchant/index.php',
-          //   name: 'file',
-          //   filePath: tempFilePaths[0],
-          //   // formData:{
-          //   //   c:'ewei_o2o',
-          //   //   a:'file',
-          //   //   do:'uploadImage',
-          //   //   key:app.globalData.key,
-          //   //   file:res.tempFiles[0].path
-          //   // },
-          //   // '_method': 'POST',
-          //   // file:res.tempFiles[0].path,
-            
-          //   header: {
-          //     "Content-Type": "multipart/form-data"
-          //   },
-          //   success: function (res) {
-          //     console.log('res',res)
-          //     var data = JSON.parse(res.data);
-          //     if (name == "ShopPtOne") {
-          //       card_behind = data.data;
-          //       that.setData({
-          //         img01: data.data,
-          //         ShopPtOne: data.data
-          //       });
-          //     } else if (name == "ShopPtTwo") {
-          //       card_front = data.data;
-          //       that.setData({
-          //         img02: data.data,
-          //         ShopPtTwo: data.data
-          //       });
-          //     } else if (name == "ShopPtThrree") {
-          //       card_front = data.data;
-          //       that.setData({
-          //         img03: data.data,
-          //         ShopPtThrree: data.data
-          //       });
-          //     } else if (name == "ShopPtfour") {
-          //       card_front = data.data;
-          //       that.setData({
-          //         img04: data.data,
-          //         ShopPtfour: data.data
-          //       });
-          //     }
-          //   },
-          //   fail: function (res) {
-          //     console.log('res',res)
-          //   }
-          // });
+          });
         }
       });
     },
+    // upImage: function (e) {
+    //   var name = e.target.id;
+    //   var that = this;
+    //   uni.chooseImage({
+    //     count: 1,
+    //     // 默认9
+    //     sizeType: ['original', 'compressed'],
+    //     // 可以指定是原图还是压缩图，默认二者都有
+    //     sourceType: ['album', 'camera'],
+    //     // 可以指定来源是相册还是相机，默认二者都有
+    //     success: function (res) {
+    //       console.log('res',res)
+    //       var tempFilePaths = res.tempFilePaths;
+    //       uni.request({
+    //         url:'https://wsxy.sns318.net/merchant/index.php',
+    //         // url:'https://wsxy.sns318.net/merchant/index.php?c=ewei_o2o&a=file',
+    //         method:'POST',
+    //         // url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+            
+    //         data:{
+    //           c:'ewei_o2o',
+    //           a:'file',
+    //           do:'uploadImage',
+    //           file:res.tempFiles[0].path,
+    //           key:app.globalData.key
+    //         },
+    //         header: {
+    //           "Content-Type": "application/json"
+    //         },
+    //         success:function(res){
+    //           console.log('res1',res)
+    //         }
+    //       })
+    //       // uni.uploadFile({
+    //       //   url: app.globalData.domain + '&a=file&do=uploadImage&file=' + res.tempFiles[0].path + '&key=' + app.globalData.key,
+    //       //   // url:'http://wsxy.sns318.net/merchant/index.php',
+    //       //   name: 'file',
+    //       //   filePath: tempFilePaths[0],
+    //       //   // formData:{
+    //       //   //   c:'ewei_o2o',
+    //       //   //   a:'file',
+    //       //   //   do:'uploadImage',
+    //       //   //   key:app.globalData.key,
+    //       //   //   file:res.tempFiles[0].path
+    //       //   // },
+    //       //   // '_method': 'POST',
+    //       //   // file:res.tempFiles[0].path,
+            
+    //       //   header: {
+    //       //     "Content-Type": "multipart/form-data"
+    //       //   },
+    //       //   success: function (res) {
+    //       //     console.log('res',res)
+    //       //     var data = JSON.parse(res.data);
+    //       //     if (name == "ShopPtOne") {
+    //       //       card_behind = data.data;
+    //       //       that.setData({
+    //       //         img01: data.data,
+    //       //         ShopPtOne: data.data
+    //       //       });
+    //       //     } else if (name == "ShopPtTwo") {
+    //       //       card_front = data.data;
+    //       //       that.setData({
+    //       //         img02: data.data,
+    //       //         ShopPtTwo: data.data
+    //       //       });
+    //       //     } else if (name == "ShopPtThrree") {
+    //       //       card_front = data.data;
+    //       //       that.setData({
+    //       //         img03: data.data,
+    //       //         ShopPtThrree: data.data
+    //       //       });
+    //       //     } else if (name == "ShopPtfour") {
+    //       //       card_front = data.data;
+    //       //       that.setData({
+    //       //         img04: data.data,
+    //       //         ShopPtfour: data.data
+    //       //       });
+    //       //     }
+    //       //   },
+    //       //   fail: function (res) {
+    //       //     console.log('res',res)
+    //       //   }
+    //       // });
+    //     }
+    //   });
+    // },
     send_info: function (e) {
       var that = this;
       var uid = that.uid;
@@ -857,7 +924,7 @@ export default {
     //待审核中状态下 显示信息
     merch_states: function () {
       var that = this;
-      var uid = app.globalData.uid;
+      var uid = app.globalData.uid
       wx.request({
         method: 'get',
         url: app.globalData.domain,
