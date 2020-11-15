@@ -116,7 +116,8 @@
           <block v-for="(item, index) in labelList" :key="index">
             <view class="cont_one">
               <label>
-                <text :class="'cont_name ' + (item.checked==true?'select_nav':'')">{{item.levelname}}</text>
+                <text class="cont_name" :class="{select_nav:item.checked}">{{item.levelname}}</text>
+                <!-- <text :class="'cont_name ' + (item.checked==true?'select_nav':'')">{{item.levelname}}</text> -->
                 <radio :value="item.id" :checked="item.checked" class="cont_check"></radio>
               </label>
             </view>
@@ -519,6 +520,7 @@ export default {
         vateList: vateList
       });
       merchgroup = provid_value;
+      that.$forceUpdate()
     },
     //服务形式
     checkformChange: function (e) {
@@ -555,6 +557,7 @@ export default {
         labelList: labelList
       });
       merchlevel = label_value;
+      that.$forceUpdate()
     },
     //交易方式
     checkwayChange: function (e) {

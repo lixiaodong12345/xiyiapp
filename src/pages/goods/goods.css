@@ -266,12 +266,6 @@
   margin-left: 10rpx;
 }
 
-.waiwrapper {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  border-top: 1px solid #f2f2f2;
-}
 
 .ht_block {
   display: block;
@@ -654,8 +648,37 @@ shopping_img_text {
 .attr_boxs {
   margin-bottom: 15px;
   display: block;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 10px;
   width: 100%;
+}
+
+.guige_box_norms {
+  font-size: 16px;
+  padding-left: 10px;
+  padding-bottom: 6px;
+}
+
+
+.waiwrapper {
+  display: block;
+  overflow: hidden;
+  padding: 0 4px;
+  margin: 0 3px;
+  border: 1px solid #f2f2f2;
+}
+
+
+.waiwrapper .attr_title {
+  margin: 0;
+}
+
+.is_attr_title {
+  color: #55bcc5;
+  border: 1px solid #55bcc5;
 }
 
 .num_item1 {

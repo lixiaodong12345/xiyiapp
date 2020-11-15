@@ -332,11 +332,12 @@
         <!-- <view class="show_price" v-if="currType==1"><text class="show_color">￥</text>{{goods_infosss.price_section.min_price}}-{{goods_infosss.price_section.max_price}}</view> -->
     </view>
     <view class="guige_box">
+      <view class="guige_box_norms">规格：</view>
       <view class="attr_boxs">
         <block v-for="(item, index) in goods_properties" :key="index" v-if="goods_properties != 'null'">
-          <view class="waiwrapper">
-            <!-- <view class="attr_title">{{item.title}}</view> -->
-            <view>
+          <view class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec.id}">
+            <view class="attr_title" @click="e_goodsNorms(item,index)">{{item.title}}</view>
+            <!-- <view>
               <radio-group class="attr_border">
                 <label v-for="(values, index2) in item.spec_items" 
                 :key="index2" @click="select_scalea" :id="goods_info_id" 
@@ -350,7 +351,15 @@
                   </view>
                 </label>
               </radio-group>
+            </view> -->
             </view>
+          </block>
+        </view>
+      <view class="guige_box_norms" v-if="isGoodsSpec_items.length != 0">型号：</view>
+      <view class="attr_boxs">
+        <block v-for="(item, index) in isGoodsSpec_items" :key="index">
+          <view class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec_spec_items.id}">
+            <view class="attr_title" @click="e_goodsSpe(item,index)">{{item.title}}</view>
             </view>
           </block>
         </view>
@@ -576,7 +585,7 @@ export default {
       goods_infosss: "",
       coupon_two: "",
       coupon_list: "",
-      goods_info_id: "",
+      goods_info_id: "",//当前商品id
       goods_img_lists: "",
       goods_info_title: "",
       goods_info_subtitle: "",
@@ -592,10 +601,17 @@ export default {
       shareImg: "",
       add_html: "",
       goodsSpec:'',
-      globalData_specsstrs:''
+      globalData_specsstrs:'',
+
+      isGoodsSpec: {},//当前点击选择的商品款式
+      isGoodsSpec_spec_items: {},//当前款式的尺寸
     };
   },
-
+  computed: {
+    isGoodsSpec_items() {
+      return this.isGoodsSpec.spec_items || []
+    }
+  },
   components: {
     "jyf-parser": parser
   },
@@ -703,6 +719,118 @@ export default {
   // },
   ,
   methods: {
+    /**
+     * @author lishuan
+     * @date 2020/11/14 
+     * @Description: 选择规格
+     */
+    e_goodsNorms(goods,inx) {
+      const that = this
+      that.isGoodsSpec = goods
+      console.log("inx",inx);
+      console.log("当前选择的商品规格信息",that.isGoodsSpec);
+      
+    },
+
+    /**
+     * @author 何学锐
+     * @date 2020/11/14 
+     * @Description: 选择型号
+     */
+    e_goodsSpe(spe,inx) {
+      const that = this
+      console.log('当前选择的商品规格',that.isGoodsSpec);
+      console.log('当前选择的规格的型号',spe);
+      that.isGoodsSpec_spec_items = spe
+      // that.specsarr[flag_name] = spe.id;
+      that.currType = 0
+
+
+      console.log('event',event);
+      that.setData({
+        currType: 0,
+        globalData_specsstrs:spe.id
+      });
+      var openid = wx.getStorageSync('userInfo').openid;
+      var flag_name = '';
+
+      var click_id = spe.id;
+      that.specsarr[flag_name] = click_id;
+      var catId = that.goods_info_id;
+      var specsstr = 0;
+      var specsstrs = spe.id;
+
+
+
+      wx.request({
+        url: app.globalData.domain,
+        data: {
+          c: 'ewei_o2o',
+          a: 'goods',
+          do: 'goodsprice',
+          goodsid: that.goods_info_id,
+          specs: spe.id,
+          key: app.globalData.key,
+          uid: app.globalData.uid
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          console.log('specsarr',that.specsarr)
+
+          if (res.data.code == 1 && res.data.data.title && res.data.data.marketprice) {
+            var stock = res.data.data.stock;
+            that.setData({
+              protuct_number: stock
+            });
+
+            if (stock == 0) {
+              wx.showToast({
+                title: '已售罄',
+                icon: 'success',
+                duration: 1500
+              });
+              return false;
+            }
+
+            if (parseInt(res.data.data.goods_buy_num.maxbuy) == "0") {
+              var maxbuy = parseInt(res.data.data.stock);
+            } else {
+              var maxbuy = parseInt(res.data.data.goods_buy_num.maxbuy);
+            }
+
+            if (parseInt(res.data.data.goods_buy_num.minbuy) == "0") {
+              var minbuy = 1;
+            } else {
+              var minbuy = parseInt(res.data.data.goods_buy_num.minbuy);
+            }
+
+            that.setData({
+              goods_spec: spe.id,
+              goods_info_price: res.data.data.marketprice,
+              minbuy: minbuy,
+              maxbuy: maxbuy,
+              goods_number: minbuy
+            });
+            // that.goods_info_price = res.data.data.marketprice
+            that.$forceUpdate()
+            console.log("goods_info_price",that.goods_info_price);
+
+            if (res.data.data.goods_img != '') {
+              that.setData({
+                goods_thumb: res.data.data.goods_img
+              });
+            }
+          }
+
+          console.log("that.specsarr",that.specsarr);
+          that.setData({
+            checkId: that.specsarr
+          });
+        }
+      });
+    },
     htmlFn(html) {
       let temp = "";
       if (html.length == 0) return "";
@@ -1073,6 +1201,7 @@ export default {
     },
     // 选择规格
     select_scalea: function (event) {
+      console.log('event',event);
 
       var that = this;
       currType = 0;
@@ -1148,6 +1277,7 @@ export default {
             }
           }
 
+          console.log("that.specsarr",that.specsarr);
           that.setData({
             checkId: that.specsarr
           });
@@ -1275,6 +1405,7 @@ export default {
       }
     },
     show_cancel: function () {
+      this.isGoodsSpec = {}
       this.setData({
         show_view_style: 'display:none;'
       });
