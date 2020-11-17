@@ -451,6 +451,7 @@ export default {
             "Content-Type": "application/json",
           },
           success: function(res) {
+            console.log("res", res);
             that.setData({
               add: "display:none",
               cancel: "display:block",
@@ -508,7 +509,7 @@ export default {
           /**
            * @params uid 用户注册后
            */
-          uid: app.globalData.uid ? app.globalData.uid : -1,
+          uid: app.globalData.uid,
         },
         header: {
           "Content-Type": "application/json",

@@ -262,7 +262,7 @@ export default {
           "Content-Type": "application/json",
         },
         success: function(res) {
-          console.log(res);
+          console.log("优惠券的数量", res);
 
           if (res.data.code == 1) {
             for (var m = 0; m < res.data.data.length; m++) {

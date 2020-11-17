@@ -448,6 +448,7 @@ export default {
             cart_list: res.data.data.cart_list,
             sum_goods_price: res.data.data.total_price
           });
+          that.shopCart_list()
         }
       });
     },

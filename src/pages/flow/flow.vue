@@ -345,8 +345,11 @@ export default {
       uid: uid,
       is_fast: is_fast
     });
+    //获取总额数
     that.get_amount_sum();
+    //获取地址
     that.address_shohuo();
+    
     that.flow_show();
     that.order_serviceTime();
     // that.getProvider();
@@ -414,13 +417,55 @@ export default {
           uid: uid,
           is_fast: is_fast,
           key: app.globalData.key,
-          merchid: merchid
+          address_id: address_id,
+          merchid:merchid
         },
         header: {
           'Content-Type': 'application/json'
         },
         success: function (res) {
           console.log('res',res)
+          console.log("ceshi",res.data)
+          if(res.data.data.cart_list==""){
+            uni.request({
+              url: app.globalData.domain,
+              data: {
+                a: 'cart',
+                do: 'list',
+                uid: uid,
+                is_fast: 0,
+                key: app.globalData.key,
+                address_id: address_id,
+              },
+              header: {
+                'Content-Type': 'application/json'
+              },
+              success: function (res) {
+                // 商品配送方式
+                paynum = res.data.data.total_price;
+
+                if (res.data.cart_list == '0') {
+                  that.setData({
+                    tis: '请在洗衣篮,选中待结的商品后再结算喔',
+                    tisshow: 'height: 30px;margin: 20rpx auto;'
+                  });
+                } else {
+                  for (var i = 0; i < res.data.data.cart_list.length; i++) {
+                    var subarry = new Object();
+                    subarry.merchid = res.data.data.cart_list[i].merchid, subarry.content = "", collect_goods[i] = subarry;
+                  }
+                  that.setData({
+                    cart_list: res.data.data.cart_list,
+                    sum_goods_price: res.data.data.total_price,
+                    //使用的优惠券
+                    userCouponViewList: res.data.data.member_coupon_list,
+                    // userCouponLength: res.data.data.member_coupon_list.length
+                  });
+                }
+              }
+            });
+            return
+          }
           // 商品配送方式
           paynum = res.data.data.total_price;
 
@@ -527,6 +572,7 @@ export default {
       /**
        * openid不能为空
        */
+      console.log('that.is_fast',that.is_fast)
       var that = this;
       var uid = app.globalData.uid
       uni.request({
@@ -539,12 +585,49 @@ export default {
           key: app.globalData.key,
           is_fast: that.is_fast,
           address_id: address_id,
-          // merchid: merchid
+          merchid: merchid
         },
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
+          console.log("ceshi",res.data)
+          if(res.data.data.cart_list == ""){
+            uni.request({
+              url: app.globalData.domain,
+              data: {
+                c: 'ewei_o2o',
+                a: 'cart',
+                do: 'list',
+                uid: uid,
+                key: app.globalData.key,
+                is_fast: 0,
+                address_id: address_id,
+                merchid: merchid
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                
+                uni.hideToast();
+
+                if (res.data.code == 1) {
+                  that.setData({
+                    total_price: res.data.total_price,
+                    goods_price: res.data.goods_price,
+                    shiping_price: res.data.shiping_price
+                  });
+                } else {
+                  that.setData({
+                    tis: '获取总额失败,请返回重试!',
+                    tisshow: 'height: 30px;margin: 20rpx auto;'
+                  });
+                }
+              }
+            });
+            return
+          }
           uni.hideToast();
 
           if (res.data.code == 1) {
@@ -1113,6 +1196,7 @@ export default {
           'content-type': 'application/json'
         },
         success: function (res) {
+          console.log('下单时间',res)
           if (res.data.code == 1) {
             var dayList = res.data.data.day_list;
             var timeList = res.data.data.operation_times;

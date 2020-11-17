@@ -733,7 +733,7 @@ export default {
     },
 
     /**
-     * @author 何学锐
+     * @author lishuan
      * @date 2020/11/14 
      * @Description: 选择型号
      */
@@ -1115,34 +1115,12 @@ export default {
           return;
         }
       }
-      
-      // if (that.goods_properties != false) {
-      //   for (var i = 0; i < goods_specsarr.length; i++) {
-      //     if (goods_specsarr[i] == null) {
-      //       wx.showToast({
-      //         title: '请选择属性3',
-      //         icon: 'success',
-      //         duration: 2000
-      //       });
-      //       return;
-      //     }
-      //   }
-
-      //   if (goods_spec.length != goods_specsarr.length) {
-      //     wx.showToast({
-      //       title: '请选择属性4',
-      //       icon: 'success',
-      //       duration: 2000
-      //     });
-      //     return;
-      //   }
-      // }
-
-      var goods_string = goods_specsarr.join("_");
-
+      var goods_string = that.globalData_specsstrs;
+      console.log('goods_string的类型是' + typeof (goods_string) + '字符串是' + goods_string);
       var addId = event.currentTarget.dataset.id;
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
+      //先加入购物车
       uni.request({
         url: app.globalData.domain,
         data: {
@@ -1166,6 +1144,7 @@ export default {
             that.setData({
               cart_number: res.data.data.cart_number
             });
+            //更改购物车状态
             uni.request({
               url: app.globalData.domain,
               data: {
@@ -1700,7 +1679,7 @@ export default {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-            console.log('res',res)
+            console.log('商品res',res)
           //WxParse.wxParse('productContent', 'html', res.data.data.goods_info.content, that, 5)
           that.add_html = res.data.data.goods_info.content ? res.data.data.goods_info.content : '';
           // that.add_html = "<p><img src='http://img10.360buyimg.com/imgzone/jfs/t15637/41/1779447986/262423/932b8250/5a617241N549837bb.jpg'/></p>"
