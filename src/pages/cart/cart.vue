@@ -166,7 +166,7 @@ export default {
 
       that.shopCart_list();
     }
-    that.shopCart_list()
+  
   },
   
   // 左滑动删除结束*******************************************

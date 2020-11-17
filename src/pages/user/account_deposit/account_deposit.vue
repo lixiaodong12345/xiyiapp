@@ -142,6 +142,9 @@ export default {
     //   });
     // },
     //发起充值form请求
+    /**
+     * @params author李栓
+     */
     bind_submit: function (e) {
       console.log('e',e,recharge_money)
       var that = this;

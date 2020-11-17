@@ -720,7 +720,7 @@ export default {
   ,
   methods: {
     /**
-     * @author lishuan
+     * @author 李栓
      * @date 2020/11/14 
      * @Description: 选择规格
      */
@@ -733,7 +733,7 @@ export default {
     },
 
     /**
-     * @author lishuan
+     * @author 李栓
      * @date 2020/11/14 
      * @Description: 选择型号
      */
@@ -1058,7 +1058,7 @@ export default {
       var goods_num = event.currentTarget.dataset.goods_num;
       var openid = wx.getStorageSync('userInfo').openid;
       let globalData_specsstrs = that.globalData_specsstrs
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           key: app.globalData.key,
@@ -1076,7 +1076,7 @@ export default {
         },
         success: function (res) {
           var cart_number = 0;
-
+          console.log('加入购物车',res)
           if (res.data.code == 1) {
             that.setData({
               cart_number: res.data.data.cart_number
@@ -1130,7 +1130,7 @@ export default {
           do: 'add',
           gid: addId,
           goods_num: goods_num,
-          is_fast: 1,
+          is_fast: 0,
           uid: app.globalData.uid,
           goods_spec: goods_string
         },
@@ -1139,7 +1139,7 @@ export default {
         },
         success: function (res) {
           var cart_number = 0;
-
+          // console.log('加入res',res)
           if (res.data.code == 1 || res.data.code == 2) {
             that.setData({
               cart_number: res.data.data.cart_number

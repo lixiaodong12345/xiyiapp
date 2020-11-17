@@ -572,7 +572,7 @@ export default {
       /**
        * openid不能为空
        */
-      console.log('that.is_fast',that.is_fast)
+      // console.log('that.is_fast',is_fast)
       var that = this;
       var uid = app.globalData.uid
       uni.request({
