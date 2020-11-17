@@ -196,6 +196,12 @@ export default {
                 title: '设置密码成功',
                 duration: 2000
               });
+              setTimeout(function(){
+                uni.navigateTo({
+                  url:'/pages/user/userLogin/userLogin'
+                })
+              },3000)
+              
             } else {
               wx.showToast({
                 title: res.data.msg,

@@ -266,7 +266,6 @@
   margin-left: 10rpx;
 }
 
-
 .ht_block {
   display: block;
   height: auto;
@@ -662,15 +661,14 @@ shopping_img_text {
   padding-bottom: 6px;
 }
 
-
 .waiwrapper {
   display: block;
   overflow: hidden;
   padding: 0 4px;
   margin: 0 3px;
   border: 1px solid #f2f2f2;
+  z-index: 99999999999;
 }
-
 
 .waiwrapper .attr_title {
   margin: 0;

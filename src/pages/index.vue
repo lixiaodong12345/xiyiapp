@@ -653,7 +653,7 @@ export default {
               });
             } else {
               wx.showToast({
-                title: '城市未开通服务',
+                title: '当前城市未开通',
                 icon: 'success',
                 duration: 2000
               });
@@ -1048,6 +1048,7 @@ export default {
                   merchant: "block",
                   merchant_list: res.data.data.data.items[i].data
                 });
+                console.log('res.data.data.data.items[i].data',res.data.data.data.items[i].data)
               }
 
               if (firstid == "recommended_classification") {
@@ -1303,7 +1304,7 @@ export default {
     prefer_skip: function (e) {
       var that = this;
       var link_value = e.currentTarget.dataset.link;
-
+      console.log('优选商家',e)
       if (link_value == '/pages/index') {
         uni.switchTab({
           url: link_value

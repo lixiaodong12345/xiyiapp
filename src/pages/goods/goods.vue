@@ -329,14 +329,14 @@
     <view class="show_view_texta">
       <view class="show_title">{{goods_info_title}}</view>
         <view class="show_price" v-if="currType==0"><text class="show_color">￥</text>{{goods_info_price}}</view>
-        <!-- <view class="show_price" v-if="currType==1"><text class="show_color">￥</text>{{goods_infosss.price_section.min_price}}-{{goods_infosss.price_section.max_price}}</view> -->
+        <view class="show_price" v-if="currType==1"><text class="show_color">￥</text>{{goods_infosss.price_section.min_price}}-{{goods_infosss.price_section.max_price}}</view>
     </view>
     <view class="guige_box">
       <view class="guige_box_norms">规格：</view>
       <view class="attr_boxs">
-        <block v-for="(item, index) in goods_properties" :key="index" v-if="goods_properties != 'null'">
-          <view class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec.id}">
-            <view class="attr_title" @click="e_goodsNorms(item,index)">{{item.title}}</view>
+        <view v-for="(item, index) in goods_properties" :key="index" v-if="goods_properties != 'null'">
+          <view class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec.id}" @tap="e_goodsNorms(item,index)">
+            <view class="attr_title" @tap="e_goodsNorms(item,index)">{{item.title}}</view>
             <!-- <view>
               <radio-group class="attr_border">
                 <label v-for="(values, index2) in item.spec_items" 
@@ -353,15 +353,15 @@
               </radio-group>
             </view> -->
             </view>
-          </block>
+          </view>
         </view>
       <view class="guige_box_norms" v-if="isGoodsSpec_items.length != 0">型号：</view>
       <view class="attr_boxs">
-        <block v-for="(item, index) in isGoodsSpec_items" :key="index">
-          <view class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec_spec_items.id}">
-            <view class="attr_title" @click="e_goodsSpe(item,index)">{{item.title}}</view>
+        <view v-for="(item, index) in isGoodsSpec_items" :key="index" @tap="e_goodsSpe(item,index)">
+          <view @tap="e_goodsSpe(item,index)" class="waiwrapper" :class="{is_attr_title:item.id == isGoodsSpec_spec_items.id}" >
+            <view class="attr_title" @tap="e_goodsSpe(item,index)">{{item.title}}</view>
             </view>
-          </block>
+          </view>
         </view>
         <view class="num_item1">
           <view class="attr_title">数量</view>
@@ -729,6 +729,7 @@ export default {
       that.isGoodsSpec = goods
       console.log("inx",inx);
       console.log("当前选择的商品规格信息",that.isGoodsSpec);
+      that.$forceUpdate()
       
     },
 
@@ -762,7 +763,7 @@ export default {
 
 
 
-      wx.request({
+      uni.request({
         url: app.globalData.domain,
         data: {
           c: 'ewei_o2o',
@@ -821,6 +822,7 @@ export default {
               that.setData({
                 goods_thumb: res.data.data.goods_img
               });
+              that.$forceUpdate()
             }
           }
 
@@ -828,6 +830,7 @@ export default {
           that.setData({
             checkId: that.specsarr
           });
+          that.$forceUpdate()
         }
       });
     },
@@ -1248,7 +1251,7 @@ export default {
               maxbuy: maxbuy,
               goods_number: minbuy
             });
-
+            that.$forceUpdate()
             if (res.data.data.goods_img != '') {
               that.setData({
                 goods_thumb: res.data.data.goods_img
@@ -1748,6 +1751,7 @@ export default {
               shareImg: res.data.data.goods_info.thumb,
               commentNum: res.data.data.comment_num
             });
+            that.$forceUpdate()
             haveLimit = res.data.data.goods_info.userbuy;
             allLimit = res.data.data.goods_info.usermaxbuy;
 

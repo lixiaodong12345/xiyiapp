@@ -162,7 +162,7 @@ export default {
                 });
               } else {
                 wx.showToast({
-                  title: "城市未开通服务",
+                  title: "当前城市未开通",
                   icon: "success",
                   duration: 2000,
                 });

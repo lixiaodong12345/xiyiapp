@@ -151,10 +151,12 @@ export default {
       let confirm_password = e.detail.value.confirm_password
       if(password != '' && confirm_password != ''){
         wx.request({
+          // method:'POST',
           url: app.globalData.domain,
           data: {
             a: 'auth',
             do: 'change_password',
+            uid:app.globalData.uid,
             key: app.globalData.key,
             password:password,
             confirm_password:confirm_password
@@ -165,13 +167,15 @@ export default {
           success: function (res) {
             console.log('res',res)
             if (res.data.code == 1) {
-              wx.showToast({
+              uni.showToast({
                 title: '设置密码成功',
                 duration: 2000
               });
-              uni.switchTab({
+              setTimeout(function(){
+                uni.switchTab({
                   url:'/pages/user/index'
-              })
+                })
+              },3000)
             } else {
               wx.showToast({
                 title: res.data.msg,
